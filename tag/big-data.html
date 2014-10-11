@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>datawerk - Authors</title>
+        <title> Articles in big data tag - datawerk</title>
         <meta charset="utf-8" />        
         <link href="http://localhost:8000/theme/css/bootstrap-simplex.css" rel="stylesheet"/> 
     	<link href="http://localhost:8000/theme/css/pygments.css" rel="stylesheet"/>     
@@ -48,7 +48,30 @@
         <div class="container">     
             <div class="row row-centered">
                 <div class="col-centered col-max col-min col-sm-12 col-md-10 col-lg-10 main-content">
-    <h1>Authors on datawerk</h1>        <li><a href="http://localhost:8000/author/thomas-burmann.html">Thomas Burmann</a> (1)</li>
+<section id="content" class="content">
+<h2>Articles with the big data tag</h2>
+
+        <article class="hentry">
+                <header> <h2 class="entry-title"><a href="http://localhost:8000/dist-cache-new_api.html" rel="bookmark" title="Permalink to Reading from distributed cache in Hadoop">Reading from distributed cache in&nbsp;Hadoop</a></h2> </header>
+                <div class="entry-content"> <p>The distributed cache can be used to make small files (or jars etc.) available to mapreduce functions locally on each node. This can be useful e.g. when a global stopword list is needed by all mappers for index creation.  Here are two correct ways of reading a file from distributed cache in Hadoop 2. This has changed in the new <span class="caps">API</span> and very few books and tutorials have updated&nbsp;examples.</p>
+<h3>Named&nbsp;File</h3>
+<p>In the&nbsp;driver:</p>
+<div class="highlight"><pre><span class="n">Job</span> <span class="n">job</span> <span class="o">=</span> <span class="n">Job</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="k">new</span> <span class="n">Configuration</span><span class="o">());</span>
+<span class="n">job</span><span class="o">.</span><span class="na">addCacheFile</span><span class="o">(</span><span class="k">new</span> <span class="n">URI</span> <span class="o">(</span><span class="s">&quot;/path/to/file.csv&quot;</span> <span class="o">+</span> <span class="s">&quot;#filelabel&quot;</span><span class="o">));</span>
+</pre></div>
+
+
+<p>In the&nbsp;mapper:</p>
+<div class="highlight"><pre><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setup</span><span class="o">(</span><span class="n">Context</span> <span class="n">context ...</span></pre></div> </div><!-- entry-content -->
+        </article>
+<div class="pager">
+      <ul>
+                        <li class="previous disabled"><a>← Previous</a></li>
+                        <li class="next disabled"><a>Next →</a></li>
+      </ul>
+    </div>
+</section><!-- content -->
                 </div>
             </div><!-- row-->
         </div><!-- container -->

@@ -1,53 +1,121 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-        <meta charset="utf-8" />
-        <title>hunchbox</title>
-        <link rel="stylesheet" href="/theme/css/main.css" />
+<html>
+    <head>
+        <title> Articles in  - datawerk</title>
+        <meta charset="utf-8" />        
+        <link href="http://localhost:8000/theme/css/bootstrap-simplex.css" rel="stylesheet"/> 
+    	<link href="http://localhost:8000/theme/css/pygments.css" rel="stylesheet"/>     
+        <link href="http://localhost:8000/theme/css/style.css" rel="stylesheet" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    </head>
 
-        <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
-</head>
-
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="/">hunchbox </a></h1>
-                <nav><ul>
-                    <li><a href="/pages/my-super-post.html">My super page</a></li>
-                    <li><a href="/category/python.html">Python</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
+    <body>
+        <div class="container-fluid">
+            <div class="header">
+                <div class="container">
+                    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="http://localhost:8000">datawerk</a>
+                        </div>
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="http://localhost:8000/archives.html">Archives</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages<span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">CV</a></li>
+                                        <li><a href="#">Publications</a></li>
+                                        <li class="divider"></li>
+                                        <li class="dropdown-header">Data Science</li>
+                                        <li>
+                                        <a href="http://localhost:8000/pages/titanic-survival.html">Titanic survival&nbsp;prediction</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- header -->
+        </div><!-- container-fluid -->
+        
+        <div class="container">     
+            <div class="row row-centered">
+                <div class="col-centered col-max col-min col-sm-12 col-md-10 col-lg-10 main-content">
 <ul>
-    <li><a href="/category/python.html">Python</a></li>
+    <li><a href="http://localhost:8000/category/hadoop.html">Hadoop</a></li>
 </ul>
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>blogroll</h2>
-                        <ul>
-                            <li><a href="http://getpelican.com/">Pelican</a></li>
-                            <li><a href="http://python.org/">Python.org</a></li>
-                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-                            <li><a href="#">You can modify those links in your config file</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
+                </div>
+            </div><!-- row-->
+        </div><!-- container -->
 
-                            <li><a href="#">You can add links in your config file</a></li>
-                            <li><a href="#">Another social link</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
-
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
-
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
-
+<footer class="aw-footer">
+	<div class="container-fluid"> <!-- footer -->
+		<div class="row">
+			<div class="col-sm-12 col-lg-12 col-md-offset-1">
+				<div class="row">
+					<div class="col-sm-3">
+						<h4>Navigation</h4>
+						<ul class="list-unstyled my-list-style">
+							<li><a href="http://localhost:8000">datawerk</a></li>
+							<li><a href="http://localhost:8000/pages/titanic-survival.html"><i class="fa fa-Titanic survival&nbsp;prediction "></i> Titanic survival&nbsp;prediction</a></li>
+							<li><a href="http://localhost:8000/feeds/rss.xml"><i class="fa fa-rss "></i> rss</a></li>
+						</ul>
+					</div>
+					<div class="col-sm-3">
+						<h4>Author</h4>
+						<ul class="list-unstyled my-list-style">
+							<li><a href="http://github.com/synergenz">Github</a></li>
+							<li><a href="http://www.linkedin.com/pub/wilson-freitas/a/572/609">LinkedIn</a></li>
+							<li><a href="https://secure.flickr.com/photos/syngnz/">LinkedIn</a></li>                            
+						</ul>
+					</div>
+					<div class="col-sm-3">
+						<h4>Categories</h4>
+						<ul class="list-unstyled my-list-style">
+							<li><a href="http://localhost:8000/category/Hadoop.html">Hadoop (1)</a></li>
+						</ul>
+					</div>
+					<div class="col-sm-3">
+						<h4>Links</h4>
+						<ul class="list-unstyled my-list-style">
+							<li><a href="http://www.r-bloggers.com/">R-bloggers</a></li>
+                            <li><a href="http://www.kaggle.com/">Kaggle</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12 text-center center-block aw-bottom">
+			<p>&copy; Thomas Buhrmann (2014). Powered by <a href="http://blog.getpelican.com/">Pelican</a>.</p>
+		</div>
+	</div>
+</div>
+<!-- JavaScript -->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+	$("div.collapseheader").click(function () {
+		$header = $(this).children("span").first();
+		$codearea = $(this).children(".input_area");
+		$codearea.slideToggle(500, function () {
+			$header.text(function () {
+				return $codearea.is(":visible") ? "Collapse Code" : "Expand Code";
+			});
+		});
+	});
+});
+</script>
 </body>
 </html>

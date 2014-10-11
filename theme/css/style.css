@@ -1,0 +1,205 @@
+.container{
+    max-width:99%
+}
+
+/* Space out content a bit */
+body {
+  padding-top: 20px;
+  line-height: 1.8;
+  text-align: justify;
+  vertical-align:middle;
+}
+
+/* Figures */
+figure {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.figCenter{
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.capCenter{
+  display: inline-block;
+  margin: 0 auto;
+  font-size: 90%;
+  text-align: left;
+  line-height: 1.4;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+/* centered columns styles */
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+
+
+.col-fixed {
+    /* custom width */
+    width:800px;
+}
+.col-min {
+    /* custom min width */
+    min-width:600px;
+}
+.col-max {
+    /* custom max width */
+    max-width:800px;
+}
+
+/*
+[class*="col-"] {
+    padding-top:10px;
+    padding-bottom:15px;
+	border:1px solid #80aa00;
+	background:#d6ec94;
+}
+[class*="col-"]:before {
+    display:block;position:relative;
+    content:"COLUMN";
+    margin-bottom:8px;
+	font-family:sans-serif;
+	font-size:10px;
+    letter-spacing:1px;
+    color:#658600;
+    text-align:left;
+}
+*/
+
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.footer,
+.content,
+.comment {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+/* Custom page header */
+.header {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
+  padding-bottom: 19px;
+}
+
+/* Customize container */
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+/* More space in footer */
+.main-content {
+    margin-top: 10px;
+}
+
+
+/* More space in footer */
+.aw-bottom {
+    padding: 2em;
+}
+
+.my-list-style {
+    margin-left: 0;
+}
+
+.aw-footer {
+    margin-top: 2em;
+    border-top: 2px solid lightgrey;
+    border-bottom: 2px solid lightgrey;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    background-color: #eee;
+}
+
+.aw-footer li {
+    line-height: 200%;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+}
+.jumbotron .btn {
+  font-size: 21px;
+  padding: 14px 24px;
+}
+
+/* Supporting marketing content */
+.marketing {
+  margin: 40px 0;
+}
+.marketing p + h4 {
+  margin-top: 28px;
+}
+.header .text-muted  a{
+    color:#999;
+    text-decoration:none;
+}
+.entry-content{
+    padding:5px 0 15px;;
+    line-height:1.8;
+}
+.hentry{
+    margin-bottom:18px;
+}
+.pager{
+    margin-bottom:30px;
+}
+.pager ul{
+    margin:0;
+    padding:0;
+}
+.post-info{
+    padding-bottom:30px;
+}
+.post-info address{
+    display:inline;
+}
+.comment{
+    padding-top:15px;
+    padding-bottom:15px;
+}
+.archive-list li{
+    font-size:16px;
+    margin-bottom:10px;
+}
+.bottom-nav{display:none;}
+.bottom-nav a{margin-left:15px;}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  /* Remove the padding we set earlier */
+  .header,
+  .content,
+  .footer,
+  .comment {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+ .nav-pills,.bottom-nav{
+    display:block;
+ }
+}

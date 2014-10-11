@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Titanic survival&nbsp;prediction</title>
+        <meta charset="utf-8" />        
+        <link href="http://localhost:8000/theme/css/bootstrap-simplex.css" rel="stylesheet"/> 
+    	<link href="http://localhost:8000/theme/css/pygments.css" rel="stylesheet"/>     
+        <link href="http://localhost:8000/theme/css/style.css" rel="stylesheet" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    </head>
+
+    <body>
+        <div class="container-fluid">
+            <div class="header">
+                <div class="container">
+                    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="http://localhost:8000">datawerk</a>
+                        </div>
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="http://localhost:8000/archives.html">Archives</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages<span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">CV</a></li>
+                                        <li><a href="#">Publications</a></li>
+                                        <li class="divider"></li>
+                                        <li class="dropdown-header">Data Science</li>
+                                        <li class="active">
+                                        <a href="http://localhost:8000/pages/titanic-survival.html">Titanic survival&nbsp;prediction</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- header -->
+        </div><!-- container-fluid -->
+        
+        <div class="container">     
+            <div class="row row-centered">
+                <div class="col-centered col-max col-min col-sm-12 col-md-10 col-lg-10 main-content">
+    <h1>Titanic survival&nbsp;prediction</h1>
+    
+
+    <p>In this report I will provide an overview of my solution to <a href="http://www.kaggle.com">kaggle&#8217;s</a> <a href="https://www.kaggle.com/c/titanic-gettingStarted">&#8220;Titanic&#8221; competition</a>. The aim of this competition is to predict the survival of passengers aboard the titanic using information such as a passenger&#8217;s gender, age or socio-economic  status. I will explain my data munging process, explore the available predictor variables, and compare a number of different classification algorithms in terms of their prediction performance. All analysis presented here was performed in R. The corresponding source code is available on <a href="https://github.com/synergenz/kaggle/tree/master/titanic">github</a>.</p>
+<figure style="width:800px">
+<img src="/images/titanic/titanic.jpg" alt="Titanic" class="center-block" style="width:800px"/>
+<figcaption  class="capCenter">Figure 1: Proportion of survivors as a function of several categorical predictors. Blue:survived, red: perished. For the title variable, proportions are relative to each level. For the remaining variables overall proportions are displayed. </figcaption>
+</figure>
+
+<h3>Data&nbsp;munging</h3>
+<p>The <a href="https://www.kaggle.com/c/titanic-gettingStarted/data">data set</a> provided by kaggle contains 1309 records of passengers aboard the titanic at the time it sunk. Each record contains 11 variables describing the corresponding person: survival (yes/no), class (1 = Upper, 2 = Middle, 3 = Lower), name, gender and age; the number of siblings and spouses aboard, the number of parents and children aboard, the ticket number, the fare paid, a cabin number, and the port of embarkation (C = Cherbourg; Q = Queenstown; S = Southampton). Of the 1309 records 1068 include the label, thus constituting the training set, while a different subset of size 418 does not include the label and is used by kaggle for assessing the accuracy of the predictions&nbsp;submitted.</p>
+<p>To facilitate the training of classifiers for the prediction of survival, and for purposes of presentation, the data was preprocessed in the following way. All categorical variables were treated as factors (ordered where appropriate, e.g. in the case of class). From each passenger&#8217;s name her title was extracted and added as a new predictor&nbsp;variable. </p>
+<div class="highlight"><pre>data<span class="o">$</span>title <span class="o">=</span> sapply<span class="p">(</span>data<span class="o">$</span>name<span class="p">,</span> FUN<span class="o">=</span><span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> <span class="p">{</span> strsplit<span class="p">(</span>x<span class="p">,</span> split<span class="o">=</span><span class="s">&#39;[,.]&#39;</span><span class="p">)[[</span><span class="m">1</span><span class="p">]][</span><span class="m">2</span><span class="p">]})</span>
+data<span class="o">$</span>title <span class="o">=</span> sub<span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> data<span class="o">$</span>title<span class="p">)</span>
+</pre></div>
+
+
+<p>This resulted in a factor with a great number of different levels, many of which could be considered similar in terms of implied societal status. To simplify matters the following levels were combined: &#8216;Mme&#8217;, &#8216;Mlle&#8217;, &#8216;Ms&#8217; were re-assigned to the level &#8216;Miss&#8217;; &#8216;Capt&#8217;, &#8216;Col&#8217;, &#8216;Don&#8217;, &#8216;Major&#8217;, &#8216;Sir&#8217; and &#8216;Dr&#8217; as titles of male nobility to the level &#8216;Sir&#8217;; and &#8216;Dona&#8217;, &#8216;Lady&#8217;, &#8216;the Countess&#8217; and &#8216;Jonkheer&#8217; as titles of female nobility to the level&nbsp;&#8216;Lady&#8217;.</p>
+<p>The number of all family members aboard was combined into a single family size variable. In addition, a categorical variable was formed from this data by assigning records to three approx. equally sized levels of &#8216;singles&#8217;, &#8216;small&#8217; and &#8216;big&#8217; families. Also, another factor was added aimed at <em>uniquely</em> identifying big families. To this send each passenger&#8217;s surname was combined with the corresponding family size (resulting e.g. in the factor level &#8220;11Sage&#8221;), but such that families smaller than a certain number (n=4) were all assigned the level&nbsp;&#8220;small&#8221;.</p>
+<p>Age information was missing for many records (about 20%). Since age can be hypothesised to correlate well with such information as a person&#8217;s title (e.g. &#8220;Master&#8221; was used to refer politely to young children), this data was imputed using a random forest (essentially a bagged decision tree) trained to predict age from the remaining&nbsp;variables:</p>
+<div class="highlight"><pre>agefit <span class="o">=</span> rpart<span class="p">(</span>age <span class="o">~</span> pclass <span class="o">+</span> sex <span class="o">+</span> sibsp <span class="o">+</span> parch <span class="o">+</span> fare <span class="o">+</span> embarked <span class="o">+</span> title <span class="o">+</span> familysize<span class="p">,</span> data<span class="o">=</span>data<span class="p">[</span><span class="o">!</span>is.na<span class="p">(</span>data<span class="o">$</span>age<span class="p">),],</span> method<span class="o">=</span><span class="s">&quot;anova&quot;</span><span class="p">)</span>
+data<span class="o">$</span>age<span class="p">[</span>is.na<span class="p">(</span>data<span class="o">$</span>age<span class="p">)]</span> <span class="o">=</span> predict<span class="p">(</span>agefit<span class="p">,</span> data<span class="p">[</span>is.na<span class="p">(</span>data<span class="o">$</span>age<span class="p">),</span> <span class="p">])</span>
+</pre></div>
+
+
+<p>From the imputed age variable a factor was constructed indicating whether or not a passenger is a &#8220;child&#8221; (age &lt;&nbsp;16).</p>
+<p>The fare variable contained 18 missing values (17 fares with a value of 0 and one <span class="caps">NA</span>), which were imputed using a decision tree analogous to the above method for the age variable. Since this variable was far from normally distributed (which might violate some algorithm&#8217;s assumptions), another factor was created splitting the fare into 3 approx. equally distributed&nbsp;levels.</p>
+<p>Cabin and tickets information was sparse, i.e. missing for most passengers, and not considered for further analysis or as predictors for classification. The embarkation variable contained a single missing value, for which was substituted the majority value&nbsp;(Southampton).</p>
+<p>All of the above transformations were performed on the joined train and test data, which was thereafter split again into the original two&nbsp;sets.</p>
+<p>In summary, the processed data set contains the following features. 5 unordered factors: gender, port of embarkation, title, child and family id. 3 ordered factors: class, family size category, fare category. And three numerical predictors: age, fare price and family size (of which only age is approx. normal&nbsp;distributed).</p>
+<h3>Data&nbsp;exploration</h3>
+<p>Some <a href="http://en.wikipedia.org/wiki/RMS_Titanic">background information</a> about the titanic disaster might prove useful to formulate hypotheses about the type of people more probable to have survived, i.e. those more likely to have had access to lifeboats. The ship only carried enough lifeboats for slightly more than half the number of people on board (and many were launched half-full). In this respect, the most significant aspect of the rescue effort was the &#8220;women and children first&#8221; policy followed in the majority of life boat loadings. Additionally, those on the upper decks (i.e. those in the upper classes) had easier access to lifeboats, not the least because of closer physical proximity than the lower decks. It should thus not come as a surprise that survival was heavily skewed towards women, children and in general those of the upper&nbsp;class.</p>
+<p>As a first step let&#8217;s look at survival rates as a function of each factor variable in the training set, shown in Figure 1.
+<figure style="width:1000px; margin-left:-100px;">
+<img src="/images/titanic/facBars.png" alt="Survival vs Factors" class="figCenter"/>
+<img src="/images/titanic/isChildBars.png" alt="Survival vs Child" class="figCenter"/>
+<img src="/images/titanic/titleBars.png" alt="Survival vs Title" class="figCenter"/>
+<figcaption  class="capCenter" style="text-align:left;">Figure 1: Proportion of survivors as a function of several categorical predictors. Blue:survived, red: perished. For the title variable, proportions are relative to each level. For the remaining variables overall proportions are displayed. </figcaption>
+</figure></p>
+<p>Clearly, male passengers were at a huge disadvantage. They were about 5 times more likely to die than to survive. In contrast, female passengers were almost 3 times more likely to survive than to die. Next, while 1st class passengers were more likely to survive, chances were tilted badly against 3nd class passengers (in the 2nd class the chance was about equal). While a difference in survival rate can also be seen depending on the port of embarkation, the variable is so highly imbalanced that these differences could be spurious. In regards to family size, singles were much more likely to die than to survive. However, this balance is affected highly by the fact that of the 537 singles 411 were male and only 126 female. The gender thus confounds this family size level. When considering only non-singles we see a slight effect of larger families size leading to lower probability of survival. The fare variable essentially mirrors the class variable. Those who paid more for their ticket (and thus probably of a higher socio-economical status) are somewhat more likely to survive than to perish, while passengers with the cheapest tickets were much more probable to die. The title variable mostly confirms the earlier trends. Passengers with female titles (Lady, Miss, Mrs), as well as young passengers (Master) are more likely to survive than adult male passengers (Mr, Sir, Reverend). And amongst the male adults, those of nobility (Sir) had a better chance of survival than &#8220;common&#8221; travellers (Mr). A slight effect of age on survival can also be seen in the &#8220;is child&#8221; variable (most children survived, while most adults died), but the number of children was relatively low&nbsp;overall. </p>
+<p>The numeric variables further support the trend observed in the corresponding factors, as can be seen in Figure 2 below.
+<figure style="width:1000px; margin-left:-0px;">
+<img src="/images/titanic/expContVar.png" alt="Numerical predictors" class="figCenter"/>
+<figcaption  class="capCenter" style="text-align:left;">Figure 2: Survival distributions for numerical predictors (red=survived, blue=died). Left: A box plot of fair price, y axis is log-scaled. Right: density estimate of survival vs age. </figcaption>
+</figure>
+Those that survived travelled on a more expensive ticket on average than those who died. And for young children we see a peak in the probability of&nbsp;survival.</p>
+<p>To develop some intuition about the importance of the different predictors and how they might be used by a classifier it may help to train a simple decision tree on the data, which is a model easy to interpret. Let&#8217;s start by sticking mostly to the original predictors (not including non-normal variables converted to factors, nor engineered variables like the&nbsp;title):</p>
+<div class="highlight"><pre>dc1 <span class="o">=</span> rpart<span class="p">(</span>survived <span class="o">~</span> pclass <span class="o">+</span> sex <span class="o">+</span> age <span class="o">+</span> familysize <span class="o">+</span> fare <span class="o">+</span> embarked<span class="p">,</span> data<span class="o">=</span>train<span class="p">,</span> method<span class="o">=</span><span class="s">&quot;class&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>A tree trained on the remaining predictors is shown below in Figure&nbsp;3.</p>
+<figure style="width:1000px; margin-left:-0px;">
+<img src="/images/titanic/dectree1.png" alt="Decision tree 1" class="figCenter"/>
+<figcaption  class="capCenter" style="text-align:left;">Figure 3: Decision tree predicting survival. Each node displays its survival prediction (yes=blue, no=red), the probability of belonging to each class conditioned on the node (sum to one within node), as well as the percentage of observations in each node (sum to 100% across leaves). </figcaption>
+</figure>
+
+<p>The resulting decision tree should not be surprising. Without any further information (at the root node) the classifier always predicts that a passenger would not survive, which is of course correct given that 62% of all passengers died while only 38% survived. Next, the tree splits on the gender variable. For male passengers over the age of 13 the classifier predicts death, while children are more likely to survive, unless they belong to a large family. On the female branch, those belonging to the upper class are predicted to survive. Those in the third class, in contrast, are predicted to survive only when they belong to a relatively small family (size &lt; 4.5) and are under the age of 36. Those older, or member of a bigger family are more probable to have died. The fare and embarkation variables are not used in the final tree. Since we already know that fare correlates strongly with class, and since embarkation is strongly imbalanced, this is not surprising. &#8220;Factorised&#8221; variables derived from non-uniformly distributed predictors (fare category, family size category and &#8220;is child&#8221;) are not required in the training of the tree, as it automatically determines the best level at which to split the&nbsp;variables.</p>
+<p>How about the engineered variables of a passenger&#8217;s title and familyId? One possible problem here is that these factors contain relatively many levels. Decision trees split nodes by information gain, and this measure in decision trees is biased in favour of attributes with more levels. Regular trees will therefore often produce results with those categorical variables dominating others. However, biased predictor selection can be avoided using Conditional Inference Trees (ctrees), which will be employed later when more methodologically exploring different&nbsp;classifiers.</p>
+<p>As a last step, we compare the distribution of variables from the train and the test set, to avoid potential surprises arising from imbalanced splits of the data. Instead of pulling out and displaying here all tables for the categorical variables in both sets, we first use a chi-square test to single out those categorical variables whose levels are differently&nbsp;distributed:</p>
+<div class="highlight"><pre>factabs <span class="o">=</span> lapply<span class="p">(</span>varnames<span class="p">[</span>facvars<span class="p">],</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> <span class="p">{</span> data.frame<span class="p">(</span>cbind<span class="p">(</span>table<span class="p">(</span>train<span class="p">[,</span>x<span class="p">]),</span> table<span class="p">(</span>test<span class="p">[,</span> x<span class="p">])))})</span>
+pvals <span class="o">=</span> sapply<span class="p">(</span>faccomp<span class="p">,</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> chisq.test<span class="p">(</span>x<span class="p">)</span><span class="o">$</span>p.value<span class="p">)</span>
+faccomp<span class="p">[[</span>which<span class="p">(</span>pvals<span class="o">&lt;</span><span class="m">0.05</span><span class="p">)]]</span>
+</pre></div>
+
+
+<p>Only the embarkation shows a slight but apparently significant difference between the train and test set, with the difference in the proportions of people embarked in Cherbourg vs. Southhamption being slightly less pronounced in the test set (C=0.188, S=0.725 in the training set, and C=0.244, S=0.646 in the test set). Since the overall tendency is preserved we assume this difference will not affect the quality of our following predictions. Comparing five-number summaries for the numerical variables showed no further differences in distribution between the train and test&nbsp;sets.</p>
+<script type="math/tex; mode=display">
+  \sum_{n=1}^\infty {1\over n^2} = {\pi^2\over 6}
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+                </div>
+            </div><!-- row-->
+        </div><!-- container -->
+
+<footer class="aw-footer">
+	<div class="container-fluid"> <!-- footer -->
+		<div class="row">
+			<div class="col-sm-12 col-lg-12 col-md-offset-1">
+				<div class="row">
+					<div class="col-sm-3">
+						<h4>Navigation</h4>
+						<ul class="list-unstyled my-list-style">
+							<li><a href="http://localhost:8000">datawerk</a></li>
+							<li><a href="http://localhost:8000/pages/titanic-survival.html"><i class="fa fa-Titanic survival&nbsp;prediction "></i> Titanic survival&nbsp;prediction</a></li>
+							<li><a href="http://localhost:8000/feeds/rss.xml"><i class="fa fa-rss "></i> rss</a></li>
+						</ul>
+					</div>
+					<div class="col-sm-3">
+						<h4>Author</h4>
+						<ul class="list-unstyled my-list-style">
+							<li><a href="http://github.com/synergenz">Github</a></li>
+							<li><a href="http://www.linkedin.com/pub/wilson-freitas/a/572/609">LinkedIn</a></li>
+							<li><a href="https://secure.flickr.com/photos/syngnz/">LinkedIn</a></li>                            
+						</ul>
+					</div>
+					<div class="col-sm-3">
+						<h4>Categories</h4>
+						<ul class="list-unstyled my-list-style">
+							<li><a href="http://localhost:8000/category/Hadoop.html">Hadoop (1)</a></li>
+						</ul>
+					</div>
+					<div class="col-sm-3">
+						<h4>Links</h4>
+						<ul class="list-unstyled my-list-style">
+							<li><a href="http://www.r-bloggers.com/">R-bloggers</a></li>
+                            <li><a href="http://www.kaggle.com/">Kaggle</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12 text-center center-block aw-bottom">
+			<p>&copy; Thomas Buhrmann (2014). Powered by <a href="http://blog.getpelican.com/">Pelican</a>.</p>
+		</div>
+	</div>
+</div>
+<!-- JavaScript -->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+	$("div.collapseheader").click(function () {
+		$header = $(this).children("span").first();
+		$codearea = $(this).children(".input_area");
+		$codearea.slideToggle(500, function () {
+			$header.text(function () {
+				return $codearea.is(":visible") ? "Collapse Code" : "Expand Code";
+			});
+		});
+	});
+});
+</script>
+</body>
+</html>
