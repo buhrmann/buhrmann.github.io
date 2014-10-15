@@ -120,6 +120,11 @@ figure {
     margin-left: 0;
 }
 
+.footer,
+.aw-footer {
+    width: 100%;
+}
+
 .aw-footer {
     margin-top: 2em;
     border-top: 2px solid lightgrey;

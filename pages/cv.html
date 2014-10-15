@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Interactive&nbsp;Resume</title>
+        <meta charset="utf-8" />        
+        <link href="http://localhost:8000/theme/css/bootstrap-simplex.css" rel="stylesheet"/> 
+    	<link href="http://localhost:8000/theme/css/pygments.css" rel="stylesheet"/>     
+        <link href="http://localhost:8000/theme/css/style.css" rel="stylesheet" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link href="http://localhost:8000/theme/css/d3.css" rel="stylesheet" />
+    </head>
+
+    <body>
+        <div class="container-fluid">
+            <div class="header">
+                <div class="container">
+                    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="http://localhost:8000">datawerk</a>
+                        </div>
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="http://localhost:8000/archives.html">Archives</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages<span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">CV</a></li>
+                                        <li><a href="#">Publications</a></li>
+                                        <li class="divider"></li>
+                                        <li class="dropdown-header">Data Science</li>
+                                        <li class="active">
+                                        <a href="http://localhost:8000/pages/cv.html">Interactive&nbsp;Resume</a>
+                                        </li>
+                                        <li>
+                                        <a href="http://localhost:8000/pages/titanic-survival.html">Titanic survival&nbsp;prediction</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- header -->
+        </div><!-- container-fluid -->
+        
+        <div class="container">     
+            <div class="row row-centered">
+                <div class="col-centered col-max col-min col-sm-12 col-md-10 col-lg-10 main-content">
+    <h1>Interactive&nbsp;Resume</h1>
+    
+
+    <p>I&#8217;m currently a postdoctoral researcher working for the European project &#8220;Extending sensorimotor contingencies to cognition&#8221; (<span class="caps">EU</span> 7th Framework; <span class="caps">ICT</span>: Cognitive Systems and Robotics). In my academic work I use a combination of <span class="caps">AI</span> methods, including neural networks and genetic algorithms, as well as physical simulations to test hypotheses regarding human and robot motor control. I have also worked as commercial software engineer and team lead on adaptive character simulation and <span class="caps">AI</span> for NaturalMotion. My academic background and interests include artificial intelligence, machine learning, cognitive science and software development in general (C++, Python, Matlab, R&nbsp;&#8230;).</p>
+<p>I&#8217;m now looking to apply my skills and experience with <span class="caps">AI</span>, machine learning and commercial software development in the field of data science/big&nbsp;data.</p>
+<h3>Experience</h3>
+<p>For a full resume see my <a href="https://www.linkedin.com/in/thomasbuhrmann">LinkedIn</a> account.
+<div id="timeline-exp"></div></p>
+<h3>Education</h3>
+<p><div id="timeline-ed"></div></p>
+<h3>Publications</h3>
+<p>A list of my publications. For the data used in this graph I&#8217;ve written a little python robot to scrape articles and citations off of google scholar. The <a href="https://github.com/synergenz/datawerk/blob/master/theme/static/py/citations.py">source code</a> is available on <a href="https://github.com/synergenz/">github</a> along with the rest of this <a href="https://github.com/synergenz/datawerk">blog</a>.
+<div id="pubsStream"></div></p>
+<div id="pubsBars"></div>
+                </div>
+            </div><!-- row-->
+        </div><!-- container -->
+
+	<div class="container-fluid aw-footer"> <!-- footer -->
+		<div class="row-centered">
+			<div class="col-sm-3 col-sm-offset-1">
+				<h4>Navigation</h4>
+				<ul class="list-unstyled my-list-style">
+					<li><a href="http://localhost:8000">datawerk</a></li>
+					<li><a href="http://localhost:8000/pages/cv.html"><i class="fa fa-Interactive&nbsp;Resume "></i> Interactive&nbsp;Resume</a></li>
+					<li><a href="http://localhost:8000/pages/titanic-survival.html"><i class="fa fa-Titanic survival&nbsp;prediction "></i> Titanic survival&nbsp;prediction</a></li>
+					<li><a href="http://localhost:8000/feeds/rss.xml"><i class="fa fa-rss "></i> rss</a></li>
+				</ul>
+			</div>
+			<div class="col-sm-3">
+				<h4>Author</h4>
+				<ul class="list-unstyled my-list-style">
+					<li><a href="http://www.ias-research.net/people/thomas-buhrmann/">Academic Home</a></li>
+					<li><a href="http://github.com/synergenz">Github</a></li>
+					<li><a href="http://www.linkedin.com/in/thomasbuhrmann">LinkedIn</a></li>
+					<li><a href="https://secure.flickr.com/photos/syngnz/">Flickr</a></li>                            
+				</ul>
+			</div>
+			<div class="col-sm-3">
+				<h4>Categories</h4>
+				<ul class="list-unstyled my-list-style">
+					<li><a href="http://localhost:8000/category/Hadoop.html">Hadoop (1)</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12 text-center center-block aw-bottom">
+			<p>&copy; Thomas Buhrmann (2014). Powered by <a href="http://blog.getpelican.com/">Pelican</a>.</p>
+		</div>
+	</div>
+</div>
+<!-- JavaScript -->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+	$("div.collapseheader").click(function () {
+		$header = $(this).children("span").first();
+		$codearea = $(this).children(".input_area");
+		$codearea.slideToggle(500, function () {
+			$header.text(function () {
+				return $codearea.is(":visible") ? "Collapse Code" : "Expand Code";
+			});
+		});
+	});
+});
+</script>
+
+<script type="text/javascript" src="http://localhost:8000/theme/js/d3.v3.min.js"></script>
+<script type="text/javascript" src="http://d3js.org/colorbrewer.v1.min.js"></script>
+<script type="text/javascript" src="http://localhost:8000/theme/js/timeline.js"></script>
+<script type="text/javascript" src="http://localhost:8000/theme/js/pubStack.js"></script>
+<script type="text/javascript">timelineFromJson("Paired");</script>
+<script type="text/javascript">streamCsv("#pubsStream", "Paired");</script>
+<!--<script type="text/javascript">pubsBars("#pubsBars");</script>-->
+</body>
+</html>

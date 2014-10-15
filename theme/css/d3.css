@@ -1,0 +1,169 @@
+.brush .extent {
+  stroke: #fff;
+  fill-opacity: .125;
+  shape-rendering: crispEdges;
+}
+
+svg .axis path, 
+svg .axis line {
+	fill: none;
+	stroke: black;
+	shape-rendering: crispEdges;
+}
+
+svg .y2 path,
+svg .y2 line {
+    fill: none;
+    stroke: #3C75A3;
+    shape-rendering: crispEdges;
+}
+
+svg .axis text {
+    font-family: sans-serif;
+    font-size: 10px;
+}
+
+svg .dot {
+    fill: #3C75A3;        
+}
+
+svg .bar {
+    shape-rendering: crispEdges;
+    fill-opacity: 1; 
+    border-radius: 3px;
+}
+
+svg .bar:hover {
+    fill: #000;
+}
+
+svg .label {
+    fill: #000;
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+svg .lline {
+    stroke: #000;
+    shape-rendering: crispEdges;    
+}
+
+.popover {
+    max-width:400px;
+    width: 400px;    
+}
+
+.popover-wide{
+    max-width:450px;
+    width: 450px;
+}
+
+.popover-title {
+    font-size: 12px;
+}
+
+.popover-content {
+    font-size: 11px;
+}
+
+.popover-wide .arrow {
+    visibility: hidden;
+}
+
+.hovertip {
+    position: relative;
+    float: left;
+    z-index: 20;
+    visibility: hidden;
+    top: 30px;
+    left: 55px;
+    padding: 0 20;
+    width: 300px;
+}
+
+svg .ldot {
+    stroke: #000;
+}
+
+svg .streamPath:hover{
+    fill: #000;
+}
+
+svg .layer {
+    stroke-width: 0px;
+    stroke: #000;
+    cursor: pointer;
+}
+
+
+svg .bar:hover, 
+svg .bar.selected,
+svg .dot:hover, 
+svg .dot.selected {
+    cursor: pointer;
+}
+
+svg .line {
+    stroke-width: 1.5px;
+}
+
+svg path.line {
+  fill: none;
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+svg path.line2 {
+  stroke: #3C75A3;
+  stroke-width: 1.5px;
+}
+
+path.area {
+  fill: rgba(60,117, 163, 0.2);
+}
+
+svg .trackpad {
+    fill: rgba(0,0,0,0);
+}
+
+svg .tip {
+    fill: rgba(0,0,0,0.8);
+    stroke: rgba(0,0,0,0.8);
+    font-size: 14px;
+}
+
+svg text.tip {
+    fill: white;
+    stroke: none;
+}
+
+.d3-tip {
+  line-height: 0.5;
+  font-size: 14px;
+  font-weight: normal;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
