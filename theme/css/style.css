@@ -138,6 +138,23 @@ figure {
     line-height: 200%;
 }
 
+ul.tagcloud {
+  list-style: none;
+    padding: 0;
+}
+
+ul.tagcloud li {
+    display: inline-block;
+}
+
+li.tag-1 {
+    font-size: 150%;
+}
+
+li.tag-2 {
+    font-size: 120%;
+}
+
 /* Main marketing message and sign up button */
 .jumbotron {
   text-align: center;

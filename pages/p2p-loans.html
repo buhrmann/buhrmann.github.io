@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Interest rates on <span class="caps">P2P</span>&nbsp;loans</title>
+        <meta charset="utf-8" />        
+        <link href="https://synergenz.github.io/theme/css/bootstrap-simplex.css" rel="stylesheet"/> 
+    	<link href="https://synergenz.github.io/theme/css/pygments.css" rel="stylesheet"/>     
+        <link href="https://synergenz.github.io/theme/css/style.css" rel="stylesheet" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    </head>
+
+    <body>
+        <div class="container-fluid">
+            <div class="header">
+                <div class="container">
+                    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="https://synergenz.github.io">datawerk</a>
+                        </div>
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="https://synergenz.github.io/archives.html">Archives</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages<span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="https://synergenz.github.io/pages/cv.html">Interactive Resume</a></li>
+                                        <li class="divider"></li>
+                                        <li class="dropdown-header">Data Science Reports</li>
+                                        <li>
+                                        <a href="https://synergenz.github.io/pages/activity-data.html">Categorisation of inertial activity&nbsp;data</a>
+                                        </li>
+                                        <li class="active">
+                                        <a href="https://synergenz.github.io/pages/p2p-loans.html">Interest rates on <span class="caps">P2P</span>&nbsp;loans</a>
+                                        </li>
+                                        <li>
+                                        <a href="https://synergenz.github.io/pages/titanic-survival.html">Titanic survival&nbsp;prediction</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- header -->
+        </div><!-- container-fluid -->
+        
+        <div class="container">     
+            <div class="row row-centered">
+                <div class="col-centered col-max col-min col-sm-12 col-md-10 col-lg-10 main-content">
+    <h1>Interest rates on <span class="caps">P2P</span>&nbsp;loans</h1>
+    
+
+    <p>Like other peer-to-peer services, the Lending Club [1] aims to directly connect producers and consumers, or in this case borrowers and lenders, by cutting out the middleman. Borrowers apply for loans online and provide details about the desired loan as well their financial status (such as <span class="caps">FICO</span> score). Lenders use the information provided to choose which loans to invest in. The Lending Club, finally, uses a proprietary algorithm to determine the interest charged on an applicant’s loan [2]. Given the secret nature of this process, a borrower or lender might be interested in which variables, beside the obvious <span class="caps">FICO</span> credit score, influence the final interest rate and how strong this influence is. It is the aim of this analysis to identify such&nbsp;associations.</p>
+<figure style="width:800px; margin-left:-0px">
+<img src="/images/p2ploans/lendingclub.jpg" alt="Fico score analysis" class="figCenter" style="width:800px"/>
+</figure>
+
+<h2>Methods</h2>
+
+<p>Data about peer-to-peer loans issued through the Lending Club was provided by the Data Analysis class on Coursera [3]. The set used in this analysis was downloaded on the 17th of February, 2013. After accounting for missing values in the data, an exploratory analysis was performed to identify variables that required transformation prior to statistical modeling (boxplots, histograms etc.), and to find a subset of variables to be used in a regression model relating interest rate to an applicant’s <span class="caps">FICO</span> score (using correlation analysis and <span class="caps">PCA</span>). The statistical model itself was a simple linear multivariate regression [4]. Since most variables were not normally distributed, results were also compared to robust estimation&nbsp;techniques.</p>
+<p>To reproduce the results of this report the complementary R script (provided on github) can be run with the corresponding data&nbsp;file.</p>
+<h1>Results</h1>
+
+<h2>Summary of&nbsp;data</h2>
+
+<p>Besides a loan’s interest rate, the data set analyzed here contains information about the amount requested and the amount eventually funded by investors (1000$-35000$), the length of the loan (36 or 60 months), and its purpose (the majority went towards debt consolidation or to pay off credit cards). Information about the applicant included his or her duration of employment, state of residence, information about home ownership (the majority either renting or having a mortgage), debt to income ratio, monthly income, <span class="caps">FICO</span> score, number of open credit lines, revolving credit balance, and the number of inquiries made in the last 6 months. In total the set included information about 2500 loans, out of which 79 contained missing data (most in employment length). Given this relatively small number, and the relatively large set, the corresponding data was simply&nbsp;discarded.</p>
+<p><span class="caps">FICO</span> scores were transformed from a 38-level factor (the lowest being [640-644] and the highest [830-834]) to mean values for each range. The number of recent loan inquiries showed a Poisson- or exponential-like distribution. Since the kinds of analyses performed on the data —such as linear regression—might be sensitive to data not being normally distributed, we created a new factor variable with only two levels: 0 inquiries (1213 data points) and 1-9 inquiries (1208 data&nbsp;points).</p>
+<p>Histograms of quantitative variables indicated that the distributions of monthly incomes, <span class="caps">FICO</span> score, revolving credit balance and number of open credit lines were not normal, and more specifically right-skewed to different degrees. While log10 transformation generally brought the distributions closer to normal (at least visually), the results of a Shapiro test [5] indicated that the null-hypothesis of normal distribution still needed to be rejected. Inspection of normal <span class="caps">QQ</span>-plots, however, indicated fairly normal distributions across a wide range centered at the means of most variables. While removal of outliers (e.g. monthly incomes greater than 4 or 5 standard deviations from mean) improved normality, in the remaining analysis the whole data set was&nbsp;used.</p>
+<p>The histogram of the interest rate variable showed a bimodal distribution, suggestive of a superposition of two separate distributions. While none of the factors separated these, when interest rate histograms were plotted for different ranges of the <span class="caps">FICO</span> variable (by cutting the latter at quantiles) normal-like distributions could be identified. The shift in interest rate mean as a function of <span class="caps">FICO</span> score indicates that for very high <span class="caps">FICO</span> scores, relatively low interest rates become disproportionally more&nbsp;probable.</p>
+<h2>Exploratory&nbsp;analysis</h2>
+
+<p>Since intuitively we know that interest rate should correlate strongly with <span class="caps">FICO</span> scores, we examined the associations between the two, as well as those between either and third&nbsp;variables.</p>
+<p>Box plots of interest rate and <span class="caps">FICO</span> scores by factor variables showed that only two factors seemed to influence these variables. Loan length had a significant effect on interest rate (p-value of t-test &lt; 2.2e-16, effect size of 4.24%), but not on <span class="caps">FICO</span> scores (p-value=0.41). The number of inquiries (two-level factor) had significant effects on the means of both variables (p &lt; 2.2e-16 and p = 1.6e-5), but the effect size was interesting only in the case of interest rate&nbsp;(1.6%).</p>
+<p>Using their correlation matrix, as well as pair-wise scatter plots with linear models fitted, we aimed to reduce the set of quantitative variables by discarding those (except interest rate and <span class="caps">FICO</span> score) that showed high correlations amongst&nbsp;themselves.</p>
+<p>First we eliminated the amount funded by investors. This is justified as a) we are interested here only in the resulting interest rate, not the size of the eventual loans, and b) for most applications the eventual loan equalled the amount requested, i.e. a strong linear relationship (with slope 1) existed between the two (linear regression resulted in adjusted coefficient of determination R2=0.94, i.e. approx. 94% variance&nbsp;explained).</p>
+<p>The correlation matrix further showed an association between monthly income and loan amount requested (Pearson correlation R = 0.47; linear regression with adj. R^2 = 0.23 and p &lt; 2.2e-16). This is not surprising as we would expect people with higher incomes to be able to afford larger loans. To avoid confounders we also rejected monthly income as an independent variable in further&nbsp;models.</p>
+<p>Of the remaining four covariates (excluding <span class="caps">FICO</span>), three are related to the applicants current debt. In particular, correlation analysis revealed that the number of open credit lines correlates (relatively weakly) with both debt to income ratio (R = 0.38) and revolving credit balance (0.34). We therefore use only the first to stand in for the overall debt&nbsp;burden.</p>
+<p>In summary, we consider as quantitative covariates in the statistical model only the amount requested, open credit lines and the <span class="caps">FICO</span> score. A quick <span class="caps">PCA</span> analysis (visually via R’s biplot function) confirms that these are indeed relatively independent. The variable for open credit lines is aligned mostly with the first principal component, <span class="caps">FICO</span> score with the second, and the amount requested falls in between the other two (i.e. they are not orthogonal, but far from parallel in the space of the principal&nbsp;components).</p>
+<p>The exploratory analysis can be summarised by the following relationships between interest rate and retained&nbsp;covariates:</p>
+<p>Factors:<ul>
+<li>The longer the loan, the higher the&nbsp;interest.</li>
+<li>The more often an applicant has recently inquired about a loan, the higher its&nbsp;interest.</li>
+</ul></p>
+<p>Quantitative:<ul>
+<li>The larger the loan, the higher its&nbsp;interest.</li>
+<li>The smaller the <span class="caps">FICO</span> score, the higher the&nbsp;interest.</li>
+<li>The higher the number of open credit lines, the higher the&nbsp;interest.</li>
+</ul></p>
+<p>In the following section we aim to quantify these associations in more detail using statistical&nbsp;modeling.</p>
+<h2>Statistical&nbsp;Modeling</h2>
+
+<p>As a first test, a simple linear regression was performed relating interest rate to log10- transformed <span class="caps">FICO</span> scores only, as these two variables exhibited the greatest correlation (R=0.71). Analysis of the residuals showed non-random patterns as a function of both the requested amount and loan length, but not the number of open credit lines or number of recent inquiries. We therefore chose to include the first two as potential confounders in a more complicated&nbsp;model:</p>
+<script type="math/tex; mode=display">
+IR = LL_{36} + b_1 log_{10}(FICO) + b_2(Amount) + b_3(LL_{60}) + e
+</script>
+
+<p>where <span class="caps">IR</span> is the interest rate; the intercept <span class="caps">LL</span><sub>36</sub> corresponds to the estimated mean of interest rates for loans over a 36 months period given a <span class="caps">FICO</span> score of 1 (log<sub>10</sub>(1)=0); b<sub>1</sub> represents the change in interest rate associated with a change of 1 unit in log<sub>10</sub> <span class="caps">FICO</span> score for loans of the same amount; b<sub>2</sub> captures the change in interest rate as a function of the loan amount requested; b<sub>3</sub> the increase in interest rate of loans lasting 60 rather than 36 months; and e are unmodelled random variations. A scatterplot matrix illustrates the relationship between these covariates (Figure 1, left&nbsp;panel).</p>
+<figure style="width:800px; margin-left:-0px">
+<img src="/images/p2ploans/fico-figure.jpg" alt="Fico score analysis" class="figCenter" style="width:800px"/>
+<figcaption  class="capCenter" style="text-align:left;">Figure 1: Covariates used in final regression model (left panel) and its residuals (right panel). Left: scatter plot matrix of covariates color-coded according to loan length (gray: 36 months; black: 60 months). Longer loans tend to have higher interest rates and correspond to larger loans. Green lines indicate univariate regression lines, supporting the observed trends. Above the diagonal, Pearson correlations are shown. Besides the association between interest rate and <span class="caps">FICO</span> score (here log10-transformed) as well as amount requested, it can be seen that the latter two are not associated with each other (R=0.091). Right: residuals after fitting a univariate regression using only <span class="caps">FICO</span> score (top row), and residuals when using the full model (bottom row). In the left column residuals are color-coded with respect to the levels of the loan length factor, and in the right column according to four different levels of the loan amount variable. The non-random patterns of the univariate model vanish in the full model.</figcaption>
+</figure>
+
+<p>As can be be seen in the right panel of Figure 1, the full model largely removes the patterns in residuals observed in the simple model. Further analysis also revealed that the residuals were approximately normal in distribution. Whereas the simple model accounted for only 50.65% of the variance in the data, the full model captured 75.18% (R^2=0.75, the significance of associations being p &lt; 2.2e-16). The added covariates did not however change the sign nor much the value of the resulting coefficients (<span class="caps">LL</span><sub>36</sub>=427.3, b<sub>1</sub>=-146.2, b<sub>2</sub>=0.00014, b<sub>3</sub>=3.3). We also checked whether inclusion of the number of open credit lines or the number of recent inquiries in the model would improve the result even further, but the change in explained variance was small (+2.2%). Allowing for interactions between covariates in the full model also did not result in better fit. Since the distributions of most variables in the data set were not perfectly normal even after transforming (see histograms in Figure 1), we also tested whether non-linear and robust forms of regression would perform better. But neither a generalized linear model (glm in R [5]) nor a robust regression using an M-estimator (rlm in R [6]) produced significantly different&nbsp;coefficients.</p>
+<p>In the final model, a change of one unit in log<sub>10</sub> <span class="caps">FICO</span> score corresponds to a change of -146.2% (95% confidence interval: -142,-152) in interest rate over the base rate of 427.3% (<span class="caps">CI</span>: 416, 438). So for example, the interest rate for a 10000$ loan over 36 months would be 12.1% for the average reported <span class="caps">FICO</span> score of 707, and would decrease by 0.89% for an additional 10 points of the <span class="caps">FICO</span> score. An increase in the size of the loan by 1000$ corresponds to an increase of 0.14% in interest rate (<span class="caps">CI</span> of b<sub>2</sub>: 0.00013, 0.00015). Increasing the length of the loan to 60 months would result in an additional 3.3% of interest (<span class="caps">CI</span>: 3.1,&nbsp;3.52).</p>
+<h2>Conclusions</h2>
+
+<p>Our results show a significant negative association between interest rates and <span class="caps">FICO</span> score, modulated by positive associations with loan amount and duration. Due to the log<sub>10</sub> transformation, model estimates are non-linear with respect to <span class="caps">FICO</span> score. Though this makes interpretation of the model rather unintuitive, the associations are in the direction one would&nbsp;expect.</p>
+<p>It should be kept in mind that the analysis only applies to the peer-to-peer loans issues through the Lending Club. Loans in general, e.g. those offered by banks, might follow a different pattern. While the model presented here would allow interested individuals to get an idea of what interest rates to expect given a desired loan and credit history, further work would be needed if accurate predictions are required (e.g. when evaluating what kind of loans to include in a lender’s portfolio). Also, the data analyzed here does not serve to verify whether peer-to-peer loans provided through the Lending Club are indeed cheaper than those offered by banks, as the website&nbsp;claims.</p>
+<p>As noted, none of the variables in the data set were normally distributed, something that could not be remedied by log transformation (or indeed other transforms, such as square roots etc.). It is possible that other non-linear or robust methods would have been more appropriate. Nevertheless, residuals after linear regression, according to histograms and <span class="caps">QQ</span>-plots, were approximately normal, indicating that a linear regression might not have been totally&nbsp;unwarranted.</p>
+<h2>References</h2>
+
+<p>[1] Lending Club.&nbsp;https://www.lendingclub.com/home.action</p>
+<p>[2] Lending Club interest rate determination.&nbsp;https://www.lendingclub.com/public/how-we-set-interest-rates.action</p>
+<p>[3] Lending Club loans data.&nbsp;https://spark-public.s3.amazonaws.com/dataanalysis/loansData.rda</p>
+<p>[4] Bishop, <span class="caps">C. M.</span>(2006). Pattern recognition and machine learning (Vol. 4, No. 4). New York:&nbsp;Springer.</p>
+<p>[5] Wood, Simon (2006). Generalized Additive Models: An Introduction with R. Chapman <span class="amp">&amp;</span> Hall/<span class="caps">CRC</span>.</p>
+<p>[6] J. Huber (1981) Robust Statistics.&nbsp;Wiley.</p>
+<p></script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></p>
+                </div>
+            </div><!-- row-->
+        </div><!-- container -->
+
+	<div class="container-fluid aw-footer"> <!-- footer -->
+		<div class="row-centered">
+			<div class="col-sm-3 col-sm-offset-1">
+				<h4>Author</h4>
+				<ul class="list-unstyled my-list-style">
+					<li><a href="http://www.ias-research.net/people/thomas-buhrmann/">Academic Home</a></li>
+					<li><a href="http://github.com/synergenz">Github</a></li>
+					<li><a href="http://www.linkedin.com/in/thomasbuhrmann">LinkedIn</a></li>
+					<li><a href="https://secure.flickr.com/photos/syngnz/">Flickr</a></li>                            
+				</ul>
+			</div>
+			<div class="col-sm-3">
+				<h4>Categories</h4>
+				<ul class="list-unstyled my-list-style">
+					<li><a href="https://synergenz.github.io/category/Hadoop.html">Hadoop (1)</a></li>
+				</ul>
+			</div>
+			<div class="col-sm-3">
+				<h4>Tags</h4>
+                <ul class="tagcloud">
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/java.html">java</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/big-data.html">big data</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/hadoop.html">hadoop</a></li>
+                </ul>
+			</div>
+		</div>
+	</div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12 text-center center-block aw-bottom">
+			<p>&copy; Thomas Buhrmann (2014). Powered by <a href="http://blog.getpelican.com/">Pelican</a>.</p>
+		</div>
+	</div>
+</div>
+<!-- JavaScript -->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+	$("div.collapseheader").click(function () {
+		$header = $(this).children("span").first();
+		$codearea = $(this).children(".input_area");
+		$codearea.slideToggle(500, function () {
+			$header.text(function () {
+				return $codearea.is(":visible") ? "Collapse Code" : "Expand Code";
+			});
+		});
+	});
+});
+</script>
+</body>
+</html>
