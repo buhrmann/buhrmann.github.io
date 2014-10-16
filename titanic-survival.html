@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Titanic survival&nbsp;prediction</title>
+        <title>Titanic survival&nbsp;prediction - datawerk</title>
         <meta charset="utf-8" />        
         <link href="https://synergenz.github.io/theme/css/bootstrap-simplex.css" rel="stylesheet"/> 
     	<link href="https://synergenz.github.io/theme/css/pygments.css" rel="stylesheet"/>     
@@ -25,21 +25,21 @@
                         </div>
                         <div class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">
-                                <li><a href="https://synergenz.github.io/archives.html">Archives</a></li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages<span class="caret"></span></a>
+                                <!--<li><a href="https://synergenz.github.io/archives.html">Archives</a></li>-->
+                                <li><a href="https://synergenz.github.io/pages/cv.html">Interactive CV</a></li>
+                                <li class="dropdown">                                    
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Data Reports<span class="caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="https://synergenz.github.io/pages/cv.html">Interactive Resume</a></li>
-                                        <li class="divider"></li>
-                                        <li class="dropdown-header">Data Science Reports</li>
-                                        <li>
-                                        <a href="https://synergenz.github.io/pages/activity-data.html">Categorisation of inertial activity&nbsp;data</a>
+                                        <!--<li class="divider"></li>
+                                        <li class="dropdown-header">Data Science Reports</li>-->
+                                        <li >
+                                        <a href="https://synergenz.github.io/p2p-loans.html">Interest rates on <span class="caps">P2P</span>&nbsp;loans</a>
                                         </li>
-                                        <li>
-                                        <a href="https://synergenz.github.io/pages/p2p-loans.html">Interest rates on <span class="caps">P2P</span>&nbsp;loans</a>
+                                        <li >
+                                        <a href="https://synergenz.github.io/activity-data.html">Categorisation of inertial activity&nbsp;data</a>
                                         </li>
-                                        <li class="active">
-                                        <a href="https://synergenz.github.io/pages/titanic-survival.html">Titanic survival&nbsp;prediction</a>
+                                        <li >
+                                        <a href="https://synergenz.github.io/titanic-survival.html">Titanic survival&nbsp;prediction</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -53,9 +53,16 @@
         <div class="container">     
             <div class="row row-centered">
                 <div class="col-centered col-max col-min col-sm-12 col-md-10 col-lg-10 main-content">
-    <h1>Titanic survival&nbsp;prediction</h1>
-    
-
+<section id="content" class="article content">
+  <header>
+    <h2 class="entry-title">
+      <a href="https://synergenz.github.io/titanic-survival.html" rel="bookmark"
+         title="Permalink to Titanic survival prediction">Titanic survival&nbsp;prediction</a></h2>
+ 
+  </header>
+  
+     
+  <div class="entry-content">
     <p>In this report I will provide an overview of my solution to <a href="http://www.kaggle.com">kaggle&#8217;s</a> <a href="https://www.kaggle.com/c/titanic-gettingStarted">&#8220;Titanic&#8221; competition</a>. The aim of this competition is to predict the survival of passengers aboard the titanic using information such as a passenger&#8217;s gender, age or socio-economic  status. I will explain my data munging process, explore the available predictor variables, and compare a number of different classification algorithms in terms of their prediction performance. All analysis presented here was performed in R. The corresponding source code is available on <a href="https://github.com/synergenz/kaggle/tree/master/titanic">github</a>.</p>
 <figure style="width:780px">
 <img src="/images/titanic/titanic.jpg" alt="Titanic" class="center-block" style="width:780px"/>
@@ -224,6 +231,15 @@ names<span class="p">(</span>models<span class="p">)</span> <span class="o">=</s
 <h3>Conclusions</h3>
 <p>Based on an assessment of the area under the <span class="caps">ROC</span> curve, on both a validation subset of the data as well as repeated cross-validation on the whole set, boosted classification trees (<a href="http://dept.stat.lsa.umich.edu/~gmichail/ada_final.pdf">ada</a> and <a href="http://gradientboostedmodels.googlecode.com/git/gbm/inst/doc/gbm.pdf">gbm</a>) seem to perform best amongst single classifiers on the titanic data set. Ensembles built using a range of different classifiers, in particular in the form of a stack, lead to a small but seemingly consistent improvement over the performance of individual classifiers. I therefore chose to submit the predictions of the generalized linear stack. Interestingly, this did not lead to my best submission score. The ensemble has an accuracy of 0.78947 on the public leaderboard, i.e. on the part of the test set used to score different submissions. In comparison, I&#8217;ve also trained a single forest of conditional inference trees using the familyid information as an additional predictor, which obtained an accuracy score of 0.81818 and ended up much higher on the leaderboard. Now, kaggle leaderboard position in itself <a href="http://blog.kaggle.com/2012/07/06/the-dangers-of-overfitting-psychopathy-post-mortem/">doesn&#8217;t always correlate well</a> with final performance on the whole test set, essentially because of overfitting to the leaderboard if many submissions are made and models selected on the basis of achieved position. Nevertheless, before the end of the competition it might be worth comparing the above classifiers and ensembles with different formulas (combinations of predictors, including family identifiers). Another option is to perform the full training again with accuracy rather than <span class="caps">AUC</span> as the optimized metric, which is the one used to assess predictions by kaggle in this competition. However, as have commented many kagglers involved in past competitions, it is probably better to rely on one&#8217;s own cross-validation scores, rather than potentially overinflated leaderboard scores, to predict a model&#8217;s final&nbsp;success.</p>
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  </div><!-- /.entry-content -->
+   <footer class="post-info text-muted">
+    Posted on <abbr class="published" title="2014-10-03T10:20:00+02:00">
+      Fri 03 October 2014
+    </abbr>
+    <address class="vcard author">
+      by <a class="url fn" href="https://synergenz.github.io/author/thomas-buhrmann.html">Thomas Buhrmann</a>
+    </address> in <a href="https://synergenz.github.io/category/reports.html">Reports</a> Tagged <a href="https://synergenz.github.io/tag/r.html">R </a><a href="https://synergenz.github.io/tag/kaggle.html">kaggle </a><a href="https://synergenz.github.io/tag/titanic.html">titanic </a><a href="https://synergenz.github.io/tag/report.html">report </a>  </footer><!-- /.post-info -->
+</section>
                 </div>
             </div><!-- row-->
         </div><!-- container -->
@@ -243,14 +259,24 @@ names<span class="p">(</span>models<span class="p">)</span> <span class="o">=</s
 				<h4>Categories</h4>
 				<ul class="list-unstyled my-list-style">
 					<li><a href="https://synergenz.github.io/category/Hadoop.html">Hadoop (1)</a></li>
+					<li><a href="https://synergenz.github.io/category/Reports.html">Reports (3)</a></li>
 				</ul>
 			</div>
 			<div class="col-sm-3">
 				<h4>Tags</h4>
                 <ul class="tagcloud">
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/java.html">java</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/lda.html">lda</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/svm.html">svm</a></li>
                         <li class="tag-4"><a href="https://synergenz.github.io/tag/big-data.html">big data</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/categorisation.html">categorisation</a></li>
+                        <li class="tag-1"><a href="https://synergenz.github.io/tag/r.html">R</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/random-forest.html">random forest</a></li>
                         <li class="tag-4"><a href="https://synergenz.github.io/tag/hadoop.html">hadoop</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/java.html">java</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/kaggle.html">kaggle</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/titanic.html">titanic</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/regression.html">regression</a></li>
+                        <li class="tag-1"><a href="https://synergenz.github.io/tag/report.html">report</a></li>
                 </ul>
 			</div>
 		</div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title> Articles in big data tag - datawerk</title>
+        <title> Articles in kaggle tag - datawerk</title>
         <meta charset="utf-8" />        
         <link href="https://synergenz.github.io/theme/css/bootstrap-simplex.css" rel="stylesheet"/> 
     	<link href="https://synergenz.github.io/theme/css/pygments.css" rel="stylesheet"/>     
@@ -32,6 +32,9 @@
                                     <ul class="dropdown-menu" role="menu">
                                         <!--<li class="divider"></li>
                                         <li class="dropdown-header">Data Science Reports</li>-->
+                                        <li >
+                                        <a href="https://synergenz.github.io/titanic-survival.html">Titanic survival&nbsp;prediction</a>
+                                        </li>
                                     </ul>
                                 </li>
                             </ul>
@@ -45,21 +48,14 @@
             <div class="row row-centered">
                 <div class="col-centered col-max col-min col-sm-12 col-md-10 col-lg-10 main-content">
 <section id="content" class="content">
-<h2>Articles with the big data tag</h2>
+<h2>Articles with the kaggle tag</h2>
 
         <article class="hentry">
-                <header> <h2 class="entry-title"><a href="https://synergenz.github.io/haddop-distributed-cache.html" rel="bookmark" title="Permalink to Reading from distributed cache in Hadoop">Reading from distributed cache in&nbsp;Hadoop</a></h2> </header>
-                <div class="entry-content"> <p>The distributed cache can be used to make small files (or jars etc.) available to mapreduce functions locally on each node. This can be useful e.g. when a global stopword list is needed by all mappers for index creation.  Here are two correct ways of reading a file from distributed cache in Hadoop 2. This has changed in the new <span class="caps">API</span> and very few books and tutorials have updated&nbsp;examples.</p>
-<h3>Named&nbsp;File</h3>
-<p>In the&nbsp;driver:</p>
-<div class="highlight"><pre><span class="n">Job</span> <span class="n">job</span> <span class="o">=</span> <span class="n">Job</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="k">new</span> <span class="n">Configuration</span><span class="o">());</span>
-<span class="n">job</span><span class="o">.</span><span class="na">addCacheFile</span><span class="o">(</span><span class="k">new</span> <span class="n">URI</span> <span class="o">(</span><span class="s">&quot;/path/to/file.csv&quot;</span> <span class="o">+</span> <span class="s">&quot;#filelabel&quot;</span><span class="o">));</span>
-</pre></div>
-
-
-<p>In the&nbsp;mapper:</p>
-<div class="highlight"><pre><span class="nd">@Override</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setup</span><span class="o">(</span><span class="n">Context</span> <span class="n">context ...</span></pre></div> </div><!-- entry-content -->
+                <header> <h2 class="entry-title"><a href="https://synergenz.github.io/titanic-survival.html" rel="bookmark" title="Permalink to Titanic survival prediction">Titanic survival&nbsp;prediction</a></h2> </header>
+                <div class="entry-content"> <p>In this report I will provide an overview of my solution to <a href="http://www.kaggle.com">kaggle&#8217;s</a> <a href="https://www.kaggle.com/c/titanic-gettingStarted">&#8220;Titanic&#8221; competition</a>. The aim of this competition is to predict the survival of passengers aboard the titanic using information such as a passenger&#8217;s gender, age or socio-economic  status. I will explain my data munging process, explore the available predictor variables, and compare a number of different classification algorithms in terms of their prediction performance. All analysis presented here was performed in R. The corresponding source code is available on <a href="https://github.com/synergenz/kaggle/tree/master/titanic">github</a>.</p>
+<figure style="width:780px">
+<img src="/images/titanic/titanic.jpg" alt="Titanic" class="center-block" style="width:780px"/>
+<figcaption  class="capCenter">Figure 1: Proportion of survivors as a function of several categorical predictors. Blue:survived, red ...</figcaption></figure> </div><!-- entry-content -->
         </article>
 <div class="pager">
       <ul>

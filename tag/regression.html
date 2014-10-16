@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title> Articles in big data tag - datawerk</title>
+        <title> Articles in regression tag - datawerk</title>
         <meta charset="utf-8" />        
         <link href="https://synergenz.github.io/theme/css/bootstrap-simplex.css" rel="stylesheet"/> 
     	<link href="https://synergenz.github.io/theme/css/pygments.css" rel="stylesheet"/>     
@@ -32,6 +32,9 @@
                                     <ul class="dropdown-menu" role="menu">
                                         <!--<li class="divider"></li>
                                         <li class="dropdown-header">Data Science Reports</li>-->
+                                        <li >
+                                        <a href="https://synergenz.github.io/p2p-loans.html">Interest rates on <span class="caps">P2P</span>&nbsp;loans</a>
+                                        </li>
                                     </ul>
                                 </li>
                             </ul>
@@ -45,21 +48,11 @@
             <div class="row row-centered">
                 <div class="col-centered col-max col-min col-sm-12 col-md-10 col-lg-10 main-content">
 <section id="content" class="content">
-<h2>Articles with the big data tag</h2>
+<h2>Articles with the regression tag</h2>
 
         <article class="hentry">
-                <header> <h2 class="entry-title"><a href="https://synergenz.github.io/haddop-distributed-cache.html" rel="bookmark" title="Permalink to Reading from distributed cache in Hadoop">Reading from distributed cache in&nbsp;Hadoop</a></h2> </header>
-                <div class="entry-content"> <p>The distributed cache can be used to make small files (or jars etc.) available to mapreduce functions locally on each node. This can be useful e.g. when a global stopword list is needed by all mappers for index creation.  Here are two correct ways of reading a file from distributed cache in Hadoop 2. This has changed in the new <span class="caps">API</span> and very few books and tutorials have updated&nbsp;examples.</p>
-<h3>Named&nbsp;File</h3>
-<p>In the&nbsp;driver:</p>
-<div class="highlight"><pre><span class="n">Job</span> <span class="n">job</span> <span class="o">=</span> <span class="n">Job</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="k">new</span> <span class="n">Configuration</span><span class="o">());</span>
-<span class="n">job</span><span class="o">.</span><span class="na">addCacheFile</span><span class="o">(</span><span class="k">new</span> <span class="n">URI</span> <span class="o">(</span><span class="s">&quot;/path/to/file.csv&quot;</span> <span class="o">+</span> <span class="s">&quot;#filelabel&quot;</span><span class="o">));</span>
-</pre></div>
-
-
-<p>In the&nbsp;mapper:</p>
-<div class="highlight"><pre><span class="nd">@Override</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setup</span><span class="o">(</span><span class="n">Context</span> <span class="n">context ...</span></pre></div> </div><!-- entry-content -->
+                <header> <h2 class="entry-title"><a href="https://synergenz.github.io/p2p-loans.html" rel="bookmark" title="Permalink to Interest rates on P2P loans">Interest rates on <span class="caps">P2P</span>&nbsp;loans</a></h2> </header>
+                <div class="entry-content"> <p>Like other peer-to-peer services, the Lending Club [1] aims to directly connect producers and consumers, or in this case borrowers and lenders, by cutting out the middleman. Borrowers apply for loans online and provide details about the desired loan as well their financial status (such as <span class="caps">FICO</span> score). Lenders use the information provided to choose which loans to invest in. The Lending Club, finally, uses a proprietary algorithm to determine the interest charged on an applicant’s loan [2]. Given the secret nature of this process, a borrower or lender might be interested in which variables, beside the obvious <span class="caps">FICO ...</span></p> </div><!-- entry-content -->
         </article>
 <div class="pager">
       <ul>

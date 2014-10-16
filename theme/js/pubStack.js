@@ -343,7 +343,7 @@ d3.tsv("../theme/js/articles.tsv", function(error, artData)
           
             .on("mousemove", function(d, i) {
                 d3.select(this).classed("hover", true)
-                    .style("stroke-width", "1.5px");
+                    .style("stroke-width", "1px");
 
                 var selected = valuesForMouse(this, d);
                 var selectedArt = articles[selected.name];
