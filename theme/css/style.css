@@ -2,6 +2,35 @@
     max-width:99%
 }
 
+.navbar-logo,
+.navbar-default .navbar-brand {
+    color: #98B1C4;
+}
+
+.entry-title {
+    text-indent: -10px;
+}
+
+.author {
+    font-variant: small-caps;
+    letter-spacing: 0px;
+    font-size: 110%;
+    line-height: 100%;
+    font-weight: 600;
+}
+
+.published {
+    font-style: italic;
+}
+
+.label {
+    font-weight: normal;
+}
+
+.table th {
+    text-align:right;
+}
+
 /* Space out content a bit */
 body {
   padding-top: 20px;
@@ -24,10 +53,9 @@ figure {
 .capCenter{
   display: inline-block;
   margin: 0 auto;
-  font-size: 90%;
+  font-size: 80%;
   text-align: left;
-  line-height: 1.4;
-  margin-top: 5px;
+  margin-top: 10px;
   margin-bottom: 10px;
 }
 
@@ -128,8 +156,10 @@ figure {
 }
 
 .footer,
-.aw-footer {
+.aw-footer,
+.aw-bottom {
     width: 100%;
+    font-size: 14px;
 }
 
 .aw-footer {
@@ -198,7 +228,9 @@ li.tag-2 {
     padding:0;
 }
 .post-info{
+    padding-top: 30px;
     padding-bottom:30px;
+    font-size: 14px;
 }
 .post-info address{
     display:inline;
