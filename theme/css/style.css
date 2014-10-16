@@ -76,6 +76,13 @@ figure {
     text-align:left;
 }*/
 
+/* Bibliography */
+.bib li {
+    padding-left: 20px;
+    text-indent: -20px;
+    width: 700px;
+    text-align: left;
+}
 
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
