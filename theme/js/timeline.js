@@ -200,8 +200,7 @@ timeline = function(id, dat, colSc) {
         .attr("opacity", 1)
         
         .on("mouseover", function(d, i) {
-            svg.selectAll(".bar").transition()
-                .duration(250)
+            svg.selectAll(".bar").transition().duration(250)
                 .attr("opacity", function(d, j) {
                     return j != i ? 0.4 : 1;
                 });
@@ -209,10 +208,7 @@ timeline = function(id, dat, colSc) {
         })
         
         .on("mouseout", function(d, i) {
-             svg.selectAll(".bar").transition()
-             .duration(250)
-             .attr("opacity", "1");
-             
+             svg.selectAll(".bar").transition().duration(250).attr("opacity", "1");             
              d3.select(this).classed("hover", false);
              removePeriodPopovers();
           });

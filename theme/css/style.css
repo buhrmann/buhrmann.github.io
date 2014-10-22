@@ -132,6 +132,11 @@ figure {
     text-align:left;
 }*/
 
+/* Tabs */
+.tab-pane {
+    margin-top: 10px;
+}
+
 /* Bibliography */
 .bib li {
     padding-left: 20px;

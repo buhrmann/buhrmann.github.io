@@ -33,7 +33,8 @@ svg .bar {
     border-radius: 3px;
 }
 
-svg .bar:hover {
+svg .bar:hover,
+svg .rect:hover {
     fill: #000;
 }
 
@@ -51,7 +52,7 @@ svg .lline {
 
 .popover {
     max-width:400px;
-    width: 400px;    
+    width: 400px;
 }
 
 .popover-wide{

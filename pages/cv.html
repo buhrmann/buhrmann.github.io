@@ -67,9 +67,20 @@
 <h3>Education</h3>
 <p><div id="timeline-ed"></div></p>
 <h3>Publications</h3>
-<p>A list of my publications. For the data used in this graph I&#8217;ve written a little python robot to scrape articles and citations off of <a href="http://scholar.google.es/citations?user=M1FQwSUAAAAJ&hl=en">google scholar</a>. The <a href="https://github.com/synergenz/datawerk/blob/master/theme/static/py/citations.py">source code</a> is available on <a href="https://github.com/synergenz/">github</a> along with the rest of this <a href="https://github.com/synergenz/datawerk">blog</a>.
-<div id="pubsStream"></div></p>
-<div id="pubsBars"></div>
+<p>A list of my publications. For the data used in this graph I&#8217;ve written a little python robot to scrape articles and citations off of <a href="http://scholar.google.es/citations?user=M1FQwSUAAAAJ&hl=en">google scholar</a>. The <a href="https://github.com/synergenz/datawerk/blob/master/theme/static/py/citations.py">source code</a> is available on <a href="https://github.com/synergenz/">github</a> along with the rest of this <a href="https://github.com/synergenz/datawerk">blog</a>.</p>
+<ul class="nav nav-tabs" role="tablist">
+  <li class="active"><a href="#stream" role="tab" data-toggle="tab">Stream</a></li>
+  <li><a href="#stack" role="tab" data-toggle="tab">Stack</a></li>
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane active" id="stream">
+      <span class="capCenter">Each colored stream represents a single publication&#8217;s number of citations over the years.</span>
+  </div>
+  <div class="tab-pane" id="stack">
+      <span class="capCenter">Each colored rectangle represents the number of citations for a given publication in a given year.</span>
+  </div>
+</div>
                 </div>
             </div><!-- row-->
         </div><!-- container -->
@@ -96,16 +107,16 @@
 				<h4>Tags</h4>
                 <ul class="tagcloud">
                         <li class="tag-4"><a href="https://synergenz.github.io/tag/categorisation.html">categorisation</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/svm.html">svm</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/lda.html">lda</a></li>
                         <li class="tag-4"><a href="https://synergenz.github.io/tag/titanic.html">titanic</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/regression.html">regression</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/random-forest.html">random forest</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/java.html">java</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/hadoop.html">hadoop</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/big-data.html">big data</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/kaggle.html">kaggle</a></li>
                         <li class="tag-1"><a href="https://synergenz.github.io/tag/report.html">report</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/java.html">java</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/regression.html">regression</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/kaggle.html">kaggle</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/hadoop.html">hadoop</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/random-forest.html">random forest</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/big-data.html">big data</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/lda.html">lda</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/svm.html">svm</a></li>
                         <li class="tag-1"><a href="https://synergenz.github.io/tag/r.html">R</a></li>
                 </ul>
 			</div>
@@ -133,7 +144,7 @@ jQuery(document).ready(function($) {
 <script type="text/javascript" src="https://synergenz.github.io/theme/js/timeline.js"></script>
 <script type="text/javascript" src="https://synergenz.github.io/theme/js/pubStack.js"></script>
 <script type="text/javascript">timelineFromJson("Paired");</script>
-<script type="text/javascript">streamCsv("#pubsStream", "Paired");</script>
-<!--<script type="text/javascript">pubsBars("#pubsBars");</script>-->
+<script type="text/javascript">streamCsv("#stream", "Paired");</script>
+<script type="text/javascript">pubsBars("#stack", "Paired");</script>
 </body>
 </html>

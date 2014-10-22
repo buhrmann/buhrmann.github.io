@@ -13,7 +13,7 @@ var dateFormat = d3.time.format("%Y-%m-%d");
 //---------------------------------------------------------------------------------------------------
 // Bar plot
 //---------------------------------------------------------------------------------------------------
-pubsBars = function(elemid) {
+pubsBars = function(elemid, colSc) {
     
     var margin = {top: 10, right: 40, bottom: 30, left: 30};
     width = 800 - margin.left - margin.right;
@@ -22,8 +22,9 @@ pubsBars = function(elemid) {
     var x = d3.scale.ordinal().rangeRoundBands([0, width], .1);
     var y = d3.scale.linear().rangeRound([height, 0]);
     
-    var colors = ["#00ADEF", "#ED008C", "#FEF200", "#BBCB5F"];
-    var color = d3.scale.ordinal().range(colors);
+    //var colors = ["#00ADEF", "#ED008C", "#FEF200", "#BBCB5F"];
+    //var color = d3.scale.ordinal().range(colors);
+    var color = d3.scale.ordinal().range(colorbrewer[colSc][8]);
     
     var svg = d3.select(elemid).append("svg")
       .attr("width", width + margin.left + margin.right)
@@ -32,6 +33,14 @@ pubsBars = function(elemid) {
           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");      
     
     // Read data 
+    d3.tsv("../theme/js/articles.tsv", function(error, artData)
+    {
+        // Make indexable by label
+        var articles = {}
+        artData.forEach(function(article) { 
+            articles[article.label] = article;
+        });
+            
     d3.tsv("../theme/js/counts.tsv", function (error, data)
     {    
         var labelVar = 'year';
@@ -79,11 +88,48 @@ pubsBars = function(elemid) {
         selection.selectAll("rect")
             .data(function (d) { return d.mapping; })
             .enter().append("rect")
+              .attr("class", "rect")
               .attr("width", x.rangeBand())
               .attr("y", function (d) { return y(d.y1); })
               .attr("height", function (d) { return y(d.y0) - y(d.y1); })
               .style("fill", function (d) { return color(d.name); })
-              .style("stroke", "grey");            
+              .style("stroke", "grey")
+              .style("stroke-width", "0px")
+              
+              .on("mouseover", function(d) { 
+                  d3.select(this).style("fill", "black")
+                  var selectedArt = articles[d.name];
+                  showPopover.call(this, d, selectedArt, 'top'); 
+                  $('.popover').css('background-color', 'rgba(50,50,50,0.6)');
+                  $('.popover-title').css('background-color', 'rgba(50,50,50,0.75)');
+                  })
+                  
+              .on("mouseout", function(d) { 
+                  removePopovers(); 
+                  d3.select(this).style("fill", color(d.name)); 
+                  });
+              
+              // Hover highlighting
+              svg.selectAll(".series")
+                  .attr("opacity", 1)
+            
+                  .on("mouseover", function(d, i) {
+                      svg.selectAll(".series").transition()
+                          .duration(250)
+                          .attr("opacity", function(d, j) {
+                              return j != i ? 0.6 : 1;
+                          });
+                  })
+                  
+                  .on("mouseout", function(d, i) {
+                       svg.selectAll(".series").transition().duration(250).attr("opacity", "1");                 
+                       d3.select(this).classed("hover", false).style("stroke-width", "0px");
+                    })
+          
+                  .on("mousemove", function(d, i) {
+                      d3.select(this).classed("hover", true).style("stroke-width", "1px");
+                  });
+    });
     });
 }
 
@@ -168,13 +214,13 @@ function removePopovers () {
 
 function htmlForArticle(d, art){
     return art.authors + 
-    "<br/>Cited <b>" + d.value + "</b> times in " + d.label + ". <b>" + art.num_citations + "</b> in total.";
+    "<br/>Cited <b>" + (d.value ? d.value: d.y1 - d.y0)  + "</b> times in " + d.label + ". <b>" + art.num_citations + "</b> in total.";
 }
 
-function showPopover (d, art) {
+function showPopover (d, art, dir) {
   $(this).popover({
     title: art.name + " (" + art.year + ")",
-    placement: 'left',
+    placement: dir,
     container: 'body',
     trigger: 'manual',
     html : true,
@@ -268,8 +314,6 @@ d3.tsv("../theme/js/articles.tsv", function(error, artData)
                 .attr("d", function(d) { return area(d.values); })
                 .style("fill", function(d) { return color(d.name); })
                 .style("stroke", "black");
-                //.on("mouseover", function (d) { showPopover.call(this, d); })
-                //.on("mouseout",  function (d) { removePopovers(); });
         
         // axes last for overprinting        
         svg.append("g")
@@ -316,7 +360,7 @@ d3.tsv("../theme/js/articles.tsv", function(error, artData)
                 
                 var selected = valuesForMouse(this, d);
                 var selectedArt = articles[selected.name];                
-                showPopover.call(this, selected, selectedArt);     
+                showPopover.call(this, selected, selectedArt, 'left');     
 
                 svgpos = $(elemid).offset();
                 $('.popover').css('top', svgpos.top + 10).css('left', svgpos.left + margin.left + 20);
