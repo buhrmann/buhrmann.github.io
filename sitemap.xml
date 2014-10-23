@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://synergenz.github.io/index.html</loc>
-<lastmod>2014-10-22T19:21:29-00:00</lastmod>
+<lastmod>2014-10-23T12:03:13-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://synergenz.github.io/archives.html</loc>
-<lastmod>2014-10-22T19:21:29-00:00</lastmod>
+<lastmod>2014-10-23T12:03:13-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://synergenz.github.io/tags.html</loc>
-<lastmod>2014-10-22T19:21:29-00:00</lastmod>
+<lastmod>2014-10-23T12:03:13-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://synergenz.github.io/categories.html</loc>
-<lastmod>2014-10-22T19:21:29-00:00</lastmod>
+<lastmod>2014-10-23T12:03:13-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -34,6 +34,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://synergenz.github.io/pages/cv.html</loc>
 <lastmod>2014-10-12T13:25:00+02:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://synergenz.github.io/dash+.html</loc>
+<lastmod>2014-10-23T12:02:09+02:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -67,6 +74,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>https://synergenz.github.io/category/data-apps.html</loc>
+<lastmod>2014-10-23T12:02:09+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>https://synergenz.github.io/category/hadoop.html</loc>
 <lastmod>2014-10-16T12:14:20+00:09</lastmod>
 <changefreq>daily</changefreq>
@@ -83,6 +97,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://synergenz.github.io/tag/categorisation.html</loc>
 <lastmod>2014-10-16T21:58:47+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://synergenz.github.io/tag/visualization.html</loc>
+<lastmod>2014-10-23T12:02:09+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -109,8 +130,15 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>https://synergenz.github.io/tag/titanic.html</loc>
-<lastmod>2014-10-16T21:02:06+00:09</lastmod>
+<loc>https://synergenz.github.io/tag/nosql.html</loc>
+<lastmod>2014-10-23T12:02:09+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://synergenz.github.io/tag/python.html</loc>
+<lastmod>2014-10-23T12:02:09+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -130,8 +158,8 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>https://synergenz.github.io/tag/kaggle.html</loc>
-<lastmod>2014-10-16T21:02:06+00:09</lastmod>
+<loc>https://synergenz.github.io/tag/regression.html</loc>
+<lastmod>2014-10-16T21:02:05+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -139,6 +167,20 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://synergenz.github.io/tag/random-forest.html</loc>
 <lastmod>2014-10-16T21:58:47+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://synergenz.github.io/tag/kaggle.html</loc>
+<lastmod>2014-10-16T21:02:06+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://synergenz.github.io/tag/titanic.html</loc>
+<lastmod>2014-10-16T21:02:06+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -158,15 +200,15 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>https://synergenz.github.io/tag/regression.html</loc>
-<lastmod>2014-10-16T21:02:05+00:09</lastmod>
+<loc>https://synergenz.github.io/tag/d3.html</loc>
+<lastmod>2014-10-23T12:02:09+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://synergenz.github.io/author/thomas-buhrmann.html</loc>
-<lastmod>2014-10-16T21:58:47+00:09</lastmod>
+<lastmod>2014-10-23T12:02:09+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

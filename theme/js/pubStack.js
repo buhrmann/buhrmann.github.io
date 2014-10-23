@@ -99,7 +99,7 @@ pubsBars = function(elemid, colSc) {
               .on("mouseover", function(d) { 
                   d3.select(this).style("fill", "black")
                   var selectedArt = articles[d.name];
-                  showPopover.call(this, d, selectedArt, 'top'); 
+                  showPopover.call(this, d, selectedArt, 'auto top'); 
                   $('.popover').css('background-color', 'rgba(50,50,50,0.6)');
                   $('.popover-title').css('background-color', 'rgba(50,50,50,0.75)');
                   })
