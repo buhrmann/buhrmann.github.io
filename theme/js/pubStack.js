@@ -386,10 +386,8 @@ d3.tsv("../theme/js/articles.tsv", function(error, artData)
                 showPopover.call(this, selected, selectedArt, 'left');     
 
                 svgpos = $(elemid).offset();
-                $('.popover').css('top', svgpos.top + 10).css('left', svgpos.left + margin.left + 20);
+                $('.popover').css('top', svgpos.top + 30).css('left', svgpos.left + margin.left + 20);
                 $('.popover').addClass("popover-wide"); 
-                
-                //$('#' + selected.name).collapse('show');
                 d3.select("#" + selected.name).classed("ref-selected", true);
             })
             
@@ -409,7 +407,6 @@ d3.tsv("../theme/js/articles.tsv", function(error, artData)
                   .style("stroke-width", "0px");
                   
                   removePopovers();
-                  //$('.panel-collapse').collapse('hide');
                   d3.selectAll(".ref").classed("ref-selected", false);
               })
           
