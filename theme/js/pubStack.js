@@ -14,7 +14,7 @@ var dateFormat = d3.time.format("%Y-%m-%d");
 // Pubs list
 //---------------------------------------------------------------------------------------------------
 htmlForPub = function(p){
-    text = "<span> [" + p.num_citations + "] " + p.authors + " (" + p.year + "). " + "<a href=''>" + p.name + ".</a> " + p.journal + "." + "</span>";
+    text = "<span> [" + p.num_citations + "] " + p.authors + " (" + p.year + "). " + "<a href='" + p.link + "'>" + p.name + ".</a> " + p.journal + "." + "</span>";
     badge = "<span class='badge pull-right'>" + p.num_citations + "</span>";
     res = text;
     return res;
