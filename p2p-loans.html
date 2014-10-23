@@ -40,13 +40,13 @@
                                         <!--<li class="divider"></li>
                                         <li class="dropdown-header">Data Science Reports</li>-->
                                         <li >
-                                        <a href="https://synergenz.github.io/activity-data.html">Categorisation of inertial activity&nbsp;data</a>
+                                        <a href="https://synergenz.github.io/p2p-loans.html">Interest rates on <span class="caps">P2P</span>&nbsp;loans</a>
                                         </li>
                                         <li >
                                         <a href="https://synergenz.github.io/titanic-survival.html">Titanic survival&nbsp;prediction</a>
                                         </li>
                                         <li >
-                                        <a href="https://synergenz.github.io/p2p-loans.html">Interest rates on <span class="caps">P2P</span>&nbsp;loans</a>
+                                        <a href="https://synergenz.github.io/activity-data.html">Categorisation of inertial activity&nbsp;data</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -72,7 +72,7 @@
                 <div class="col-centered col-max col-min col-sm-12 col-md-10 col-lg-10 main-content">
 <section id="content" class="article content">
   <header>
-      <span class="entry-title-info">Oct 16 · <a href="https://synergenz.github.io/category/reports.html">Reports</a></span>
+      <span class="entry-title-info">Oct 23 · <a href="https://synergenz.github.io/category/reports.html">Reports</a></span>
     <h2 class="entry-title entry-title-tight">Interest rates on <span class="caps">P2P</span>&nbsp;loans</h2>
  
   </header>
@@ -81,7 +81,7 @@
   <div class="entry-content">
     <p>Like other peer-to-peer services, the Lending Club [1] aims to directly connect producers and consumers, or in this case borrowers and lenders, by cutting out the middleman. Borrowers apply for loans online and provide details about the desired loan as well their financial status (such as <span class="caps">FICO</span> score). Lenders use the information provided to choose which loans to invest in. The Lending Club, finally, uses a proprietary algorithm to determine the interest charged on an applicant’s loan [2]. Given the secret nature of this process, a borrower or lender might be interested in which variables, beside the obvious <span class="caps">FICO</span> credit score, influence the final interest rate and how strong this influence is. It is the aim of this analysis to identify such&nbsp;associations.</p>
 <figure>
-<img src="/images/p2ploans/lendingclub.jpg" alt="Fico score analysis" style="width:720px"/>
+<img src="/images/p2ploans/lendingclub.jpg" alt="Fico score analysis"/>
 </figure>
 
 <h3>Methods</h3>
@@ -118,9 +118,9 @@ IR = LL_{36} + b_1 log_{10}(FICO) + b_2(Amount) + b_3(LL_{60}) + e
 </script>
 
 <p>where <span class="caps">IR</span> is the interest rate; the intercept <span class="caps">LL</span><sub>36</sub> corresponds to the estimated mean of interest rates for loans over a 36 months period given a <span class="caps">FICO</span> score of 1 (log<sub>10</sub>(1)=0); b<sub>1</sub> represents the change in interest rate associated with a change of 1 unit in log<sub>10</sub> <span class="caps">FICO</span> score for loans of the same amount; b<sub>2</sub> captures the change in interest rate as a function of the loan amount requested; b<sub>3</sub> the increase in interest rate of loans lasting 60 rather than 36 months; and e are unmodelled random variations. A scatterplot matrix illustrates the relationship between these covariates (Figure 1, left&nbsp;panel).</p>
-<figure style="width:800px; margin-left:-0px">
-<img src="/images/p2ploans/fico-figure.jpg" alt="Fico score analysis" class="figCenter" style="width:800px"/>
-<figcaption  class="capCenter" style="text-align:left;">Figure 1: Covariates used in final regression model (left panel) and its residuals (right panel). Left: scatter plot matrix of covariates color-coded according to loan length (gray: 36 months; black: 60 months). Longer loans tend to have higher interest rates and correspond to larger loans. Green lines indicate univariate regression lines, supporting the observed trends. Above the diagonal, Pearson correlations are shown. Besides the association between interest rate and <span class="caps">FICO</span> score (here log10-transformed) as well as amount requested, it can be seen that the latter two are not associated with each other (R=0.091). Right: residuals after fitting a univariate regression using only <span class="caps">FICO</span> score (top row), and residuals when using the full model (bottom row). In the left column residuals are color-coded with respect to the levels of the loan length factor, and in the right column according to four different levels of the loan amount variable. The non-random patterns of the univariate model vanish in the full model.</figcaption>
+<figure>
+<img src="/images/p2ploans/fico-figure.jpg" alt="Fico score analysis"/>
+<figcaption  class="capCenter">Figure 1: Covariates used in final regression model (left panel) and its residuals (right panel). Left: scatter plot matrix of covariates color-coded according to loan length (gray: 36 months; black: 60 months). Longer loans tend to have higher interest rates and correspond to larger loans. Green lines indicate univariate regression lines, supporting the observed trends. Above the diagonal, Pearson correlations are shown. Besides the association between interest rate and <span class="caps">FICO</span> score (here log10-transformed) as well as amount requested, it can be seen that the latter two are not associated with each other (R=0.091). Right: residuals after fitting a univariate regression using only <span class="caps">FICO</span> score (top row), and residuals when using the full model (bottom row). In the left column residuals are color-coded with respect to the levels of the loan length factor, and in the right column according to four different levels of the loan amount variable. The non-random patterns of the univariate model vanish in the full model.</figcaption>
 </figure>
 
 <p>As can be be seen in the right panel of Figure 1, the full model largely removes the patterns in residuals observed in the simple model. Further analysis also revealed that the residuals were approximately normal in distribution. Whereas the simple model accounted for only 50.65% of the variance in the data, the full model captured 75.18% (R^2=0.75, the significance of associations being p &lt; 2.2e-16). The added covariates did not however change the sign nor much the value of the resulting coefficients (<span class="caps">LL</span><sub>36</sub>=427.3, b<sub>1</sub>=-146.2, b<sub>2</sub>=0.00014, b<sub>3</sub>=3.3). We also checked whether inclusion of the number of open credit lines or the number of recent inquiries in the model would improve the result even further, but the change in explained variance was small (+2.2%). Allowing for interactions between covariates in the full model also did not result in better fit. Since the distributions of most variables in the data set were not perfectly normal even after transforming (see histograms in Figure 1), we also tested whether non-linear and robust forms of regression would perform better. But neither a generalized linear model (glm in R [5]) nor a robust regression using an M-estimator (rlm in R [6]) produced significantly different&nbsp;coefficients.</p>
@@ -143,7 +143,7 @@ IR = LL_{36} + b_1 log_{10}(FICO) + b_2(Amount) + b_3(LL_{60}) + e
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></p>
   </div><!-- /.entry-content -->
    <footer class="post-info">
-    Published on <span class="published">October 16, 2014</span><br>
+    Published on <span class="published">October 23, 2014</span><br>
         Written by <span class="author">Thomas Buhrmann</span><br>
         Posted in <span class="label label-default"><a href="https://synergenz.github.io/category/reports.html">Reports</a></span>
  ~ Tagged 
@@ -179,22 +179,22 @@ IR = LL_{36} + b_1 log_{10}(FICO) + b_2(Amount) + b_3(LL_{60}) + e
 			<div class="col-sm-3">
 				<h4>Tags</h4>
                 <ul class="tagcloud">
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/regression.html">regression</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/visualization.html">visualization</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/random-forest.html">random forest</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/svm.html">svm</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/d3.html">d3</a></li>
-                        <li class="tag-1"><a href="https://synergenz.github.io/tag/r.html">R</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/big-data.html">big data</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/kaggle.html">kaggle</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/python.html">python</a></li>
-                        <li class="tag-1"><a href="https://synergenz.github.io/tag/report.html">report</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/hadoop.html">hadoop</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/titanic.html">titanic</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/java.html">java</a></li>
                         <li class="tag-4"><a href="https://synergenz.github.io/tag/nosql.html">nosql</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/svm.html">svm</a></li>
+                        <li class="tag-1"><a href="https://synergenz.github.io/tag/r.html">R</a></li>
                         <li class="tag-4"><a href="https://synergenz.github.io/tag/categorisation.html">categorisation</a></li>
                         <li class="tag-4"><a href="https://synergenz.github.io/tag/lda.html">lda</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/regression.html">regression</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/big-data.html">big data</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/python.html">python</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/titanic.html">titanic</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/random-forest.html">random forest</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/kaggle.html">kaggle</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/hadoop.html">hadoop</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/d3.html">d3</a></li>
+                        <li class="tag-1"><a href="https://synergenz.github.io/tag/report.html">report</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/java.html">java</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/visualization.html">visualization</a></li>
                 </ul>
 			</div>
 		</div>

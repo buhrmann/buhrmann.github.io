@@ -40,13 +40,13 @@
                                         <!--<li class="divider"></li>
                                         <li class="dropdown-header">Data Science Reports</li>-->
                                         <li >
-                                        <a href="https://synergenz.github.io/activity-data.html">Categorisation of inertial activity&nbsp;data</a>
+                                        <a href="https://synergenz.github.io/p2p-loans.html">Interest rates on <span class="caps">P2P</span>&nbsp;loans</a>
                                         </li>
                                         <li >
                                         <a href="https://synergenz.github.io/titanic-survival.html">Titanic survival&nbsp;prediction</a>
                                         </li>
                                         <li >
-                                        <a href="https://synergenz.github.io/p2p-loans.html">Interest rates on <span class="caps">P2P</span>&nbsp;loans</a>
+                                        <a href="https://synergenz.github.io/activity-data.html">Categorisation of inertial activity&nbsp;data</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -72,7 +72,7 @@
                 <div class="col-centered col-max col-min col-sm-12 col-md-10 col-lg-10 main-content">
 <section id="content" class="article content">
   <header>
-      <span class="entry-title-info">Oct 16 · <a href="https://synergenz.github.io/category/reports.html">Reports</a></span>
+      <span class="entry-title-info">Oct 23 · <a href="https://synergenz.github.io/category/reports.html">Reports</a></span>
     <h2 class="entry-title entry-title-tight">Categorisation of inertial activity&nbsp;data</h2>
  
   </header>
@@ -80,10 +80,7 @@
      
   <div class="entry-content">
     <p>The ubiquity of mobile phones equipped with a wide range of sensors presents interesting opportunities for data mining applications. In this report we aim to find out whether data from accelerometers and gyroscopes can be used to identify physical activities performed by subjects wearing mobile phones on their&nbsp;wrist.</p>
-<figure>
-<img src="/images/activitycat/muybridge.jpg" alt="Human activity" style="width:760px;"/>
-</figure>
-
+<p><img src="/images/activitycat/muybridge.jpg" alt="Human activity"/></p>
 <h3>Methods</h3>
 <p>The data used in this analysis is based on the “Human activity recognition using smartphones” data set available from the <span class="caps">UCL</span> Machine Learning Repository [1]. A preprocessed version was downloaded from the Data Analysis online course [2]. The set contains data derived from 3-axial linear acceleration and 3-axial angular velocity sampled at 50Hz from a Samsung Galaxy S <span class="caps">II</span>. These signals were preprocessed using various filters and other methods to reduce noise and to separate low- and high-frequency components. From this data a set of 17 individual signals was extracted by separating e.g. accelerations due to gravity from those due to body motion, separating acceleration magnitude into its individual axis-aligned components and so on. The final feature variables were calculated from both the time and frequency domain of these signals. They include too large a range to cover entirely here, but examples include variables related to the spread and centre of each signal, its entropy, skewness and kurtosis in frequency space and many&nbsp;more.</p>
 <p>All data was recorded while subjects (age 19-48) performed one of six activities and labelled accordingly: lying, sitting, standing, walking, walking down stairs and walking up&nbsp;stairs.</p>
@@ -107,8 +104,9 @@
 <p>We tuned the proportion of variables considered in each split using 100 trees for each evaluation. The best value found was 20. A final random forest was then trained using the optimal value and 500 trees. Error rate remained low (&lt; 5%) and stable after about 250 trees had been added. Analysis of variable importances, considering both the mean decrease in accuracy and Gini index, shows that the most significant variables are related to the acceleration due to gravity along the X and Y axes, as well as the mean angle with respect to gravity in the same directions (with corresponding measures from the time&nbsp;domain).</p>
 <p>The error rate of the fitted <span class="caps">RF</span> is 1.6% on the training set and 4.6% on the test set (accuracy of 0.954). The confusion matrix of the predicted activities (Table 1) shows that misclassification is almost exclusively due to an inability to distinguish sitting from standing. For example, while precision is greater than 0.977 for all other activities, it is 0.912 and 0.876 for sitting and standing&nbsp;respectively.</p>
 <figure>
-<div class="figCenter" style="display:table">
-<TABLE class="table table-condensed">
+<div class="figCenter">
+
+<TABLE class="table">
 <TR>
 <TH>  </TH><TH> lying </TH><TH> sitting </TH><TH> standing </TH><TH> walking </TH><TH> walk down </TH><TH> walk up </TH><TH> precision </TH>
 </TR>
@@ -147,9 +145,9 @@
 <p>Tuning of <span class="caps">SVM</span> hyper-parameters using the training set resulted in optimal values of the cost C = 100 and kernel size γ = 0.001 (search was performed in intervals γ ∈ [1e-6, 0.1] and C ∈ [1,100]). To reduce computation time, the search was performed on a fraction (20%) of data randomly sampled from the training set. Using these optimal values a final <span class="caps">SVM</span> was trained on the whole&nbsp;set.</p>
 <p>The resulting <span class="caps">SVM</span> uses 22.6% of the data points as support vectors (1326 out of 5867). Since this number depends on the tuned parameter C, which was found using cross-validation, we assume that we have not overfit the model. This is supported by the model’s high accuracy of 0.989 on the training set when averaged over a 10-fold cross validation. On the test set its accuracy is 0.96, i.e. slightly better than the random&nbsp;forest. </p>
 <p>The confusion matrix of predictions is shown in Table 2. As we can see, the <span class="caps">SVM</span> exhibits perfect classification for all activities other than sitting and standing, where its performance is similar to the random&nbsp;forest.</p>
-<figure style="width:800px; margin-left:-0px;">
-<div class="figCenter" style="display:table">
-<TABLE class="table table-condensed">
+<figure>
+<div class="figCenter">
+<TABLE class="table">
 <TR>
 <TH>  </TH><TH> lying </TH><TH> sitting </TH><TH> standing </TH><TH> walking </TH><TH> walk down </TH><TH> walk up </TH><TH> precision </TH>
 </TR>
@@ -187,9 +185,9 @@
 <h4>Linear Discriminant&nbsp;Analysis</h4>
 <p><span class="caps">LDA</span> can be sensitive or even fail when the data exhibits a high degree of collinearity. Since our sensor data essentially consists of different transformations of the same few signals we can expect that this is indeed the case in our data set. We therefore performed two <span class="caps">LDA</span> classifications. For the first model (<span class="caps">LDA1</span>) the complete training set was used. For the second model (<span class="caps">LDA2</span>) we removed those variables that exhibited pair-wise correlations greater than R=0.9 (removing one from each pair) using the findCorrelation function in R’s caret package. A total of 346 variables were thus removed, leaving 215 less correlated predictors. Using these two training sets, <span class="caps">LDA</span> models were trained with 10-fold cross validation to assess whether we would expect a difference in their accuracy. The <span class="caps">LDA2</span> model, trained on relatively uncorrelated data, showed an error rate of 3.5%, and <span class="caps">LDA1</span> a rate of 5.2%. Based on these results we have to conclude that <span class="caps">LDA2</span> should be used for our final&nbsp;predictions.</p>
 <p>Table 3 shows the confusion matrix for the <span class="caps">LDA2</span> model when predicting on the test&nbsp;set.</p>
-<figure style="width:800px; margin-left:-0px;">
-<div class="figCenter" style="display:table">
-<TABLE class="table table-condensed">
+<figure>
+<div class="figCenter" >
+<TABLE class="table">
 <TR>
 <TH>  </TH><TH> lying </TH><TH> sitting </TH><TH> standing </TH><TH> walking </TH><TH> walk down </TH><TH> walk up </TH><TH> precision </TH>
 </TR>
@@ -231,7 +229,7 @@ Interestingly, when we use <span class="caps">LDA1</span> for prediction, accura
 <p>Based on the previous results we expect not to gain much predictive power from the combination of individual models using a simple majority vote. All models exhibit the same problem of misclassification of sitting and standing activities, and therefore do not complement each other. This is confirmed by a combined accuracy of 0.958 when predictions are made based on a majority vote of the three models, which sits exactly between the lower scoring <span class="caps">RF</span> and <span class="caps">LDA</span> on the one hand, and the slightly higher scoring <span class="caps">SVM</span> on the&nbsp;other.</p>
 <p>What explains the consistent misclassification of sitting and standing across all three models? Intuitively it is clear that since in both “activities” subjects remain more or less motionless, inertial data will not provide much differentiating information. This is reflected in the data. To illustrate this we trained another random forest on a new subset of the training data which a) included only sitting and standing activities, and b) only included predictors with pair-wise correlations less than R=0.9 (same procedure as for the <span class="caps">LDA</span> model). This data set therefore consisted of a binary outcome and 2113 observations (1022 and 1091 in each level). The importances of the resulting random forest show that the most significant split is achieved on the mean angle of gravity with respect to the Y axis (θy), followed by the energy measure of acceleration due to gravity in the Y dimension in the time domain (gey) or, according to the mean decrease in Gini index, the entropy measure of the same variable. In the left panel of Figure 1 we plot the data along these two axes (θy vs. gey) and color the data according to&nbsp;activity. </p>
 <figure>
-<img src="/images/activitycat/intertial.jpg" alt="Inertial data" style="width:720px;"/>
+<img src="/images/activitycat/intertial.jpg" alt="Inertial data"/>
 <figcaption  class="capCenter">Figure 1: Overlap of data from sitting and standing activities underlying the failure to perfectly separate these two classes. Left panel: scatterplot of the two most important variables for distinguishing sitting and standing activities (according to a random forest fitted to data for these two activities only). θy is the mean angle of gravity with respect to the y-axis, and gey is the entropy of acceleration due to gravity in the y-dimension (see main text for further details). Only part of the range for θy is shown to highlight the region of overlap. Right panel: the same overlap is more clearly seen in the histogram of the θy variable only. Even though the means of θy for sitting and standing are different (p-value in t-test < 2.2e-16), their distributions overlap significantly.</figcaption>
 </figure>
 
@@ -251,7 +249,7 @@ Interestingly, when we use <span class="caps">LDA1</span> for prediction, accura
 </ol></p>
   </div><!-- /.entry-content -->
    <footer class="post-info">
-    Published on <span class="published">October 16, 2014</span><br>
+    Published on <span class="published">October 23, 2014</span><br>
         Written by <span class="author">Thomas Buhrmann</span><br>
         Posted in <span class="label label-default"><a href="https://synergenz.github.io/category/reports.html">Reports</a></span>
  ~ Tagged 
@@ -290,22 +288,22 @@ Interestingly, when we use <span class="caps">LDA1</span> for prediction, accura
 			<div class="col-sm-3">
 				<h4>Tags</h4>
                 <ul class="tagcloud">
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/regression.html">regression</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/visualization.html">visualization</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/random-forest.html">random forest</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/svm.html">svm</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/d3.html">d3</a></li>
-                        <li class="tag-1"><a href="https://synergenz.github.io/tag/r.html">R</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/big-data.html">big data</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/kaggle.html">kaggle</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/python.html">python</a></li>
-                        <li class="tag-1"><a href="https://synergenz.github.io/tag/report.html">report</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/hadoop.html">hadoop</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/titanic.html">titanic</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/java.html">java</a></li>
                         <li class="tag-4"><a href="https://synergenz.github.io/tag/nosql.html">nosql</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/svm.html">svm</a></li>
+                        <li class="tag-1"><a href="https://synergenz.github.io/tag/r.html">R</a></li>
                         <li class="tag-4"><a href="https://synergenz.github.io/tag/categorisation.html">categorisation</a></li>
                         <li class="tag-4"><a href="https://synergenz.github.io/tag/lda.html">lda</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/regression.html">regression</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/big-data.html">big data</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/python.html">python</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/titanic.html">titanic</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/random-forest.html">random forest</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/kaggle.html">kaggle</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/hadoop.html">hadoop</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/d3.html">d3</a></li>
+                        <li class="tag-1"><a href="https://synergenz.github.io/tag/report.html">report</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/java.html">java</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/visualization.html">visualization</a></li>
                 </ul>
 			</div>
 		</div>

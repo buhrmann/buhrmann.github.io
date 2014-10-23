@@ -87,6 +87,12 @@ figure {
   margin-bottom: 10px;
 }
 
+.entry-content figure,
+.entry-content img,
+.entry-content .table {
+    max-width: 100%;
+}
+
 /* centered columns styles */
 .row-centered {
     text-align:center;
