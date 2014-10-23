@@ -11,6 +11,27 @@ var width, height;
 var dateFormat = d3.time.format("%Y-%m-%d");
 
 //---------------------------------------------------------------------------------------------------
+// Pubs list
+//---------------------------------------------------------------------------------------------------
+htmlForPub = function(p){
+    text = "<span> [" + p.num_citations + "] " + p.authors + " (" + p.year + "). " + "<a href=''>" + p.name + ".</a> " + p.journal + "." + "</span>";
+    badge = "<span class='badge pull-right'>" + p.num_citations + "</span>";
+    res = text;
+    return res;
+}
+
+pubsList = function(elemid) {
+    d3.tsv("../theme/js/articles.tsv", function(error, pubs)
+    {        
+        pubelems = d3.select(elemid).selectAll(".ref")
+            .data(pubs).enter().append("li")
+                .attr("class", "ref")
+                .property("id",  function(d) { return d.label; })
+                .html(function(d) { return htmlForPub(d); });
+    });
+}
+
+//---------------------------------------------------------------------------------------------------
 // Bar plot
 //---------------------------------------------------------------------------------------------------
 pubsBars = function(elemid, colSc) {
@@ -102,11 +123,13 @@ pubsBars = function(elemid, colSc) {
                   showPopover.call(this, d, selectedArt, 'auto top'); 
                   $('.popover').css('background-color', 'rgba(50,50,50,0.6)');
                   $('.popover-title').css('background-color', 'rgba(50,50,50,0.75)');
+                  d3.select("#" + d.name).classed("ref-selected", true);
                   })
                   
               .on("mouseout", function(d) { 
                   removePopovers(); 
                   d3.select(this).style("fill", color(d.name)); 
+                  d3.selectAll(".ref").classed("ref-selected", false);
                   });
               
               // Hover highlighting
@@ -364,7 +387,10 @@ d3.tsv("../theme/js/articles.tsv", function(error, artData)
 
                 svgpos = $(elemid).offset();
                 $('.popover').css('top', svgpos.top + 10).css('left', svgpos.left + margin.left + 20);
-                $('.popover').addClass("popover-wide");                
+                $('.popover').addClass("popover-wide"); 
+                
+                //$('#' + selected.name).collapse('show');
+                d3.select("#" + selected.name).classed("ref-selected", true);
             })
             
     		.on('click', function(d) {
@@ -383,6 +409,8 @@ d3.tsv("../theme/js/articles.tsv", function(error, artData)
                   .style("stroke-width", "0px");
                   
                   removePopovers();
+                  //$('.panel-collapse').collapse('hide');
+                  d3.selectAll(".ref").classed("ref-selected", false);
               })
           
             .on("mousemove", function(d, i) {
