@@ -386,7 +386,7 @@ d3.tsv("../theme/js/articles.tsv", function(error, artData)
                 showPopover.call(this, selected, selectedArt, 'left');     
 
                 svgpos = $(elemid).offset();
-                $('.popover').css('top', svgpos.top + 30).css('left', svgpos.left + margin.left + 20);
+                $('.popover').css('top', svgpos.top + 50).css('left', svgpos.left + margin.left + 20);
                 $('.popover').addClass("popover-wide"); 
                 d3.select("#" + selected.name).classed("ref-selected", true);
             })
