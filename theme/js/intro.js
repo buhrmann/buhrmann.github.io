@@ -100,7 +100,8 @@ tagGraph = function(id) {
           .style("font-size", "16px")
           .style("fill", "#222")
           .style("text-anchor", "middle")
-          .style("pointer-events", "none");      
+          .style("background-color", "#bbb")
+          .style("pointer-events", "none");  
           
       svg.selectAll(".node").filter(function (d) { return d.group==2;})
           .on("mouseover", showPopover)
