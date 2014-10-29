@@ -121,14 +121,14 @@ tagGraph = function(id) {
         
       // Now adjust background rectangle based on text width
       svg.selectAll("rect")
-          .attr("width", function() { return this.parentNode.children[1].getBBox().width + 17; })
+          .attr("width", function() { return this.parentNode.childNodes[1].getBBox().width + 17; })
           .attr("height", "24")
           .style("fill", "#bbb");
 
       // And shift rectangle into the middle
       svg.selectAll(".node").filter(function (d) { return d.group==1;})
           .select("g")
-          .attr("transform", function() { return "translate(-" + ((this.children[1].getBBox().width + 15) / 2) + ", -12)"; })
+          .attr("transform", function() { return "translate(-" + ((this.childNodes[1].getBBox().width + 15) / 2) + ", -12)"; })
           
 //          attr("transform", "translate(-" + this.parentNode.children[1].getBBox().width / 2 + ",0)")
           
