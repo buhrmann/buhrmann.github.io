@@ -23,7 +23,20 @@
     margin: 0px;
 }
 
-
+blockquote {
+  border: none;
+  margin: 1.5em 10px;
+  padding: 0.5em 20px;
+  quotes: "\201C""\201D""\2018""\2019";
+}
+blockquote:before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 3em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
 
 .navbar,
 .navbar-default{
@@ -158,7 +171,7 @@ figure {
     display:inline-block;
     float:none;
     /* reset the text-align */
-    text-align:justify;
+    text-align:left;
     /* inline-block space fix */
     margin-right:-4px;
 }
@@ -306,6 +319,7 @@ li.tag-2 {
 .entry-content{
     padding:5px 0 15px;;
     line-height:1.8;
+    text-align: justify;
 }
 .hentry{
     margin-bottom:18px;

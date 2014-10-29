@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title> Articles in Data Apps category - datawerk</title>
+        <title> Articles in Data Posts category - datawerk</title>
         <meta charset="utf-8" />        
         <link href="https://synergenz.github.io/theme/css/bootstrap-custom.css" rel="stylesheet"/> 
     	<link href="https://synergenz.github.io/theme/css/pygments.css" rel="stylesheet"/>     
@@ -41,9 +41,6 @@
                                     <ul class="dropdown-menu" role="menu">
                                         <!--<li class="divider"></li>
                                         <li class="dropdown-header">Data Science Reports</li>-->
-                                        <li >
-                                        <a href="https://synergenz.github.io/dash+.html">Dash+ visualization of running&nbsp;data</a>
-                                        </li>
                                     </ul>
                                 </li>
                             </ul>
@@ -57,18 +54,22 @@
             <div class="row row-centered">
                 <div class="col-centered col-max col-min col-sm-12 col-md-10 col-lg-10 main-content">
 <section id="content" class="content">
-<h2>Articles in the Data Apps category</h2>
+<h2>Articles in the Data Posts category</h2>
 
 <article class="hentry">
     <header> 
-        <span class="entry-title-info">Oct 29 · <a href="https://synergenz.github.io/category/data-apps.html">Data Apps</a></span>
-        <h2 class="entry-title entry-title-tight"><a href="https://synergenz.github.io/dash+.html" rel="bookmark" title="Permalink to Dash+ visualization of running data">Dash+ visualization of running&nbsp;data</a></h2> 
+        <span class="entry-title-info">Oct 29 · <a href="https://synergenz.github.io/category/data-posts.html">Data Posts</a></span>
+        <h2 class="entry-title entry-title-tight"><a href="https://synergenz.github.io/hadoop-distributed-cache.html" rel="bookmark" title="Permalink to Reading from distributed cache in Hadoop">Reading from distributed cache in&nbsp;Hadoop</a></h2> 
     </header>
-    <div class="entry-content"> <p><a href="http://dashplus.herokuapp.com/">Dash+</a> is a python web application I built with <a href="http://flask.pocoo.org/">Flask</a>, which imports Nike+ running data into a NoSQL database (MongoDB) and uses <a href="http://d3js.org/">D3.js</a> to visualize and analyze it. </p>
-<p>The app is work in progress and primarily intended as a personal playground for exploring d3 visualization of my own running data. Having said that, if you want to fork your own version on <a href="https://github.com/synergenz/dash">github</a>, simply add your Nike access token in the corresponding file.</p>
-<figure>
-<a href="http://dashplus.herokuapp.com"></a>
-</figure> </div><!-- entry-content -->
+    <div class="entry-content"> <p>The distributed cache can be used to make small files (or jars etc.) available to mapreduce functions locally on each node. This can be useful e.g. when a global stopword list is needed by all mappers for index creation.  Here are two correct ways of reading a file from distributed cache in Hadoop 2. This has changed in the new <span class="caps">API</span> and very few books and tutorials have updated examples.</p>
+<h3>Named File</h3>
+<p>In the driver:</p>
+<div class="highlight"><pre><span class="n">Job</span> <span class="n">job</span> <span class="o">=</span> <span class="n">Job</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="k">new</span> <span class="n">Configuration</span><span class="o">());</span>
+<span class="n">job</span><span class="o">.</span><span class="na">addCacheFile</span><span class="o">(</span><span class="k">new</span> <span class="n">URI</span> <span class="o">(</span><span class="s">"/path/to/file.csv"</span> <span class="o">+</span> <span class="s">"#filelabel"</span><span class="o">));</span>
+</pre></div>
+<p>In the mapper:</p>
+<div class="highlight"><pre><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setup</span><span class="o">(</span><span class="n">Context</span> <span class="n">context ...</span></pre></div> </div><!-- entry-content -->
 </article>
 <div class="pager">
       <ul>

@@ -70,6 +70,32 @@
 
 <article class="hentry">
     <header> 
+        <span class="entry-title-info">Oct 29 · <a href="https://synergenz.github.io/category/data-apps.html">Data Apps</a></span>
+        <h2 class="entry-title entry-title-tight"><a href="https://synergenz.github.io/dash+.html" rel="bookmark" title="Permalink to Dash+ visualization of running data">Dash+ visualization of running&nbsp;data</a></h2> 
+    </header>
+    <div class="entry-content"> <p><a href="http://dashplus.herokuapp.com/">Dash+</a> is a python web application I built with <a href="http://flask.pocoo.org/">Flask</a>, which imports Nike+ running data into a NoSQL database (MongoDB) and uses <a href="http://d3js.org/">D3.js</a> to visualize and analyze it. </p>
+<p>The app is work in progress and primarily intended as a personal playground for exploring d3 visualization of my own running data. Having said that, if you want to fork your own version on <a href="https://github.com/synergenz/dash">github</a>, simply add your Nike access token in the corresponding file.</p>
+<figure>
+<a href="http://dashplus.herokuapp.com"></a>
+</figure> </div><!-- entry-content -->
+</article>
+<article class="hentry">
+    <header> 
+        <span class="entry-title-info">Oct 29 · <a href="https://synergenz.github.io/category/data-posts.html">Data Posts</a></span>
+        <h2 class="entry-title entry-title-tight"><a href="https://synergenz.github.io/hadoop-distributed-cache.html" rel="bookmark" title="Permalink to Reading from distributed cache in Hadoop">Reading from distributed cache in&nbsp;Hadoop</a></h2> 
+    </header>
+    <div class="entry-content"> <p>The distributed cache can be used to make small files (or jars etc.) available to mapreduce functions locally on each node. This can be useful e.g. when a global stopword list is needed by all mappers for index creation.  Here are two correct ways of reading a file from distributed cache in Hadoop 2. This has changed in the new <span class="caps">API</span> and very few books and tutorials have updated examples.</p>
+<h3>Named File</h3>
+<p>In the driver:</p>
+<div class="highlight"><pre><span class="n">Job</span> <span class="n">job</span> <span class="o">=</span> <span class="n">Job</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="k">new</span> <span class="n">Configuration</span><span class="o">());</span>
+<span class="n">job</span><span class="o">.</span><span class="na">addCacheFile</span><span class="o">(</span><span class="k">new</span> <span class="n">URI</span> <span class="o">(</span><span class="s">"/path/to/file.csv"</span> <span class="o">+</span> <span class="s">"#filelabel"</span><span class="o">));</span>
+</pre></div>
+<p>In the mapper:</p>
+<div class="highlight"><pre><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setup</span><span class="o">(</span><span class="n">Context</span> <span class="n">context ...</span></pre></div> </div><!-- entry-content -->
+</article>
+<article class="hentry">
+    <header> 
         <span class="entry-title-info">Oct 28 · <a href="https://synergenz.github.io/category/reports.html">Reports</a></span>
         <h2 class="entry-title entry-title-tight"><a href="https://synergenz.github.io/p2p-loans.html" rel="bookmark" title="Permalink to Interest rates on P2P loans">Interest rates on <span class="caps">P2P</span>&nbsp;loans</a></h2> 
     </header>
@@ -99,33 +125,34 @@
 </article>
 <article class="hentry">
     <header> 
-        <span class="entry-title-info">Oct 23 · <a href="https://synergenz.github.io/category/data-apps.html">Data Apps</a></span>
-        <h2 class="entry-title entry-title-tight"><a href="https://synergenz.github.io/dash+.html" rel="bookmark" title="Permalink to Dash+ visualization of running data">Dash+ visualization of running&nbsp;data</a></h2> 
+        <span class="entry-title-info">Jul 01 · <a href="https://synergenz.github.io/category/academia.html">Academia</a></span>
+        <h2 class="entry-title entry-title-tight"><a href="https://synergenz.github.io/piaget.html" rel="bookmark" title="Permalink to Learning to perceive through equilibration">Learning to perceive through&nbsp;equilibration</a></h2> 
     </header>
-    <div class="entry-content"> <p><a href="http://dashplus.herokuapp.com/">Dash+</a> is a python web application I built with <a href="http://flask.pocoo.org/">Flask</a>, which imports Nike+ running data into a NoSQL database (MongoDB) and uses <a href="http://d3js.org/">D3.js</a> to visualize and analyze it. </p>
-<p>The app is work in progress and primarily intended as a personal playground for exploring d3 visualization of my own running data. Having said that, if you want to fork your own version on <a href="https://github.com/synergenz/dash">github</a>, simply add your Nike access token in the corresponding file.</p>
-<div class="row">
-<div class="col-sm-8 col-md-6">
-<div class="thumbnail">
-<a href="http://dashplus.herokuapp.com"></a>
-</div>
-</div>
-</div> </div><!-- entry-content -->
+    <div class="entry-content"> <p>Our new paper on sensorimotor contingencies is out. It tackles what seems like a paradox in the sensorimotor approach: if understanding is required for perception, how can we learn to perceive something new, something we do not yet understand? We propose a Piagetian solution to this problem, according to which we learn to perceive by re-shaping pre-existing sensorimotor structures (the earliest of which are already present at birth) in coupling with dynamical regularities of the world.</p>
+<figure>
+<a href="http://journal.frontiersin.org/Journal/10.3389/fnhum.2014.00551/full"></a>
+</figure>
+<p>Get it here: <a href="http://journal.frontiersin.org/Journal/10.3389/fnhum.2014.00551/full">Frontiers in Cognition | Learning to perceive in the sensorimotor approach: Piaget’s theory of equilibration interpreted dynamically</a></p> </div><!-- entry-content -->
 </article>
 <article class="hentry">
     <header> 
-        <span class="entry-title-info">Oct 16 · <a href="https://synergenz.github.io/category/hadoop.html">Hadoop</a></span>
-        <h2 class="entry-title entry-title-tight"><a href="https://synergenz.github.io/haddop-distributed-cache.html" rel="bookmark" title="Permalink to Reading from distributed cache in Hadoop">Reading from distributed cache in&nbsp;Hadoop</a></h2> 
+        <span class="entry-title-info">May 31 · <a href="https://synergenz.github.io/category/academia.html">Academia</a></span>
+        <h2 class="entry-title entry-title-tight"><a href="https://synergenz.github.io/smcs.html" rel="bookmark" title="Permalink to A dynamical systems account of sensorimotor contingencies">A dynamical systems account of sensorimotor&nbsp;contingencies</a></h2> 
     </header>
-    <div class="entry-content"> <p>The distributed cache can be used to make small files (or jars etc.) available to mapreduce functions locally on each node. This can be useful e.g. when a global stopword list is needed by all mappers for index creation.  Here are two correct ways of reading a file from distributed cache in Hadoop 2. This has changed in the new <span class="caps">API</span> and very few books and tutorials have updated examples.</p>
-<h3>Named File</h3>
-<p>In the driver:</p>
-<div class="highlight"><pre><span class="n">Job</span> <span class="n">job</span> <span class="o">=</span> <span class="n">Job</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="k">new</span> <span class="n">Configuration</span><span class="o">());</span>
-<span class="n">job</span><span class="o">.</span><span class="na">addCacheFile</span><span class="o">(</span><span class="k">new</span> <span class="n">URI</span> <span class="o">(</span><span class="s">"/path/to/file.csv"</span> <span class="o">+</span> <span class="s">"#filelabel"</span><span class="o">));</span>
-</pre></div>
-<p>In the mapper:</p>
-<div class="highlight"><pre><span class="nd">@Override</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setup</span><span class="o">(</span><span class="n">Context</span> <span class="n">context ...</span></pre></div> </div><!-- entry-content -->
+    <div class="entry-content"> <p>We have published a new paper on sensorimotor contingencies (SMCs). It provides operational definitions for four different notions of SMCs that have not previously been distinguished. The paper illustrates these using a minimal cognition model and hypothesises about their link to personal-level concepts fundamental to the sensorimotor approach, such as the mastery of sensorimotor skills.</p>
+<figure>
+<a href="http://journal.frontiersin.org/Journal/10.3389/fpsyg.2013.00285/full"></a>
+</figure>
+<p><a href="http://journal.frontiersin.org/Journal/10.3389/fpsyg.2013.00285/full">Frontiers in Cognition | A Dynamical Systems Account of Sensorimotor Contingencies</a></p> </div><!-- entry-content -->
+</article>
+<article class="hentry">
+    <header> 
+        <span class="entry-title-info">Oct 20 · <a href="https://synergenz.github.io/category/academia.html">Academia</a></span>
+        <h2 class="entry-title entry-title-tight"><a href="https://synergenz.github.io/science-daily.html" rel="bookmark" title="Permalink to Robots perceive the world like humans">Robots perceive the world like&nbsp;humans</a></h2> 
+    </header>
+    <div class="entry-content"> <p>Science daily has covered our work on sensorimotor contingencies:</p>
+<blockquote>Perceive first, act afterwards. The architecture of most of today’s robots is underpinned by this control strategy. The eSMCs project has set itself the aim of changing the paradigm and generating more dynamic computer models in which action is not a mere consequence of perception but an integral part of the perception process. It is about improving robot behavior by means of perception models closer to those of humans…</blockquote>
+<p>Read the full article here: <a href="http://www.sciencedaily.com/releases/2012/10/121018100131.htm">Science Daily: Robots that perceive the world like humans</a></p> </div><!-- entry-content -->
 </article>
 <div class="pager">
       <ul>
@@ -152,8 +179,9 @@
 			<div class="col-sm-3">
 				<h4>Categories</h4>
 				<ul class="list-unstyled my-list-style">
+					<li><a href="https://synergenz.github.io/category/Academia.html">Academia (3)</a></li>
 					<li><a href="https://synergenz.github.io/category/Data-Apps.html">Data Apps (1)</a></li>
-					<li><a href="https://synergenz.github.io/category/Hadoop.html">Hadoop (1)</a></li>
+					<li><a href="https://synergenz.github.io/category/Data-Posts.html">Data Posts (1)</a></li>
 					<li><a href="https://synergenz.github.io/category/Reports.html">Reports (3)</a></li>
 				</ul>
 			</div>
@@ -161,20 +189,21 @@
 				<h4>Tags</h4>
                 <ul class="tagcloud">
                         <li class="tag-4"><a href="https://synergenz.github.io/tag/nosql.html">nosql</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/categorisation.html">categorisation</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/regression.html">regression</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/kaggle.html">kaggle</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/java.html">java</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/python.html">python</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/svm.html">svm</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/lda.html">lda</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/big-data.html">big data</a></li>
-                        <li class="tag-1"><a href="https://synergenz.github.io/tag/report.html">report</a></li>
                         <li class="tag-4"><a href="https://synergenz.github.io/tag/d3.html">d3</a></li>
-                        <li class="tag-1"><a href="https://synergenz.github.io/tag/r.html">R</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/python.html">python</a></li>
                         <li class="tag-4"><a href="https://synergenz.github.io/tag/titanic.html">titanic</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/lda.html">lda</a></li>
                         <li class="tag-4"><a href="https://synergenz.github.io/tag/visualization.html">visualization</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/java.html">java</a></li>
                         <li class="tag-4"><a href="https://synergenz.github.io/tag/random-forest.html">random forest</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/kaggle.html">kaggle</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/svm.html">svm</a></li>
+                        <li class="tag-1"><a href="https://synergenz.github.io/tag/report.html">report</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/regression.html">regression</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/categorisation.html">categorisation</a></li>
+                        <li class="tag-1"><a href="https://synergenz.github.io/tag/r.html">R</a></li>
+                        <li class="tag-1"><a href="https://synergenz.github.io/tag/smcs.html">smcs</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/big-data.html">big data</a></li>
                         <li class="tag-4"><a href="https://synergenz.github.io/tag/hadoop.html">hadoop</a></li>
                 </ul>
 			</div>
