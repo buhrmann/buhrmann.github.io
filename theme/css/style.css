@@ -1,3 +1,30 @@
+.intro {
+    display: table;
+    width: 100%;
+    height: auto;
+    padding: 50px 0;
+    text-align: center;
+    color: #fff;
+    /*background: url("intro-bg.jpg") no-repeat bottom center scroll;
+    background: url("walls/intro-bg.jpg") repeat bottom center scroll;*/
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(51,51,51,1)), color-stop(100%,rgba(0,0,0,0))), url("walls/back.png") repeat bottom center scroll;
+    background: -webkit-linear-gradient(top, rgba(51,51,51,1) 0%,rgba(0,0,0,0) 100%), url("walls/back.png") repeat bottom center scroll;
+    background: -moz-linear-gradient(top, rgba(51,51,51,1) 0%, rgba(0,0,0,0) 100%), url("walls/back.png") repeat bottom center scroll;
+    background: -o-linear-gradient(top, rgba(51,51,51,1) 0%,rgba(0,0,0,0) 100%), url("walls/back.png") repeat bottom center scroll;
+    background: -ms-linear-gradient(top, rgba(51,51,51,1) 0%,rgba(0,0,0,0) 100%), url("walls/back.png") repeat bottom center scroll;
+    background: linear-gradient(to bottom, rgba(51,51,51,1) 0%,rgba(0,0,0,0) 100%), url("walls/back.png") repeat bottom center scroll;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#222222', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */            
+    background-color: #fff;
+/*    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    */
+    margin: 0px;
+}
+
+
+
 .navbar,
 .navbar-default{
     border-top-color: #98B1C4;
@@ -6,11 +33,12 @@
 }
 
 .container{
-    max-width:99%
+    max-width:100%
 }
 
-.main-content {
-    margin-top: 30px;
+.content {
+    padding-top: 60px;
+    padding-bottom: 50px;
 }
 
 .navbar-logo,
@@ -226,7 +254,6 @@ figure {
 }
 
 .aw-footer {
-    margin-top: 2em;
     border-top: 2px solid lightgrey;
     border-bottom: 2px solid lightgrey;
     padding-top: 2em;
