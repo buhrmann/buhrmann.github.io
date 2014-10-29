@@ -86,22 +86,62 @@ tagGraph = function(id) {
           .attr("class", "node")
           .call(force.drag);
     
+    /*
     node.append("circle")
         .attr("r", function(d) { return d.group == 1 ? 10 : 20; })
         .style("fill", function(d) { return d.group == 1 ? "#bbb": "#98B1C4"; })
         .style("stroke-width", function(d) { return d.group == 1 ? "0px" : "1px"; })
         .style("stroke", "#000");
+    */
+    
+    svg.selectAll(".node").filter(function (d) { return d.group==2;})
+        .append("circle")
+        .attr("r", function(d) { return d.group == 1 ? 10 : 20; })
+        .style("fill", function(d) { return d.group == 1 ? "#bbb": "#98B1C4"; })
+        .style("stroke-width", function(d) { return d.group == 1 ? "0px" : "1px"; })
+        .style("stroke", "#000");
+        
+    // Placeholder background reactangle 
+    svg.selectAll(".node").filter(function (d) { return d.group==1;})
+        .append("g")
+        .append("rect");        
           
-      svg.selectAll(".node").filter(function (d) { return d.group==1;})
+    // Foreground text
+      svg.selectAll(".node").filter(function (d) { return d.group==1;}).select("g")
           .append("text")
           .text(function(d) {return d.name;})
-          .attr("dy", "0.35em")
+          .attr("dy", "16")
+          .attr("dx", "5")
           .style("stroke", "none")
-          .style("font-size", "16px")
+          .style("font-size", "14px")
           .style("fill", "#222")
-          .style("text-anchor", "middle")
+          .style("text-anchor", "left")
           .style("background-color", "#bbb")
           .style("pointer-events", "none");  
+        
+      // Now adjust background rectangle based on text width
+      svg.selectAll("rect")
+          .attr("width", function() { return this.parentNode.children[1].getBBox().width + 17; })
+          .attr("height", "24")
+          .style("fill", "#bbb");
+
+      // And shift rectangle into the middle
+      svg.selectAll(".node").filter(function (d) { return d.group==1;})
+          .select("g")
+          .attr("transform", function() { return "translate(-" + ((this.children[1].getBBox().width + 15) / 2) + ", -12)"; })
+          
+//          attr("transform", "translate(-" + this.parentNode.children[1].getBBox().width / 2 + ",0)")
+          
+         //d3.select(".node").filter(function (d) { return d.group==1;}).
+           //   select("rect").attr("width", function(d) { return this.parentNode.getBBox().width; })
+          
+/*      svg.selectAll(".node").filter(function (d) { return d.group==1;})
+          .append("rect")
+          .attr("width", function() { return this.parentNode.text.getBBox().width;})
+          .attr("height", "30")
+          .style("fill", "#bbb");
+          */
+          //.select(function() { return this.parentNode.text; }).text("test");
           
       svg.selectAll(".node").filter(function (d) { return d.group==2;})
           .on("mouseover", showPopover)
