@@ -41,13 +41,13 @@
                                         <!--<li class="divider"></li>
                                         <li class="dropdown-header">Data Science Reports</li>-->
                                         <li >
+                                        <a href="https://synergenz.github.io/activity-data.html">Categorisation of inertial activity&nbsp;data</a>
+                                        </li>
+                                        <li >
                                         <a href="https://synergenz.github.io/p2p-loans.html">Interest rates on <span class="caps">P2P</span>&nbsp;loans</a>
                                         </li>
                                         <li >
                                         <a href="https://synergenz.github.io/titanic-survival.html">Titanic survival&nbsp;prediction</a>
-                                        </li>
-                                        <li >
-                                        <a href="https://synergenz.github.io/activity-data.html">Categorisation of inertial activity&nbsp;data</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -73,7 +73,7 @@
                 <div class="col-centered col-max col-min col-sm-12 col-md-10 col-lg-10 main-content">
 <section id="content" class="article content">
   <header>
-      <span class="entry-title-info">Oct 23 · <a href="https://synergenz.github.io/category/reports.html">Reports</a></span>
+      <span class="entry-title-info">Nov 06 · <a href="https://synergenz.github.io/category/reports.html">Reports</a></span>
     <h2 class="entry-title entry-title-tight">Categorisation of inertial activity&nbsp;data</h2>
  
   </header>
@@ -103,7 +103,13 @@
 <p>We first report results from individual classifiers and then their&nbsp;combination.</p>
 <h4>Random&nbsp;Forest</h4>
 <p>We tuned the proportion of variables considered in each split using 100 trees for each evaluation. The best value found was 20. A final random forest was then trained using the optimal value and 500 trees. Error rate remained low (&lt; 5%) and stable after about 250 trees had been added. Analysis of variable importances, considering both the mean decrease in accuracy and Gini index, shows that the most significant variables are related to the acceleration due to gravity along the X and Y axes, as well as the mean angle with respect to gravity in the same directions (with corresponding measures from the time&nbsp;domain).</p>
-<p>The error rate of the fitted <span class="caps">RF</span> is 1.6% on the training set and 4.6% on the test set (accuracy of 0.954). The confusion matrix of the predicted activities (Table 1) shows that misclassification is almost exclusively due to an inability to distinguish sitting from standing. For example, while precision is greater than 0.977 for all other activities, it is 0.912 and 0.876 for sitting and standing&nbsp;respectively.</p>
+<p>Figure 1 shows the data, color-coded by activity, in the first two dimensions identified. We can see that several activities are already well-separated in these two dimensions, but others (standing, walk and walk-down) are largely&nbsp;overlapping.</p>
+<figure>
+<img src="/images/activitycat/centers.png" alt="RF centers"/>
+<figcaption  class="capCenter">Figure 1: Scatter plot of data in the two most important dimensions according to the random forest. Bigger disks indicate the class centers (for each class the data point that has most nearest neighbours of the same class).</figcaption>
+</figure>
+
+<p>The error rate of the fitted <span class="caps">RF</span> is 1.6% on the training set and 4.6% on the test set (accuracy of 0.954). The confusion matrix of the predicted activities (Table 1) shows that misclassification is almost exclusively due to an inability to distinguish sitting from standing. For example, while precision is greater than 0.977 for all other activities, it is 0.912 and 0.876 for sitting and standing respectively. Apparently the activities showing large overlap in the two most important dimensions (see Figure 1) can easily be separated taking into account other variables, while for sitting and standing activities this is not the&nbsp;case.</p>
 <figure>
 <div class="figCenter">
 
@@ -140,6 +146,12 @@
 </TABLE>
 </div>
 <figcaption class="capCenter">Table 1: Confusion matrix of random forest predictions. Rows correspond to predicted, and columns to reference (real observed) activities. Zero counts are omitted for clarity and misclassifications appear in off-diagonal entries (precision = positive predictive value, sensitivity = true positive rate).</figcaption>
+</figure>
+
+<p>The accuracy of the random forest can be appreciated when comparing the actual activities in the test set with those predicted by the model. Figure 2 below plots for the two most important variables the conditional density plots of both actual and predicted activities. In each panel the density plot shows the frequency of each activity as a function of the given variable. Clearly, at least in the two chosen dimensions, the model&#8217;s predictions match the actual distribution of activities very&nbsp;closely.</p>
+<figure>
+<img src="/images/activitycat/density.png" alt="RF CDF"/>
+<figcaption  class="capCenter">Figure 2: Conditional density plots for actual and predicted activities using the two most important variables of the data set.</figcaption>
 </figure>
 
 <h4>Support Vector&nbsp;Machine</h4>
@@ -223,8 +235,14 @@
 <figcaption class="capCenter">Table 3: Confusion matrix of <span class="caps">LDA2</span> predictions. See Table 1 for further details.</figcaption>
 </figure>
 
-<p>We can observe the same pattern of misclassification as in the other two models.
-Interestingly, when we use <span class="caps">LDA1</span> for prediction, accuracy is increased to 0.9785 (error rate of 2.15%). Nevertheless, since in cross-validation on the training set <span class="caps">LDA2</span> performed better, we assume that this increase is a result of chance only and does not reflect a truly better&nbsp;model.</p>
+<p>We can observe the same pattern of misclassification as in the other two models. Interestingly, when we use <span class="caps">LDA1</span> for prediction, accuracy is increased to 0.9785 (error rate of 2.15%). Nevertheless, since in cross-validation on the training set <span class="caps">LDA2</span> performed better, we assume that this increase is a result of chance only and does not reflect a truly better&nbsp;model.</p>
+<p>To visually demonstrate the reason for the model&#8217;s misclassification we can plot the test data in the first two dimensions of the trained linear discriminant, color-coded by true activity (Figure&nbsp;3).</p>
+<figure>
+<img src="/images/activitycat/lda.png" alt="RF CDF"/>
+<figcaption  class="capCenter">Figure 3: Test data scattered in the first two discriminant dimensions.</figcaption>
+</figure>
+
+<p>Again, we find that two clusters of activities are similar: sitting and standing on the one hand, and the different walking activities on the other. But at least the two clusters (as well as the data points for the lying acticity) are well separated, in contrast to the &#8220;raw&#8221; dimensions shown in Figure&nbsp;1.</p>
 <h4>Comparison of&nbsp;classifiers</h4>
 <p>Comparing the three classifiers in terms of their sensitivity (recall), i.e. the proportion of correct predictions for each class, we have already seen that all three models perform very similar, with the <span class="caps">SVM</span> having a slight advantage. We can speculate that this is due to the non-linear (radial basis) decision boundaries of the classifier, which stands in contrast to the linear methods employed in the other two&nbsp;models.</p>
 <p>Based on the previous results we expect not to gain much predictive power from the combination of individual models using a simple majority vote. All models exhibit the same problem of misclassification of sitting and standing activities, and therefore do not complement each other. This is confirmed by a combined accuracy of 0.958 when predictions are made based on a majority vote of the three models, which sits exactly between the lower scoring <span class="caps">RF</span> and <span class="caps">LDA</span> on the one hand, and the slightly higher scoring <span class="caps">SVM</span> on the&nbsp;other.</p>
@@ -250,7 +268,7 @@ Interestingly, when we use <span class="caps">LDA1</span> for prediction, accura
 </ol></p>
   </div><!-- /.entry-content -->
    <footer class="post-info">
-    Published on <span class="published">October 23, 2014</span><br>
+    Published on <span class="published">November 06, 2014</span><br>
         Written by <span class="author">Thomas Buhrmann</span><br>
         Posted in <span class="label label-default"><a href="https://synergenz.github.io/category/reports.html">Reports</a></span>
  ~ Tagged 
@@ -290,22 +308,22 @@ Interestingly, when we use <span class="caps">LDA1</span> for prediction, accura
 			<div class="col-sm-3">
 				<h4>Tags</h4>
                 <ul class="tagcloud">
-                        <li class="tag-1"><a href="https://synergenz.github.io/tag/r.html">R</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/python.html">python</a></li>
-                        <li class="tag-1"><a href="https://synergenz.github.io/tag/smcs.html">smcs</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/categorisation.html">categorisation</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/nosql.html">nosql</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/lda.html">lda</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/titanic.html">titanic</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/random-forest.html">random forest</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/hadoop.html">hadoop</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/big-data.html">big data</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/kaggle.html">kaggle</a></li>
-                        <li class="tag-1"><a href="https://synergenz.github.io/tag/report.html">report</a></li>
                         <li class="tag-4"><a href="https://synergenz.github.io/tag/visualization.html">visualization</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/d3.html">d3</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/titanic.html">titanic</a></li>
+                        <li class="tag-1"><a href="https://synergenz.github.io/tag/r.html">R</a></li>
+                        <li class="tag-1"><a href="https://synergenz.github.io/tag/report.html">report</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/hadoop.html">hadoop</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/kaggle.html">kaggle</a></li>
+                        <li class="tag-1"><a href="https://synergenz.github.io/tag/smcs.html">smcs</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/python.html">python</a></li>
                         <li class="tag-4"><a href="https://synergenz.github.io/tag/java.html">java</a></li>
                         <li class="tag-4"><a href="https://synergenz.github.io/tag/svm.html">svm</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/nosql.html">nosql</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/random-forest.html">random forest</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/categorisation.html">categorisation</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/lda.html">lda</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/big-data.html">big data</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/d3.html">d3</a></li>
                         <li class="tag-4"><a href="https://synergenz.github.io/tag/regression.html">regression</a></li>
                 </ul>
 			</div>
