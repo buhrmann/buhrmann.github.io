@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Interactive&nbsp;Resume</title>
+          <title>Movement control without internal&nbsp;models - datawerk</title>
         <meta charset="utf-8" />        
         <link href="https://synergenz.github.io/theme/css/bootstrap-custom.css" rel="stylesheet"/> 
     	<link href="https://synergenz.github.io/theme/css/pygments.css" rel="stylesheet"/>     
@@ -9,7 +9,11 @@
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-<link href="https://synergenz.github.io/theme/css/d3.css" rel="stylesheet" />
+  <meta name="author" contents="Thomas Buhrmann"/>  
+  
+
+    <meta name="keywords" contents="datawerk, smcs,"/>  
+
     </head>
 
     <body>
@@ -67,39 +71,36 @@
         <div class="container main-content">     
             <div class="row row-centered">
                 <div class="col-centered col-max col-min col-sm-12 col-md-10 col-lg-10 main-content">
-<section id="content" class="content">
-    <h1>Interactive&nbsp;Resume</h1>
-    <p>I&#8217;m currently a postdoctoral researcher working for the European project &#8220;Extending sensorimotor contingencies to cognition&#8221; (<span class="caps">EU</span> 7th Framework; <span class="caps">ICT</span>: Cognitive Systems and Robotics). In my academic work I use a combination of <span class="caps">AI</span> methods, including neural networks and genetic algorithms, as well as physical simulations to test hypotheses regarding human and robot motor control. I have also worked as commercial software engineer and team lead on adaptive character simulation and <span class="caps">AI</span> for NaturalMotion. My academic background and interests include artificial intelligence, machine learning, cognitive science and software development in general (C++, Python, Matlab, R&nbsp;&#8230;).</p>
-<p>I&#8217;m now looking to apply my skills and experience with <span class="caps">AI</span>, machine learning and commercial software development in the field of data science/big&nbsp;data.</p>
-<h3>Experience</h3>
-<p>For a full resume see my <a href="https://www.linkedin.com/in/thomasbuhrmann">LinkedIn</a> account.
-<div id="timeline-exp"></div></p>
-<h3>Education</h3>
-<p><div id="timeline-ed"></div></p>
-<h3>Publications</h3>
-<p>A list of my publications. For the data used in this graph I&#8217;ve written a little python robot to scrape articles and citations off of <a href="http://scholar.google.es/citations?user=M1FQwSUAAAAJ&hl=en">google scholar</a>. The <a href="https://github.com/synergenz/datawerk/blob/master/theme/static/py/citations.py">source code</a> is available on <a href="https://github.com/synergenz/">github</a> along with the rest of this <a href="https://github.com/synergenz/datawerk">blog</a>.</p>
-<ul class="nav nav-tabs" role="tablist">
-  <li class="active"><a href="#stream" role="tab" data-toggle="tab">Stream</a></li>
-  <li><a href="#stack" role="tab" data-toggle="tab">Stack</a></li>
-</ul>
+<section id="content" class="article content">
+  <header>
+      <span class="entry-title-info">Nov 13 · <a href="https://synergenz.github.io/category/academia.html">Academia</a></span>
+    <h2 class="entry-title entry-title-tight">Movement control without internal&nbsp;models</h2>
+ 
+  </header>
+  
+     
+  <div class="entry-content">
+    <p>My latest paper has just been published by Frontiers in Computational Neuroscience and can be accessed free of charge <a href="http://journal.frontiersin.org/Journal/10.3389/fncom.2014.00144/abstract">here</a>. It concerns the question of whether we need internal models (simulations) in order to control our movements, or whether our body and the lower-level neural circuits innervating it provide some control &#8220;for&nbsp;free&#8221;.</p>
+<p>From the&nbsp;abstract:</p>
+<blockquote>
+The dynamic interaction of limb segments during movements that involve multiple joints creates torques in one joint due to motion about another. Evidence shows that such interaction torques are taken into account during the planning or control of movement in humans. Two alternative hypotheses could explain the compensation of these dynamic torques. One involves the use of internal models to centrally compute predicted interaction torques and their explicit compensation through anticipatory adjustment of descending motor commands. The alternative, based on the equilibrium-point hypothesis, claims that descending signals can be simple and related to the desired movement kinematics only, while spinal feedback mechanisms are responsible for the appropriate creation and coordination of dynamic muscle forces. Partial supporting evidence exists in each case. However, until now no model has explicitly shown, in the case of the second hypothesis, whether peripheral feedback is really sufficient on its own for coordinating the motion of several joints while at the same time accommodating intersegmental interaction torques. Here we propose a minimal computational model to examine this question. Using a biomechanics simulation of a two-joint arm controlled by spinal neural circuitry, we show for the first time that it is indeed possible for the neuromusculoskeletal system to transform simple descending control signals into muscle activation patterns that accommodate interaction forces depending on their direction and magnitude. This is achieved without the aid of any central predictive signal. Even though the model makes various simplifications and abstractions compared to the complexities involved in the control of human arm movements, the finding lends plausibility to the hypothesis that some multijoint movements can in principle be controlled even in the absence of internal models of intersegmental dynamics or learned compensatory motor signals.
+</blockquote>
 
-<div class="tab-content">
-  <div class="tab-pane active" id="stream">
-      <span class="capCenter">Each colored stream represents a single publication&#8217;s number of citations over the years.</span>
-  </div>
-  <div class="tab-pane" id="stack">
-      <span class="capCenter">Each colored rectangle represents the number of citations for a given publication in a given year.</span>
-  </div>
-</div>
+<figure>
+<a href="http://journal.frontiersin.org/Journal/10.3389/fncom.2014.00144/abstract"><img src="http://www.frontiersin.org/files/Articles/103472/fncom-08-00144-HTML/image_m/fncom-08-00144-g001.jpg" style="width: 400px"/></a>
+</figure>
 
-<h4>All&nbsp;publications</h4>
-<p>As found on google scholar. Number of citations in&nbsp;brackets.</p>
-<div class="row">
-    <div class="col-sm-12 col-md-12">
-        <ul class="bib" id="list" style="margin-top: 15px;"></ul>
-    </div>
-</div>
-</section>    
+<p>Get it here: <a href="http://journal.frontiersin.org/Journal/10.3389/fncom.2014.00144/abstract">Frontiers in Cognition | Learning to perceive in the sensorimotor approach: Piaget’s theory of equilibration interpreted&nbsp;dynamically</a></p>
+  </div><!-- /.entry-content -->
+   <footer class="post-info">
+    Published on <span class="published">November 13, 2014</span><br>
+        Written by <span class="author">Thomas Buhrmann</span><br>
+        Posted in <span class="label label-default"><a href="https://synergenz.github.io/category/academia.html">Academia</a></span>
+ ~ Tagged 
+        <span class="label label-default"><a href="https://synergenz.github.io/tag/smcs.html">smcs</a></span>
+  </footer><!-- /.post-info -->
+  
+</section>
                 </div>
             </div><!-- row-->
         </div><!-- container -->
@@ -173,14 +174,5 @@ jQuery(document).ready(function($) {
   ga('create', 'UA-56071357-1', 'auto');
   ga('send', 'pageview');
 
-</script>
-<script type="text/javascript" src="https://synergenz.github.io/theme/js/d3.v3.min.js"></script>
-<script type="text/javascript" src="https://synergenz.github.io/theme/js/colorbrewer.v1.min.js"></script>
-<script type="text/javascript" src="https://synergenz.github.io/theme/js/timeline.js"></script>
-<script type="text/javascript" src="https://synergenz.github.io/theme/js/pubStack.js"></script>
-<script type="text/javascript">timelineFromJson("Paired");</script>
-<script type="text/javascript">streamCsv("#stream", "Paired");</script>
-<script type="text/javascript">pubsBars("#stack", "Paired");</script>
-<script type="text/javascript">pubsList("#list");</script>
-</body>
+</script></body>
 </html>

@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://synergenz.github.io/index.html</loc>
-<lastmod>2014-11-07T10:06:59-00:00</lastmod>
+<lastmod>2014-11-13T18:23:22-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://synergenz.github.io/archives.html</loc>
-<lastmod>2014-11-07T10:06:59-00:00</lastmod>
+<lastmod>2014-11-13T18:23:22-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://synergenz.github.io/tags.html</loc>
-<lastmod>2014-11-07T10:06:59-00:00</lastmod>
+<lastmod>2014-11-13T18:23:22-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://synergenz.github.io/categories.html</loc>
-<lastmod>2014-11-07T10:06:59-00:00</lastmod>
+<lastmod>2014-11-13T18:23:22-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -47,7 +47,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://synergenz.github.io/activity-data.html</loc>
-<lastmod>2014-11-06T19:33:17+01:00</lastmod>
+<lastmod>2014-11-13T18:19:19+01:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://synergenz.github.io/spinal-coordination.html</loc>
+<lastmod>2014-11-13T00:00:00+01:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -103,7 +110,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://synergenz.github.io/category/academia.html</loc>
-<lastmod>2014-07-01T00:00:00+00:09</lastmod>
+<lastmod>2014-11-13T00:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -124,14 +131,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://synergenz.github.io/category/reports.html</loc>
-<lastmod>2014-11-06T19:33:17+00:09</lastmod>
+<lastmod>2014-11-13T18:19:19+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://synergenz.github.io/tag/categorisation.html</loc>
-<lastmod>2014-11-06T19:33:17+00:09</lastmod>
+<lastmod>2014-11-13T18:19:19+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -145,14 +152,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://synergenz.github.io/tag/lda.html</loc>
-<lastmod>2014-11-06T19:33:17+00:09</lastmod>
+<lastmod>2014-11-13T18:19:19+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://synergenz.github.io/tag/svm.html</loc>
-<lastmod>2014-11-06T19:33:17+00:09</lastmod>
+<lastmod>2014-11-13T18:19:19+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -180,7 +187,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://synergenz.github.io/tag/smcs.html</loc>
-<lastmod>2014-07-01T00:00:00+00:09</lastmod>
+<lastmod>2014-11-13T00:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -208,7 +215,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://synergenz.github.io/tag/random-forest.html</loc>
-<lastmod>2014-11-06T19:33:17+00:09</lastmod>
+<lastmod>2014-11-13T18:19:19+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -229,14 +236,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://synergenz.github.io/tag/r.html</loc>
-<lastmod>2014-11-06T19:33:17+00:09</lastmod>
+<lastmod>2014-11-13T18:19:19+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://synergenz.github.io/tag/report.html</loc>
-<lastmod>2014-11-06T19:33:17+00:09</lastmod>
+<lastmod>2014-11-13T18:19:19+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -250,7 +257,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://synergenz.github.io/author/thomas-buhrmann.html</loc>
-<lastmod>2014-11-06T19:33:17+00:09</lastmod>
+<lastmod>2014-11-13T18:19:19+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
