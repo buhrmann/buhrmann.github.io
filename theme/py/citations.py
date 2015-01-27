@@ -1,4 +1,4 @@
-import sys, time, random, pickle
+import sys, time, random, pickle, datetime
 import pprint
 import re
 import requests
@@ -21,8 +21,8 @@ header = {'User-agent' : agents[rint]}
 num_results = 20
 
 def fetchPage(url):
-    time.sleep(60 + (60 * random.random()))
-    r = requests.get(url + "&num=" + num_results, headers=header)
+    time.sleep(40 + (40 * random.random()))
+    r = requests.get(url + "&num=" + str(num_results), headers=header, allow_redirects=True)
     html = r.text
     return bs(html, "lxml")
     
@@ -97,13 +97,14 @@ def parseCitations(page):
         
         # Use regex to extract publication year
         year = -1
-        pattern = re.compile("(\d+)(?!.*\d)") # last number in string
+        #pattern = re.compile("(\d+)(?!.*\d)") # last number in string
+        pattern = re.compile("(^|\s)(\d{4})(\s|$)")
         match = pattern.search(details)
-        if match:
-            year = toInt(match.group())
+        if match is not None:
+            year = toInt(match.group().strip())
         
         # Use regex to extract number of citations
-        num_citations = -1
+        num_citations = 0
         footer_filter = lambda x: x.has_attr('class') and 'gs_fl' in x['class'] and not 'gs_ggs' in x['class']
         footer = row.find(footer_filter)        
         if footer:
@@ -111,7 +112,9 @@ def parseCitations(page):
             cite_link = footer.find(cite_filter)
             if cite_link:
                 cite_link = unicode(cite_link.string).strip()
-                num_citations = toInt(pattern.search(cite_link).group())
+                num_cit_match = pattern.search(cite_link)
+                if num_cit_match is not None:
+                    num_citations = toInt(num_cit_match.group())
     
         citation = {"name":name, "link":link, "details":details, "year":year, "num_citations":num_citations};
         citations.append(citation)
@@ -129,12 +132,13 @@ def parseCitationPages(pages):
     
 # Stores a dictionary in each article recording how many citations it received in each year
 def addCounts(articles):
+    thisyear = datetime.datetime.now().year + 1
     for a in articles:
         counts = defaultdict(int)
         for c in a['citations']:
             year = c['year']
             # Filter out those without year
-            if year != -1:
+            if year > 2000 and year < thisyear:
                 counts[year] += 1
         a['citations_count'] = counts    
 
@@ -224,6 +228,7 @@ def load():
 if __name__ == "__main__":
     articles = fetchAll(None)
     save(articles)
-    countsToCsv(articles)
+    articlesToCsv(articles, "../js/articles.tsv")
+    countsToCsv(articles, "../js/counts.tsv")
     
     sys.exit(0)

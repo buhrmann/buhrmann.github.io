@@ -40,7 +40,7 @@ function showPopover (d) {
     container: 'body',
     trigger: 'manual',
     html: true,
-    content: function () { return d.text; }
+    content: function () { return "<span class='category'>" + d.category + "</span><br>" + d.text; }
   });
   $(this).popover('show');
 }
@@ -56,20 +56,27 @@ tagGraph = function(id) {
     
     d3.json("../theme/js/tag_graph.json", function (error, graph)
     {  
-            
-    var width = 600,
+    var width = window.innerWidth,
         height = 600;
 
-    var color = d3.scale.category20();
+    // var color = d3.scale.category20();
+    var colors = ["#00ADEF", "#ED008C", "#F5892D", "#BBCB5F", "#999", "#ccc"];
+    var nodeColorScale = d3.scale.ordinal().range(colors);
+
 
     var force = d3.layout.force()
-        .charge(-400)
-        .linkDistance(100)
+        .charge(-300)
+        .linkDistance(90)
+        .gravity(0.125)
         .size([width, height]);
 
-    var svg = d3.select(id).append("svg")
-        .attr("width", width)
-        .attr("height", height);
+    // var svg = d3.select(id).append("svg")
+    //     .attr("width", width)
+    //     .attr("height", height);
+
+    svg = d3.select(id).append("svg")
+        .attr("viewBox", "0 0 " + width + " " + height)
+        .attr("preserveAspectRatio", "xMidYMid meet");        
 
       force.nodes(graph.nodes).links(graph.links).start();
 
@@ -96,9 +103,9 @@ tagGraph = function(id) {
     
     svg.selectAll(".node").filter(function (d) { return d.group==2;})
         .append("circle")
-        .attr("r", function(d) { return d.group == 1 ? 10 : 20; })
-        .style("fill", function(d) { return d.group == 1 ? "#bbb": "#98B1C4"; })
-        .style("stroke-width", function(d) { return d.group == 1 ? "0px" : "1px"; })
+        .attr("r", 15)
+        .style("fill", function(d) { return nodeColorScale(d.category); })
+        .style("stroke-width", "1px"  )
         .style("stroke", "#000");
         
     // Placeholder background reactangle 
@@ -128,20 +135,7 @@ tagGraph = function(id) {
       // And shift rectangle into the middle
       svg.selectAll(".node").filter(function (d) { return d.group==1;})
           .select("g")
-          .attr("transform", function() { return "translate(-" + ((this.childNodes[1].getBBox().width + 15) / 2) + ", -12)"; })
-          
-//          attr("transform", "translate(-" + this.parentNode.children[1].getBBox().width / 2 + ",0)")
-          
-         //d3.select(".node").filter(function (d) { return d.group==1;}).
-           //   select("rect").attr("width", function(d) { return this.parentNode.getBBox().width; })
-          
-/*      svg.selectAll(".node").filter(function (d) { return d.group==1;})
-          .append("rect")
-          .attr("width", function() { return this.parentNode.text.getBBox().width;})
-          .attr("height", "30")
-          .style("fill", "#bbb");
-          */
-          //.select(function() { return this.parentNode.text; }).text("test");
+          .attr("transform", function() { return "translate(-" + ((this.childNodes[1].getBBox().width + 15) / 2) + ", -12)"; });
           
       svg.selectAll(".node").filter(function (d) { return d.group==2;})
           .on("mouseover", showPopover)
@@ -149,14 +143,52 @@ tagGraph = function(id) {
           .on("click", function(d) { location.href = d.url; })
           .style("cursor", "pointer");
 
+      svg.selectAll(".node").filter(function (d) { return d.group==1;})
+          .on("click", function(d) { location.href = d.url; })
+          .style("cursor", "pointer");
+
+      collide = function(d, alpha) {
+        var padding = 1;    
+        
+        var r = 2 * (d.group==1 ? 30 : 15) + padding,
+        nx1 = d.x - r,
+        nx2 = d.x + r,
+        ny1 = d.y - r,
+        ny2 = d.y + r;
+        return function(quad, x1, y1, x2, y2) {
+          if (quad.point && (quad.point !== d)) {
+              var x = d.x - quad.point.x,
+              y = d.y - quad.point.y,
+              l = Math.sqrt(x * x + y * y);
+              if (l < r) {
+                  l = (l - r) / l * alpha;
+                  d.x -= x *= l;
+                  d.y -= y *= l;
+                  quad.point.x += x;
+                  quad.point.y += y;
+              }
+          }
+          return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
+        };
+      }
+
       force.on("tick", function() {
+
+        // Collision detection
+        nodes = force.nodes();
+        var q = d3.geom.quadtree(nodes),
+            i = 0,
+            n = nodes.length;
+
+        while (++i < n) q.visit(collide(nodes[i], 0.2));
+
         link.attr("x1", function(d) { return d.source.x; })
             .attr("y1", function(d) { return d.source.y; })
             .attr("x2", function(d) { return d.target.x; })
             .attr("y2", function(d) { return d.target.y; });
 
         node.attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; });
-    });
+      });
     
     });
 }

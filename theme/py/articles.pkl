@@ -7,1656 +7,304 @@ p3
 sS'citations'
 p4
 (lp5
-(dp6
-S'num_citations'
-p7
-I73
-sS'year'
-p8
-I2010
-sS'link'
-p9
-Vhttp://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=5072212
-p10
-sg2
-VEstimation of detection thresholds for redirected walking techniques
-p11
-sS'details'
-p12
-VF Steinicke, G Bruder, J Jerald\u2026 - \u2026  IEEE Transactions on, 2010 - ieeexplore.ieee.org
-p13
-sa(dp14
-g7
-I49
-sg8
-I2009
-sg9
-Vhttp://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=4811208
-p15
-sg2
-VArch-explore: A natural user interface for immersive architectural walkthroughs
-p16
-sg12
-VG Bruder, F Steinicke\u2026 - 3D User Interfaces, 2009.  \u2026, 2009 - ieeexplore.ieee.org
-p17
-sa(dp18
-g7
-I43
-sg8
-I2008
-sg9
-Vhttp://psycnet.apa.org/journals/xap/14/1/61/
-p19
-sg2
-VCorrecting distance estimates by interacting with immersive virtual environments: effects of task and available sensory information.
-p20
-sg12
-VD Waller, AR Richardson - Journal of Experimental Psychology:  \u2026, 2008 - psycnet.apa.org
-p21
-sa(dp22
-g7
-I41
-sg8
-I2008
-sg9
-Vhttp://dl.acm.org/citation.cfm?id=1450611
-p23
-sg2
-VAnalyses of human sensitivity to redirected walking
-p24
-sg12
-VF Steinicke, G Bruder, J Jerald, H Frenz\u2026 - Proceedings of the 2008  \u2026, 2008 - dl.acm.org
-p25
-sa(dp26
-g7
-I27
-sg8
-I2009
-sg9
-Vhttp://dl.acm.org/citation.cfm?id=1620998
-p27
-sg2
-VTransitional environments enhance distance perception in immersive virtual reality systems
-p28
-sg12
-VF Steinicke, G Bruder, K Hinrichs, M Lappe\u2026 - Proceedings of the 6th  \u2026, 2009 - dl.acm.org
-p29
-sa(dp30
-g7
-I18
-sg8
-I2010
-sg9
-Vhttp://dl.acm.org/citation.cfm?id=1670673
-p31
-sg2
-VCognitive transfer of spatial awareness states from immersive virtual environments to reality
-p32
-sg12
-VK Mania, S Badariah, M Coxon, P Watten - ACM Transactions on  \u2026, 2010 - dl.acm.org
-p33
-sa(dp34
-g7
-I18
-sg8
-I2012
-sg9
-Vhttp://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=5772045
-p35
-sg2
-VParallel architecture for hierarchical optical flow estimation based on FPGA
-p36
-sg12
-VF Barranco, M Tomasi, J Diaz\u2026 - Very Large Scale  \u2026, 2012 - ieeexplore.ieee.org
-p37
-sa(dp38
-g7
-I16
-sg8
-I2012
-sg9
-Vhttp://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=6165140
-p39
-sg2
-VGeometric calibration of head-mounted displays and its effects on distance estimation
-p40
-sg12
-VF Kellner, B Bolte, G Bruder\u2026 - Visualization and  \u2026, 2012 - ieeexplore.ieee.org
-p41
-sa(dp42
-g7
-I18
-sg8
-I2011
-sg9
-Vhttp://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=5753757
-p43
-sg2
-VTowards context-aware hard/soft information fusion: Incorporating situationally qualified human observations into a fusion process for intelligence analysis
-p44
-sg12
-VMP Jenkins, G Gross, AM Bisantz\u2026 - Cognitive Methods in  \u2026, 2011 - ieeexplore.ieee.org
-p45
-sa(dp46
-g7
-I12
-sg8
-I2009
-sg9
-Vhttp://link.springer.com/article/10.1007/s00221-009-1890-6
-p47
-sg2
-VVisual estimation of travel distance during walking
-p48
-sg12
-VM Lappe, H Frenz - Experimental brain research, 2009 - Springer
-p49
-sa(dp50
-g7
-I8
-sg8
-I2009
-sg9
-Vhttp://link.springer.com/chapter/10.1007/978-3-642-03832-7_1
-p51
-sg2
-VA conceptual model of the cognitive processing of environmental distance information
-p52
-sg12
-VDR Montello - Spatial information theory, 2009 - Springer
-p53
-sa(dp54
-g7
-I8
-sg8
-I2012
-sg9
-Vhttp://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=6081857
-p55
-sg2
-VTuning self-motion perception in virtual reality with visual illusions
-p56
-sg12
-VG Bruder, F Steinicke, P Wieland\u2026 - \u2026  and Computer Graphics \u2026, 2012 - ieeexplore.ieee.org
-p57
-sa(dp58
-g7
-I7
-sg8
-I2010
-sg9
-Vhttp://dl.acm.org/citation.cfm?id=1837108
-p59
-sg2
-VPerceptually-motivated graphics, visualization and 3D displays
-p60
-sg12
-VA McNamara, K Mania, M Banks, C Healey - ACM SIGGRAPH 2010  \u2026, 2010 - dl.acm.org
-p61
-sa(dp62
-g7
-I6
-sg8
-I2011
-sg9
-Vhttp://dl.acm.org/citation.cfm?id=2077448
-p63
-sg2
-VPerception in graphics, visualization, virtual environments and animation
-p64
-sg12
-VA McNamara, K Mania, D Gutierrez - SIGGRAPH Asia 2011 Courses, 2011 - dl.acm.org
-p65
-sa(dp66
-g7
-I5
-sg8
-I2011
-sg9
-Vhttp://link.springer.com/article/10.1007/s00221-011-2696-x
-p67
-sg2
-VKeeping track of the distance from home by leaky integration along veering paths
-p68
-sg12
-VM Lappe, M Stiels, H Frenz, JM Loomis - Experimental brain research, 2011 - Springer
-p69
-sa(dp70
-g7
-I4
-sg8
-I2010
-sg9
-Vhttp://dl.acm.org/citation.cfm?id=1836275
-p71
-sg2
-VThe effect of stereo and context on memory and awareness states in immersive virtual environments
-p72
-sg12
-VA Bennett, M Coxon, K Mania - Proceedings of the 7th Symposium on  \u2026, 2010 - dl.acm.org
-p73
-sa(dp74
-g7
-I3
-sg8
-I2011
-sg9
-Vhttp://eprints.port.ac.uk/5099/
-p75
-sg2
-VBlurring the boundaries: the perception of visual gain in treadmill-mediated virtual environments
-p76
-sg12
-VW Powell, B Stevens, S Hand\u2026 - 3rd IEEE VR 2011  \u2026, 2011 - eprints.port.ac.uk
-p77
-sa(dp78
-g7
-I4
-sg8
-I2010
-sg9
-S''
-p79
-sg2
-VNone
-p80
-sg12
-VG Bruder, F Steinicke, D Valkov, K Hinrichs - Proc. of Virtual Reality  \u2026, 2010 - Citeseer
-p81
-sa(dp82
-g7
-I2
-sg8
-I2011
-sg9
-Vhttp://ir.uiowa.edu/etd/2752/
-p83
-sg2
-VEstimating distances and traveled distances in virtual and real environments
-p84
-sg12
-VTD Nguyen - 2011 - ir.uiowa.edu
-p85
-sa(dp86
-g7
-I2
-sg8
-I2013
-sg9
-Vhttp://www.sciencedirect.com/science/article/pii/S0141938212000832
-p87
-sg2
-VNone
-p88
-sg12
-VG Bruder, F Steinicke, B Bolte, P Wieland, H Frenz\u2026 - Displays, 2013 - Elsevier
-p89
-sa(dp90
-g7
-I2
-sg8
-I2009
-sg9
-Vhttp://viscg.uni-muenster.de/pive/pive09/paper/pive2009_submission_9.pdf
-p91
-sg2
-VNone
-p92
-sg12
-VM Lappe, H Frenz - PIVE 2009, 2009 - viscg.uni-muenster.de
-p93
-sa(dp94
-g7
-I1
-sg8
-I2013
-sg9
-Vhttp://www.igi-global.com/article/evaluating-mobile-applications-in-virtual-environments/101441
-p95
-sg2
-VEvaluating Mobile Applications in Virtual Environments: A Survey
-p96
-sg12
-VI Delikostidis, T Fechner, H Fritze\u2026 - International Journal of \u2026, 2013 - igi-global.com
-p97
-sa(dp98
-g7
-I1
-sg8
-I2013
-sg9
-Vhttp://www.tandfonline.com/doi/abs/10.1080/20445911.2012.744314
-p99
-sg2
-VThe role of static scene information on locomotion distance estimation
-p100
-sg12
-VH Zhang, K Zhang, RF Wang - Journal of Cognitive Psychology, 2013 - Taylor & Francis
-p101
-sa(dp102
-g7
-I1
-sg8
-I2012
-sg9
-Vhttp://www.sciencedirect.com/science/article/pii/S1047320312001472
-p103
-sg2
-VNone
-p104
-sg12
-VF Barranco, J Díaz, B Pino, E Ros - Journal of Visual Communication and  \u2026, 2012 - Elsevier
-p105
-sa(dp106
-g7
-I1
-sg8
-I2011
-sg9
-Vhttp://dl.acm.org/citation.cfm?id=2077466
-p107
-sg2
-VEffects of scene density and richness on traveled distance estimation in virtual environments
-p108
-sg12
-VTD Nguyen, JF Cremer, JK Kearney\u2026 - Proceedings of the ACM  \u2026, 2011 - dl.acm.org
-p109
-sa(dp110
-g7
-I1
-sg8
-I2013
-sg9
-Vhttp://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=6662085
-p111
-sg2
-VThe influence of virtual reality systems on walking behaviour: A toolset to support application design
-p112
-sg12
-VWA Powell, B Stevens - Virtual Rehabilitation (ICVR), 2013  \u2026, 2013 - ieeexplore.ieee.org
-p113
-sa(dp114
-g7
-I2
-sg8
-I2011
-sg9
-Vhttp://www.ingentaconnect.com/content/brill/sp/2011/00000024/00000003/art00002?crawler=true
-p115
-sg2
-VSelf-motion reproduction can be affected by associated auditory cues
-p116
-sg12
-VA von Hopffgarten, F Bremmer - Seeing and perceiving, 2011 - ingentaconnect.com
-p117
-sa(dp118
-g7
-I-1
-sg8
-I2009
-sg9
-Vhttp://proceedings.spiedigitallibrary.org/proceeding.aspx?articleid=1334726
-p119
-sg2
-VStereoscopy in cinematographic synthetic imagery
-p120
-sg12
-VJ Eisenmann, R Parent - IS&T/SPIE  \u2026, 2009 - proceedings.spiedigitallibrary.org
-p121
-sa(dp122
-g7
-I-1
-sg8
-I2012
-sg9
-Vhttp://eprints.port.ac.uk/13886/
-p123
-sg2
-VVisual properties of virtual target objects: implications for reaching and grasping tasks in a virtual reality rehabilitation context
-p124
-sg12
-VV Powell - 2012 - eprints.port.ac.uk
-p125
-sa(dp126
-g7
-I-1
-sg8
-I-1
-sg9
-g79
-sg2
-VNone
-p127
-sg12
-VJ Jerald, H Frenz, M Lappe - Citeseer
-p128
-sa(dp129
-g7
-I-1
-sg8
-I2012
-sg9
-Vhttp://researchcommons.waikato.ac.nz/handle/10289/6374
-p130
-sg2
-VHuman Visual Navigation: Effects of Visual Context, Navigation Mode, and Gender
-p131
-sg12
-VDM Thomson - 2012 - researchcommons.waikato.ac.nz
-p132
-sa(dp133
-g7
-I-1
-sg8
-I2014
-sg9
-Vhttp://link.springer.com/chapter/10.1007/978-3-642-37829-4_8
-p134
-sg2
-VHow People Use Visual Landmarks for Locomotion Distance Estimation: The Case Study of Eye Tracking
-p135
-sg12
-VH Zhang, K Zhang - Foundations and Applications of Intelligent Systems, 2014 - Springer
-p136
-sa(dp137
-g7
-I-1
-sg8
-I2011
-sg9
-Vhttp://eprints.port.ac.uk/8523/
-p138
-sg2
-VVirtually walking: factors influencing walking and perception of walking in treadmill-mediated virtual reality to support rehabilitation
-p139
-sg12
-VW Powell - 2011 - eprints.port.ac.uk
-p140
-sa(dp141
-g7
-I-1
-sg8
-I2010
-sg9
-Vhttp://books.google.es/books?hl=en&lr=&id=Ci0635FX3JEC&oi=fnd&pg=PA180&ots=UzzpIvkIS5&sig=rrwLC8i8whfzpL-oH8rM06z6ZtI
-p142
-sg2
-VVisual properties of an object affect time to target in VR reaching tasks
-p143
-sg12
-VV Powell, B Stevens, S Hand\u2026 - Studies in health  \u2026, 2010 - books.google.com
-p144
-sa(dp145
-g7
-I-1
-sg8
-I2008
-sg9
-Vhttp://rave.ohiolink.edu/etdc/view?acc_num=ucin1219083136
-p146
-sg2
-VThe Influence of Multimodally Specified Effort on Distance Perception
-p147
-sg12
-VEJ White - 2008 - rave.ohiolink.edu
-p148
-sa(dp149
-g7
-I-1
-sg8
-I2014
-sg9
-Vhttp://link.springer.com/chapter/10.1007/978-3-642-37835-5_64
-p150
-sg2
-VHow Can We Find the Origin of a Path We Visually Traveled? The Effect of the Visual Environment on Path Integration
-p151
-sg12
-VH Zhang, K Zhang - Foundations and Practical Applications of Cognitive  \u2026, 2014 - Springer
-p152
-sa(dp153
-g7
-I-1
-sg8
-I-1
-sg9
-g79
-sg2
-VNone
-p154
-sg12
-VF Steinicke, G Bruder, K Hinrichs, J Jerald, H Frenz\u2026
-p155
-sa(dp156
-g7
-I-1
-sg8
-I2009
-sg9
-Vhttp://proceedings.spiedigitallibrary.org/proceeding.aspx?articleid=1334732
-p157
-sg2
-VDepth and distance perception in a curved large screen virtual reality installation
-p158
-sg12
-VD Gadia, A Galmonte, T Agostini\u2026 - IS&T/SPIE  \u2026, 2009 - proceedings.spiedigitallibrary.org
-p159
-sa(dp160
-g7
-I-1
-sg8
-I2014
-sg9
-Vhttp://www.netlib.org/tex/bib/tap.pdf
-p161
-sg2
-VNone
-p162
-sg12
-VNHF Beebe - 2014 - netlib.org
-p163
-sa(dp164
-g7
-I-1
-sg8
-I-1
-sg9
-g79
-sg2
-VNone
-p165
-sg12
-VJL Lugrin, M Cavazza, D Pizzi, T Vogt, E André
-p166
-sa(dp167
-g7
-I-1
-sg8
-I-1
-sg9
-Vhttp://perso.lcpc.fr/bremond.roland/documents/LN_Pedestrians.pdf
-p168
-sg2
-VNone
-p169
-sg12
-VR Brémond - perso.lcpc.fr
-p170
-sasS'journal'
-p171
+sS'journal'
+p6
 VACM Transactions on Applied Perception (TAP) 4 (1), 3
-p172
+p7
 sS'authors'
-p173
+p8
 VH Frenz, M Lappe, M Kolesnik, T Bührmann
-p174
-sg7
-I41
+p9
+sS'num_citations'
+p10
+I42
 sS'citations_link'
-p175
+p11
 S'http://scholar.google.es/scholar?oi=bibs&hl=en&cites=285065341645454296'
-p176
-sg9
+p12
+sS'link'
+p13
 S'http://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:d1gkVwhDpl0C'
-p177
-sg8
+p14
+sS'year'
+p15
 I2007
-sa(dp178
-g2
-VAnalysis of a Dynamical Recurrent Neural Network Evolved for Two Qualitatively Different Tasks: Walking and Chemotaxis.
-p179
-sg4
-(lp180
-(dp181
-g7
-I22
-sg8
-I2010
-sg9
-Vhttp://link.springer.com/article/10.1007/s10743-010-9071-9
-p182
-sg2
-VPhenomenology and artificial life: toward a technological supplementation of phenomenological methodology
-p183
-sg12
-VT Froese, S Gallagher - Husserl Studies, 2010 - Springer
-p184
-sa(dp185
-g7
-I18
-sg8
-I2009
-sg9
-Vhttp://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=4982928
-p186
-sg2
-VHow robot morphology and training order affect the learning of multiple behaviors
-p187
-sg12
-VJ Auerbach, JC Bongard - \u2026 , 2009. CEC'09. IEEE Congress on, 2009 - ieeexplore.ieee.org
-p188
-sa(dp189
-g7
-I19
-sg8
-I2013
-sg9
-Vhttp://dl.acm.org/citation.cfm?id=2493883
-p190
-sg2
-VEvolutionary robotics
-p191
-sg12
-VJC Bongard - Communications of the ACM, 2013 - dl.acm.org
-p192
-sa(dp193
-g7
-I7
-sg8
-I2009
-sg9
-Vhttp://dl.acm.org/citation.cfm?id=1569915
-p194
-sg2
-VEvolution of functional specialization in a morphologically homogeneous robot
-p195
-sg12
-VJ Auerbach, JC Bongard - Proceedings of the 11th Annual conference  \u2026, 2009 - dl.acm.org
-p196
-sa(dp197
-g7
-I6
-sg8
-I2009
-sg9
-g79
-sg2
-VNone
-p198
-sg12
-VT Froese - 2009 - Citeseer
-p199
-sa(dp200
-g7
-I5
-sg8
-I2011
-sg9
-Vhttp://sro.sussex.ac.uk/6318/
-p201
-sg2
-VBehavioural robustness and the distributed mechanisms hypothesis
-p202
-sg12
-VJA Fernandez-Leon - 2011 - sro.sussex.ac.uk
-p203
-sa(dp204
-g7
-I5
-sg8
-I2012
-sg9
-Vhttp://www.sciencedirect.com/science/article/pii/S0925231212000951
-p205
-sg2
-VNone
-p206
-sg12
-VJ Santos, Á Campo - Neurocomputing, 2012 - Elsevier
-p207
-sa(dp208
-g7
-I4
-sg8
-I2010
-sg9
-Vhttp://adb.sagepub.com/content/18/2/93.short
-p209
-sg2
-VFitness space structure of a neuromechanical system
-p210
-sg12
-VRD Beer - Adaptive behavior, 2010 - adb.sagepub.com
-p211
-sa(dp212
-g7
-I5
-sg8
-I2014
-sg9
-Vhttp://books.google.es/books?hl=en&lr=&id=kIIUAwAAQBAJ&oi=fnd&pg=PA65&ots=lUjgvShVxH&sig=PS_V38QCo67V4xjZg37VRB0_wd8
-p213
-sg2
-VDynamical analysis of evolved agents: A primer
-p214
-sg12
-VRD Beer - The Horizons of Evolutionary Robotics, 2014 - books.google.com
-p215
-sa(dp216
-g7
-I4
-sg8
-I2013
-sg9
-Vhttp://www.univie.ac.at/constructivism/journal/8/3/298.beaton
-p217
-sg2
-VPhenomenology and embodied action
-p218
-sg12
-VM Beaton - Constructivist Foundations, 2013 - univie.ac.at
-p219
-sa(dp220
-g7
-I4
-sg8
-I2012
-sg9
-Vhttp://core.kmi.open.ac.uk/download/pdf/2710696.pdf
-p221
-sg2
-VNone
-p222
-sg12
-VADJ Furey - 2012 - core.kmi.open.ac.uk
-p223
-sa(dp224
-g7
-I4
-sg8
-I2011
-sg9
-Vhttp://www.sciencedirect.com/science/article/pii/S030326471000170X
-p225
-sg2
-VNone
-p226
-sg12
-VJA Fernandez-Leon - Biosystems, 2011 - Elsevier
-p227
-sa(dp228
-g7
-I3
-sg8
-I2013
-sg9
-Vhttp://www.sciencedirect.com/science/article/pii/S0925231213005869
-p229
-sg2
-VNone
-p230
-sg12
-VG De Croon, LM O'connor, C Nicol, D Izzo - Neurocomputing, 2013 - Elsevier
-p231
-sa(dp232
-g7
-I2
-sg8
-I2011
-sg9
-Vhttp://link.springer.com/chapter/10.1007/978-3-642-18272-3_5
-p233
-sg2
-VEvolving monolithic robot controllers through incremental shaping
-p234
-sg12
-VJE Auerbach, JC Bongard - New Horizons in Evolutionary Robotics, 2011 - Springer
-p235
-sa(dp236
-g7
-I1
-sg8
-I2014
-sg9
-Vhttp://link.springer.com/chapter/10.1007/978-3-319-08864-8_3
-p237
-sg2
-VNon-representational sensorimotor knowledge
-p238
-sg12
-VT Buhrmann, E Di Paolo - From Animals to Animats 13, 2014 - Springer
-p239
-sa(dp240
-g7
-I-1
-sg8
-I2014
-sg9
-Vhttp://link.springer.com/chapter/10.1007/978-3-642-53734-9_10
-p241
-sg2
-VAction Switching in Brain-Body-Environment Systems
-p242
-sg12
-VE Agmon - Guided Self-Organization: Inception, 2014 - Springer
-p243
-sa(dp244
-g7
-I-1
-sg8
-I-1
-sg9
-Vhttp://cacm.acm.org/magazines/2013/8/166307-evolutionary-robotics
-p245
-sg2
-VNone
-p246
-sg12
-VJC Bongard - Communications of the ACM - cacm.acm.org
-p247
-sa(dp248
-g7
-I-1
-sg8
-I2014
-sg9
-g79
-sg2
-VNone
-p249
-sg12
-VJ Bongard - The Horizons of Evolutionary Robotics, 2014 - MIT Press
-p250
-sa(dp251
-g7
-I-1
-sg8
-I2013
-sg9
-Vhttp://adb.sagepub.com/content/early/2013/11/14/1059712313511649.abstract
-p252
-sg2
-VThe evolution and analysis of action switching in embodied agents
-p253
-sg12
-VE Agmon, RD Beer - Adaptive Behavior, 2013 - adb.sagepub.com
-p254
-sa(dp255
-g7
-I-1
-sg8
-I2013
-sg9
-Vhttp://infoscience.epfl.ch/record/201599
-p256
-sg2
-VThe Evolution of Complexity in Autonomous Robots
-p257
-sg12
-VJE Auerbach - 2013 - infoscience.epfl.ch
-p258
-sa(dp259
-g7
-I1
-sg8
-I2013
-sg9
-Vhttp://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=6557564
-p260
-sg2
-VEvolved center-crossing recurrent synaptic delay based neural networks for biped locomotion control
-p261
-sg12
-VJ Santos - \u2026  Computation (CEC), 2013 IEEE Congress on, 2013 - ieeexplore.ieee.org
-p262
-sasg171
-VALIFE, 257-264
-p263
-sg173
-VE Izquierdo, T Bührmann
-p264
-sg7
-I21
-sg175
-S'http://scholar.google.es/scholar?oi=bibs&hl=en&cites=3363748672386686888'
-p265
-sg9
-S'http://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:u5HHmVD_uO8C'
-p266
-sg8
-I2008
-sa(dp267
+sS'citations_count'
+p16
+ccollections
+defaultdict
+p17
+(c__builtin__
+int
+p18
+tp19
+Rp20
+sa(dp21
 g2
 VA dynamical systems account of sensorimotor contingencies
-p268
+p22
 sg4
-(lp269
-(dp270
-g7
-I8
-sg8
-I2014
-sg9
-Vhttp://www.tandfonline.com/doi/abs/10.1080/17588928.2013.877880
-p271
-sg2
-VA predictive processing theory of sensorimotor contingencies: Explaining the puzzle of perceptual presence and its absence in synesthesia
-p272
-sg12
-VAK Seth - Cognitive neuroscience, 2014 - Taylor & Francis
-p273
-sa(dp274
-g7
-I5
-sg8
-I2013
-sg9
-Vhttp://link.springer.com/article/10.1007/s11097-013-9344-9
-p275
-sg2
-VLocked-in syndrome: a challenge for embodied cognitive science
-p276
-sg12
-VM Kyselo, E Di Paolo - Phenomenology and the Cognitive Sciences, 2013 - Springer
-p277
-sa(dp278
-g7
-I2
-sg8
-I2014
-sg9
-Vhttp://books.google.es/books?hl=en&lr=&id=r5_IAgAAQBAJ&oi=fnd&pg=PP1&ots=DEmBcs7LEg&sig=cZKxunW_jX-pVuZPSlmq8psPve8
-p279
-sg2
-VNone
-p280
-sg12
-VE Troscianko - 2014 - books.google.com
-p281
-sa(dp282
-g7
-I1
-sg8
-I2014
-sg9
-Vhttp://link.springer.com/chapter/10.1007/978-3-319-08864-8_3
-p283
-sg2
-VNon-representational sensorimotor knowledge
-p284
-sg12
-VT Buhrmann, E Di Paolo - From Animals to Animats 13, 2014 - Springer
-p285
-sa(dp286
-g7
-I1
-sg8
-I2014
-sg9
-Vhttp://www.ncbi.nlm.nih.gov/pmc/articles/PMC4115614/
-p287
-sg2
-VNone
-p288
-sg12
-VEA Di Paolo, XE Barandiaran, M Beaton\u2026 - Frontiers in human  \u2026, 2014 - ncbi.nlm.nih.gov
-p289
-sa(dp290
-g7
-I1
-sg8
-I2013
-sg9
-Vhttp://digitalcommons.uconn.edu/dissertations/231/
-p291
-sg2
-VPositive Hysteresis, Negative Hysteresis, and Oscillations in Visual Perception
-p292
-sg12
-VD Dotov - 2013 - digitalcommons.uconn.edu
-p293
-sa(dp294
-g7
-I-1
-sg8
-I2014
-sg9
-Vhttp://journal.frontiersin.org/Journal/10.3389/fnhum.2014.00795/full
-p295
-sg2
-VNone
-p296
-sg12
-VDG Dotov - Frontiers in Human Neuroscience, 2014 - journal.frontiersin.org
-p297
-sa(dp298
-g7
-I-1
-sg8
-I2014
-sg9
-Vhttp://link.springer.com/chapter/10.1007/978-3-319-05107-9_15
-p299
-sg2
-VMinimally Cognitive Robotics: Body Schema, Forward Models, and Sensorimotor Contingencies in a Quadruped Machine
-p300
-sg12
-VM Hoffmann - Contemporary Sensorimotor Theory, 2014 - Springer
-p301
-sa(dp302
-g7
-I-1
-sg8
-I2014
-sg9
-Vhttp://www.ncbi.nlm.nih.gov/pmc/articles/PMC4038949/
-p303
-sg2
-VNone
-p304
-sg12
-VM Kyselo, W Tschacher - Frontiers in Psychology, 2014 - ncbi.nlm.nih.gov
-p305
-sa(dp306
-g7
-I2
-sg8
-I-1
-sg9
-Vhttp://www.matthewegbert.com/sites/default/files/publications/Egbert_-_2014_Habit-based_Regulation_of_Essential_Variables.pdf
-p307
-sg2
-VNone
-p308
-sg12
-VM Egbert, L Canamero - matthewegbert.com
-p309
-sa(dp310
-g7
-I-1
-sg8
-I2013
-sg9
-Vhttp://adb.sagepub.com/content/early/2013/11/14/1059712313511649.abstract
-p311
-sg2
-VThe evolution and analysis of action switching in embodied agents
-p312
-sg12
-VE Agmon, RD Beer - Adaptive Behavior, 2013 - adb.sagepub.com
-p313
-sa(dp314
-g7
-I-1
-sg8
-I2014
-sg9
-Vhttp://www.ncbi.nlm.nih.gov/pmc/articles/PMC4030179/
-p315
-sg2
-VNone
-p316
-sg12
-VEA Di Paolo - Frontiers in psychology, 2014 - ncbi.nlm.nih.gov
-p317
-sa(dp318
-g7
-I-1
-sg8
-I-1
-sg9
-Vhttp://doc.gold.ac.uk/aisb50/AISB50-S25/AISB50-S25-Barandiaran-extabs.pdf
-p319
-sg2
-VNone
-p320
-sg12
-VXE Barandiaran - doc.gold.ac.uk
-p321
-sa(dp322
-g7
-I2
-sg8
-I2013
-sg9
-Vhttp://liris.cnrs.fr/Documents/Liris-6480.pdf
-p323
-sg2
-VNone
-p324
-sg12
-VOL Georgeon, D Aha - Journal of Artificial General Intelligence, 2013 - liris.cnrs.fr
-p325
-sa(dp326
-g7
-I-1
-sg8
-I2014
-sg9
-Vhttp://adb.sagepub.com/content/22/2/99.short
-p327
-sg2
-VDo sensorimotor dynamics extend the conscious mind?
-p328
-sg12
-VK Pepper - Adaptive Behavior, 2014 - adb.sagepub.com
-p329
-sa(dp330
-g7
-I-1
-sg8
-I2014
-sg9
-Vhttp://link.springer.com/chapter/10.1007/978-3-319-05107-9_10
-p331
-sg2
-VFrom a Sensorimotor to a Sensorimotor++ Account of Embodied Conceptual Cognition
-p332
-sg12
-VJ Parthemore - Contemporary Sensorimotor Theory, 2014 - Springer
-p333
-sa(dp334
-g7
-I-1
-sg8
-I2014
-sg9
-Vhttp://www.ncbi.nlm.nih.gov/pmc/articles/PMC4126554/
-p335
-sg2
-VNone
-p336
-sg12
-VMD Egbert, XE Barandiaran - Frontiers in human neuroscience, 2014 - ncbi.nlm.nih.gov
-p337
-sa(dp338
-g7
-I-1
-sg8
-I-1
-sg9
-Vhttp://www.cimec.org.ar/ojs/index.php/mc/article/view/4595
-p339
-sg2
-VMecánica Computacional, Volume XXXII. Number 45. Miscelanea
-p340
-sg12
-VV Lunati, A Podlubne, F Bermejo, C Arias - cimec.org.ar
-p341
-sasg171
+(lp23
+sg6
 VFront. Psychol. 4 (285)
-p342
-sg173
-VT Buhrmann, E Di Paolo, X Barandiaran
-p343
-sg7
-I18
-sg175
-S'http://scholar.google.es/scholar?oi=bibs&hl=en&cites=13822822761156929947'
-p344
-sg9
-S'http://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:qjMakFHDy7sC'
-p345
+p24
 sg8
+VT Buhrmann, E Di Paolo, X Barandiaran
+p25
+sg10
+I23
+sg11
+S'http://scholar.google.es/scholar?oi=bibs&hl=en&cites=13822822761156929947'
+p26
+sg13
+S'http://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:qjMakFHDy7sC'
+p27
+sg15
 I2013
-sa(dp346
+sg16
+g17
+(g18
+tp28
+Rp29
+sa(dp30
+g2
+VAnalysis of a Dynamical Recurrent Neural Network Evolved for Two Qualitatively Different Tasks: Walking and Chemotaxis.
+p31
+sg4
+(lp32
+sg6
+VALIFE, 257-264
+p33
+sg8
+VE Izquierdo, T Bührmann
+p34
+sg10
+I21
+sg11
+S'http://scholar.google.es/scholar?oi=bibs&hl=en&cites=3363748672386686888'
+p35
+sg13
+S'http://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:u5HHmVD_uO8C'
+p36
+sg15
+I2008
+sg16
+g17
+(g18
+tp37
+Rp38
+sa(dp39
 g2
 VClosing the loop: Evolving a model-free visually-guided robot arm
-p347
+p40
 sg4
-(lp348
-(dp349
-g7
-I23
-sg8
-I2007
-sg9
-Vhttp://www.ncbi.nlm.nih.gov/pmc/articles/PMC2533584/
-p350
-sg2
-VNone
-p351
-sg12
-VG Massera, A Cangelosi, S Nolfi - Frontiers in neurorobotics, 2007 - ncbi.nlm.nih.gov
-p352
-sa(dp353
-g7
-I19
-sg8
-I2010
-sg9
-Vhttp://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=5491156
-p354
-sg2
-VActive categorical perception of object shapes in a simulated anthropomorphic robotic arm
-p355
-sg12
-VE Tuci, G Massera, S Nolfi - Evolutionary Computation, IEEE  \u2026, 2010 - ieeexplore.ieee.org
-p356
-sa(dp357
-g7
-I18
-sg8
-I2010
-sg9
-Vhttp://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=5508719
-p358
-sg2
-VThe facilitatory role of linguistic instructions on developing manipulation skills
-p359
-sg12
-VG Massera, E Tuci, T Ferrauto\u2026 - Computational  \u2026, 2010 - ieeexplore.ieee.org
-p360
-sa(dp361
-g7
-I15
-sg8
-I2010
-sg9
-Vhttp://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=6791538
-p362
-sg2
-VThe utility of evolving simulated robot morphology increases with task complexity for object manipulation
-p363
-sg12
-VJ Bongard - Artificial Life, 2010 - ieeexplore.ieee.org
-p364
-sa(dp365
-g7
-I5
-sg8
-I2006
-sg9
-Vhttp://www.researchgate.net/publication/229003535_Developing_a_Reaching_Behaviour_in_an_simulated_Anthropomorphic_Robotic_Arm_Through_an_Evolutionary_Technique/file/72e7e51cacfe08a5c7.pdf
-p366
-sg2
-VNone
-p367
-sg12
-VG Massera, A Cangelosi, S Nolfi - LM Rocha et al.(Eds.) Artificial  \u2026, 2006 - researchgate.net
-p368
-sa(dp369
-g7
-I5
-sg8
-I2009
-sg9
-Vhttp://link.springer.com/article/10.1007/s11063-009-9111-7
-p370
-sg2
-VLearning dynamic obstacle avoidance for a robot arm using neuroevolution
-p371
-sg12
-VT D'Silva, R Miikkulainen - Neural processing letters, 2009 - Springer
-p372
-sa(dp373
-g7
-I6
-sg8
-I2005
-sg9
-g79
-sg2
-VNone
-p374
-sg12
-VG Massera, S Nolfi, A Cangelosi - PROGRESS IN NEURAL PROCESSING, 2005 - Citeseer
-p375
-sa(dp376
-g7
-I1
-sg8
-I2011
-sg9
-Vhttp://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=6181748
-p377
-sg2
-VMulti-Objective control through evolutionary neuro-controller for interactive mobile robot manipulator
-p378
-sg12
-VA Meddahi, R Chellali, K Baizid - Robotics and Biomimetics ( \u2026, 2011 - ieeexplore.ieee.org
-p379
-sa(dp380
-g7
-I-1
-sg8
-I2007
-sg9
-Vhttp://cogprints.org/6237/
-p381
-sg2
-VEvolution of Prehension Ability in an Anthropomorphic Neurorobotic Arm
-p382
-sg12
-VA Cangelosi, G Massera, S Nolfi - Frontiers in Neurorobotics, 2007 - cogprints.org
-p383
-sa(dp384
-g7
-I-1
-sg8
-I-1
-sg9
-Vhttp://gral.ip.rm.cnr.it/Pubblicazioni/English/Book%20Chapters/massera.nolfi.cangelosi_2005.pdf
-p385
-sg2
-VNone
-p386
-sg12
-VGMSNA CANGELOSIB - gral.ip.rm.cnr.it
-p387
-sa(dp388
-g7
-I-1
-sg8
-I-1
-sg9
-g79
-sg2
-VNone
-p389
-sg12
-VG Massera, S Nolfi
-p390
-sasg171
+(lp41
+sg6
 VProceedings of the Ninth International Conference on the Simulation and ...
-p391
-sg173
-VT Buehrmann, ED Paolo
-p392
-sg7
-I11
-sg175
-S'http://scholar.google.es/scholar?oi=bibs&hl=en&cites=2732091119073471548'
-p393
-sg9
-S'http://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:UeHWp8X0CEIC'
-p394
+p42
 sg8
+VT Buehrmann, ED Paolo
+p43
+sg10
+I11
+sg11
+S'http://scholar.google.es/scholar?oi=bibs&hl=en&cites=2732091119073471548'
+p44
+sg13
+S'http://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:UeHWp8X0CEIC'
+p45
+sg15
 I2004
-sa(dp395
+sg16
+g17
+(g18
+tp46
+Rp47
+sa(dp48
 g2
 VVirtual odometry from visual flow
-p396
+p49
 sg4
-(lp397
-(dp398
-g7
-I49
-sg8
-I2007
-sg9
-Vhttp://link.springer.com/article/10.1007/s00221-006-0835-6
-p399
-sg2
-VTravel distance estimation from visual motion by leaky path integration
-p400
-sg12
-VM Lappe, M Jenkin, LR Harris - Experimental Brain Research, 2007 - Springer
-p401
-sa(dp402
-g7
-I13
-sg8
-I2006
-sg9
-Vhttp://journals.cambridge.org/abstract_S1138741600006223
-p403
-sg2
-VVisual distance estimation in static compared to moving virtual scenes
-p404
-sg12
-VH Frenz, M Lappe - The Spanish journal of psychology, 2006 - Cambridge Univ Press
-p405
-sa(dp406
-g7
-I12
-sg8
-I2009
-sg9
-Vhttp://link.springer.com/article/10.1007/s00221-009-1890-6
-p407
-sg2
-VVisual estimation of travel distance during walking
-p408
-sg12
-VM Lappe, H Frenz - Experimental brain research, 2009 - Springer
-p409
-sa(dp410
-g7
-I1
-sg8
-I2013
-sg9
-Vhttp://www.tandfonline.com/doi/abs/10.1080/20445911.2012.744314
-p411
-sg2
-VThe role of static scene information on locomotion distance estimation
-p412
-sg12
-VH Zhang, K Zhang, RF Wang - Journal of Cognitive Psychology, 2013 - Taylor & Francis
-p413
-sa(dp414
-g7
-I-1
-sg8
-I2014
-sg9
-Vhttp://link.springer.com/chapter/10.1007/978-3-642-37829-4_8
-p415
-sg2
-VHow People Use Visual Landmarks for Locomotion Distance Estimation: The Case Study of Eye Tracking
-p416
-sg12
-VH Zhang, K Zhang - Foundations and Applications of Intelligent Systems, 2014 - Springer
-p417
-sa(dp418
-g7
-I-1
-sg8
-I2014
-sg9
-Vhttp://link.springer.com/chapter/10.1007/978-3-642-37835-5_64
-p419
-sg2
-VHow Can We Find the Origin of a Path We Visually Traveled? The Effect of the Visual Environment on Path Integration
-p420
-sg12
-VH Zhang, K Zhang - Foundations and Practical Applications of Cognitive  \u2026, 2014 - Springer
-p421
-sa(dp422
-g7
-I-1
-sg8
-I-1
-sg9
-g79
-sg2
-VNone
-p423
-sg12
-VRJ Harris
-p424
-sasg171
+(lp50
+sg6
 VElectronic Imaging 2005, 493-502
-p425
-sg173
-VM Lappe, H Frenz, T Buehrmann, M Kolesnik
-p426
-sg7
-I7
-sg175
-S'http://scholar.google.es/scholar?oi=bibs&hl=en&cites=3276837092035650080'
-p427
-sg9
-S'http://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:9yKSN-GCB0IC'
-p428
+p51
 sg8
+VM Lappe, H Frenz, T Buehrmann, M Kolesnik
+p52
+sg10
+I7
+sg11
+S'http://scholar.google.es/scholar?oi=bibs&hl=en&cites=3276837092035650080'
+p53
+sg13
+S'http://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:9yKSN-GCB0IC'
+p54
+sg15
 I2005
-sa(dp429
+sg16
+g17
+(g18
+tp55
+Rp56
+sa(dp57
 g2
 VBiological actuators are not just springs
-p430
+p58
 sg4
-(lp431
-(dp432
-g7
-I-1
-sg8
-I2013
-sg9
-Vhttp://pub.uni-bielefeld.de/publication/2656366
-p433
-sg2
-VNone
-p434
-sg12
-VF Szufnarowski - 2013 - pub.uni-bielefeld.de
-p435
-sa(dp436
-g7
-I-1
-sg8
-I2010
-sg9
-Vhttp://link.springer.com/chapter/10.1007/978-3-642-15193-4_21
-p437
-sg2
-VFrom force control and sensory-motor informations to mass discrimination
-p438
-sg12
-VS Razakarivony, P Gaussier, FB Ouezdou - From Animals to Animats 11, 2010 - Springer
-p439
-sa(dp440
-g7
-I-1
-sg8
-I2008
-sg9
-g79
-sg2
-VNone
-p441
-sg12
-VO Herbort - 2008
-p442
-sasg171
+(lp59
+sg6
 VFrom Animals to Animats 9, 89-100
-p443
-sg173
-VT Buehrmann, E Di Paolo
-p444
-sg7
-I3
-sg175
-S'http://scholar.google.es/scholar?oi=bibs&hl=en&cites=2996936269618871008'
-p445
-sg9
-S'http://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:IjCSPb-OGe4C'
-p446
+p60
 sg8
+VT Buehrmann, E Di Paolo
+p61
+sg10
+I3
+sg11
+S'http://scholar.google.es/scholar?oi=bibs&hl=en&cites=2996936269618871008'
+p62
+sg13
+S'http://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:IjCSPb-OGe4C'
+p63
+sg15
 I2006
-sa(dp447
+sg16
+g17
+(g18
+tp64
+Rp65
+sa(dp66
 g2
 VNon-representational sensorimotor knowledge
-p448
+p67
 sg4
-(lp449
-(dp450
-g7
-I1
-sg8
-I2014
-sg9
-Vhttp://www.ncbi.nlm.nih.gov/pmc/articles/PMC4115614/
-p451
-sg2
-VNone
-p452
-sg12
-VEA Di Paolo, XE Barandiaran, M Beaton\u2026 - Frontiers in human  \u2026, 2014 - ncbi.nlm.nih.gov
-p453
-sasg171
+(lp68
+sg6
 VFrom Animals to Animats 13, 21-31
-p454
-sg173
-VT Buhrmann, E Di Paolo
-p455
-sg7
-I1
-sg175
-S'http://scholar.google.es/scholar?oi=bibs&hl=en&cites=6299009449300525088'
-p456
-sg9
-S'http://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:Tyk-4Ss8FVUC'
-p457
+p69
 sg8
+VT Buhrmann, E Di Paolo
+p70
+sg10
+I1
+sg11
+S'http://scholar.google.es/scholar?oi=bibs&hl=en&cites=6299009449300525088'
+p71
+sg13
+S'http://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:Tyk-4Ss8FVUC'
+p72
+sg15
 I2014
-sa(dp458
+sg16
+g17
+(g18
+tp73
+Rp74
+sa(dp75
 g2
 VLearning to perceive in the sensorimotor approach: Piaget\u2019s theory of equilibration interpreted dynamically
-p459
+p76
 sg4
-(lp460
-(dp461
-g7
-I-1
-sg8
-I2014
-sg9
-Vhttp://www.ncbi.nlm.nih.gov/pmc/articles/PMC4126554/
-p462
-sg2
-VNone
-p463
-sg12
-VMD Egbert, XE Barandiaran - Frontiers in human neuroscience, 2014 - ncbi.nlm.nih.gov
-p464
-sasg171
+(lp77
+sg6
 VFrontiers in human neuroscience 8
-p465
-sg173
-VEA Di Paolo, XE Barandiaran, M Beaton, T Buhrmann
-p466
-sg7
-I1
-sg175
-S'http://scholar.google.es/scholar?oi=bibs&hl=en&cites=15548762270917292697'
-p467
-sg9
-S'http://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:zYLM7Y9cAGgC'
-p468
+p78
 sg8
+VEA Di Paolo, XE Barandiaran, M Beaton, T Buhrmann
+p79
+sg10
+I1
+sg11
+S'http://scholar.google.es/scholar?oi=bibs&hl=en&cites=15548762270917292697'
+p80
+sg13
+S'http://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:zYLM7Y9cAGgC'
+p81
+sg15
 I2014
-sa(dp469
+sg16
+g17
+(g18
+tp82
+Rp83
+sa(dp84
+g2
+VSpinal circuits can accommodate interaction torques during multijoint limb movements
+p85
+sg4
+(lp86
+sg6
+VFrontiers in computational neuroscience 8
+p87
+sg8
+VT Buhrmann, EA Di Paolo
+p88
+sg10
+I0
+sg11
+S''
+p89
+sg13
+S'http://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:Y0pCki6q_DkC'
+p90
+sg15
+I2014
+sg16
+g17
+(g18
+tp91
+Rp92
+sa(dp93
 g2
 VOn the intrinsic control properties of muscle and relexes: exploring the interaction between neural and musculoskeletal dynamics in the framework of the equilbrium-point hypothesis
-p470
+p94
 sg4
-(lp471
-sg171
+(lp95
+sg6
 VUniversity of Sussex
-p472
-sg173
-VT Buhrmann
-p473
-sg7
-I0
-sg175
-g79
-sg9
-S'http://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:u-x6o8ySG0sC'
-p474
+p96
 sg8
+VT Buhrmann
+p97
+sg10
+I0
+sg11
+g89
+sg13
+S'http://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:u-x6o8ySG0sC'
+p98
+sg15
 I2010
-sa(dp475
+sg16
+g17
+(g18
+tp99
+Rp100
+sa(dp101
 g2
 VOptic-flow-based estimation of travel distance in virtual environment
-p476
+p102
 sg4
-(lp477
-sg171
+(lp103
+sg6
 VPERCEPTION 32, 70-70
-p478
-sg173
-VH Frenz, T Bührmann, M Kolesnik, M Lappe
-p479
-sg7
-I0
-sg175
-g79
-sg9
-S'http://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:2osOgNQ5qMEC'
-p480
+p104
 sg8
+VH Frenz, T Bührmann, M Kolesnik, M Lappe
+p105
+sg10
+I0
+sg11
+g89
+sg13
+S'http://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:2osOgNQ5qMEC'
+p106
+sg15
 I2003
+sg16
+g17
+(g18
+tp107
+Rp108
 sa.

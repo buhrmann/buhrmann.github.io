@@ -1,3 +1,7 @@
+.category {
+  color: #ccc;
+}
+
 .brush .extent {
   stroke: #fff;
   fill-opacity: .125;

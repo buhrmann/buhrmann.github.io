@@ -2,7 +2,7 @@
     display: table;
     width: 100%;
     height: auto;
-    padding: 50px 0;
+    padding: 50px 0 20px 0;
     text-align: center;
     color: #fff;
     /*background: url("intro-bg.jpg") no-repeat bottom center scroll;
@@ -130,12 +130,28 @@ blockquote:before {
 }
 
 /* Space out content a bit */
+html {
+  height: 100%;
+}
+
 body {
   padding-top: 20px;
   line-height: 1.8;
   text-align: justify;
   vertical-align:middle;
+  height: 100%;
+  width: 100%;
 }
+
+/*.wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+}
+
+.push {
+  background-color: #ddd;
+}*/
 
 /* Figures */
 figure {
@@ -262,7 +278,7 @@ figure {
 .footer,
 .aw-footer,
 .aw-bottom {
-    width: 100%;
+    /*width: 100%;*/
     font-size: 14px;
 }
 
@@ -305,13 +321,7 @@ li.tag-2 {
   padding: 14px 24px;
 }
 
-/* Supporting marketing content */
-.marketing {
-  margin: 40px 0;
-}
-.marketing p + h4 {
-  margin-top: 28px;
-}
+
 .header .text-muted  a{
     color:#999;
     text-decoration:none;
