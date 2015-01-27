@@ -35,12 +35,25 @@ function removePopovers () {
 }
 
 function showPopover (d) {
+  var html = "<span style='color:" + d.color + "'>" + d.category + "</span><br>" + d.text;
   $(this).popover({
     placement: 'auto top',
     container: 'body',
     trigger: 'manual',
     html: true,
-    content: function () { return "<span class='category'>" + d.category + "</span><br>" + d.text; }
+    content: function () { return html; }
+  });
+  $(this).popover('show');
+}
+
+function showTagPopover (d) {
+  var html =  d.value + "<span class='muted'>" + (d.value>1?" posts":" post") + " with tag </span>"  + d.text;
+  $(this).popover({
+    placement: 'auto top',
+    container: 'body',
+    trigger: 'manual',
+    html: true,
+    content: function () { return html; }
   });
   $(this).popover('show');
 }
@@ -61,8 +74,8 @@ tagGraph = function(id) {
 
     // var color = d3.scale.category20();
     var colors = ["#00ADEF", "#ED008C", "#F5892D", "#BBCB5F", "#999", "#ccc"];
-    var nodeColorScale = d3.scale.ordinal().range(colors);
-
+    var nodeColorScale = d3.scale.ordinal().range(colors.reverse());
+    graph.nodes.forEach(function(d) { d.color = nodeColorScale(d.category); });
 
     var force = d3.layout.force()
         .charge(-300)
@@ -93,18 +106,11 @@ tagGraph = function(id) {
           .attr("class", "node")
           .call(force.drag);
     
-    /*
-    node.append("circle")
-        .attr("r", function(d) { return d.group == 1 ? 10 : 20; })
-        .style("fill", function(d) { return d.group == 1 ? "#bbb": "#98B1C4"; })
-        .style("stroke-width", function(d) { return d.group == 1 ? "0px" : "1px"; })
-        .style("stroke", "#000");
-    */
     
     svg.selectAll(".node").filter(function (d) { return d.group==2;})
         .append("circle")
         .attr("r", 15)
-        .style("fill", function(d) { return nodeColorScale(d.category); })
+        .style("fill", function(d) { return d.color; })
         .style("stroke-width", "1px"  )
         .style("stroke", "#000");
         
@@ -144,6 +150,8 @@ tagGraph = function(id) {
           .style("cursor", "pointer");
 
       svg.selectAll(".node").filter(function (d) { return d.group==1;})
+          .on("mouseover", showTagPopover)
+          .on("mouseout", removePopovers)
           .on("click", function(d) { location.href = d.url; })
           .style("cursor", "pointer");
 
