@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title> Articles in visualization tag - datawerk</title>
+          <title>Tag graph plugin for&nbsp;Pelican - datawerk</title>
         <meta charset="utf-8" />
         <link href="https://synergenz.github.io/theme/css/bootstrap-custom.css" rel="stylesheet"/> 
     	<link href="https://synergenz.github.io/theme/css/pygments.css" rel="stylesheet"/>     
         <link href="https://synergenz.github.io/theme/css/style.css" rel="stylesheet" />
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="author" contents="Thomas Buhrmann"/>  
+  
+
+    <meta name="keywords" contents="datawerk, graph,python,visualization,d3,"/>  
+
     </head>
 
     <body>
@@ -35,6 +41,15 @@
                                     <ul class="dropdown-menu" role="menu">
                                         <!--<li class="divider"></li>
                                         <li class="dropdown-header">Data Science Reports</li>-->
+                                        <li >
+                                        <a href="https://synergenz.github.io/activity-data.html">Categorisation of inertial activity&nbsp;data</a>
+                                        </li>
+                                        <li >
+                                        <a href="https://synergenz.github.io/p2p-loans.html">Interest rates on <span class="caps">P2P</span>&nbsp;loans</a>
+                                        </li>
+                                        <li >
+                                        <a href="https://synergenz.github.io/titanic-survival.html">Titanic survival&nbsp;prediction</a>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li class="dropdown">                                    
@@ -60,44 +75,30 @@
         <div class="container main-content">     
             <div class="row row-centered">
                 <div class="col-centered col-max col-min col-sm-12 col-md-10 col-lg-10 main-content">
-<section id="content" class="content">
-<h2>Articles with the visualization tag</h2>
-
-<article class="hentry">
-    <header> 
-        <span class="entry-title-info">Jan 27 · <a href="https://synergenz.github.io/category/data-posts.html">Data Posts</a></span>
-        <h2 class="entry-title entry-title-tight"><a href="https://synergenz.github.io/tag-graph.html" rel="bookmark" title="Permalink to Tag graph plugin for Pelican">Tag graph plugin for&nbsp;Pelican</a></h2> 
-    </header>
-    <div class="entry-content"> <p>On my front page I display a sort of sitemap for my blog. Since the structure of the site is not very hierarchical, I decided to show pages and posts as a graph along with their tags. To do so, I created a mini plugin for the Pelican static blog engine. The plugin is essentially a sort of callback that gets executed when the engine has generated all posts and pages from their markdown files. I then simply take the results and write them out in a json format that d3.js understands (a list of nodes and a list ...</p> </div><!-- entry-content -->
-</article>
-<article class="hentry">
-    <header> 
-        <span class="entry-title-info">Jan 15 · <a href="https://synergenz.github.io/category/data-apps.html">Data Apps</a></span>
-        <h2 class="entry-title entry-title-tight"><a href="https://synergenz.github.io/elegans.html" rel="bookmark" title="Permalink to C. elegans connectome explorer">C. elegans connectome&nbsp;explorer</a></h2> 
-    </header>
-    <div class="entry-content"> <p>I’ve build a prototype <a href="https://elegans.herokuapp.com">visual exploration tool</a> for the connectome of c. elegans. The data describing the worm’s neural network is preprocessed from publicly available information and stored as a graph database in neo4j. The d3.js visualization then fetches either the whole network or a subgraph and displays it using a force-directed layout (for now).</p>
-<figure>
-<a href="https://elegans.herokuapp.com"></a>
-</figure> </div><!-- entry-content -->
-</article>
-<article class="hentry">
-    <header> 
-        <span class="entry-title-info">Oct 29 · <a href="https://synergenz.github.io/category/data-apps.html">Data Apps</a></span>
-        <h2 class="entry-title entry-title-tight"><a href="https://synergenz.github.io/dash+.html" rel="bookmark" title="Permalink to Dash+ visualization of running data">Dash+ visualization of running&nbsp;data</a></h2> 
-    </header>
-    <div class="entry-content"> <p><a href="http://dashplus.herokuapp.com/">Dash+</a> is a python web application I built with <a href="http://flask.pocoo.org/">Flask</a>, which imports Nike+ running data into a NoSQL database (MongoDB) and uses <a href="http://d3js.org/">D3.js</a> to visualize and analyze it. </p>
-<p>The app is work in progress and primarily intended as a personal playground for exploring d3 visualization of my own running data. Having said that, if you want to fork your own version on <a href="https://github.com/synergenz/dash">github</a>, simply add your Nike access token in the corresponding file.</p>
-<figure>
-<a href="http://dashplus.herokuapp.com"></a>
-</figure> </div><!-- entry-content -->
-</article>
-<div class="pager">
-      <ul>
-                        <li class="previous disabled"><a>← Previous</a></li>
-                        <li class="next disabled"><a>Next →</a></li>
-      </ul>
-    </div>
-</section><!-- content -->
+<section id="content" class="article content">
+  <header>
+      <span class="entry-title-info">Jan 27 · <a href="https://synergenz.github.io/category/data-posts.html">Data Posts</a></span>
+    <h2 class="entry-title entry-title-tight">Tag graph plugin for&nbsp;Pelican</h2>
+ 
+  </header>
+  
+     
+  <div class="entry-content">
+    <p>On my front page I display a sort of sitemap for my blog. Since the structure of the site is not very hierarchical, I decided to show pages and posts as a graph along with their tags. To do so, I created a mini plugin for the Pelican static blog engine. The plugin is essentially a sort of callback that gets executed when the engine has generated all posts and pages from their markdown files. I then simply take the results and write them out in a json format that d3.js understands (a list of nodes and a list of edges indexed on node positions in their&nbsp;list).</p>
+<p>The plugin&#8217;s source code is available <a href="https://github.com/synergenz/datawerk/blob/master/plugins/tag_graph.py">here on github</a>. It you&#8217;re interested in the Pelican blog engine, check it out <a href="http://blog.getpelican.com/">here</a>.</p>
+  </div><!-- /.entry-content -->
+   <footer class="post-info">
+    Published on <span class="published">January 27, 2015</span><br>
+        Written by <span class="author">Thomas Buhrmann</span><br>
+        Posted in <span class="label label-default"><a href="https://synergenz.github.io/category/data-posts.html">Data Posts</a></span>
+ ~ Tagged 
+        <span class="label label-default"><a href="https://synergenz.github.io/tag/graph.html">graph</a></span>
+        <span class="label label-default"><a href="https://synergenz.github.io/tag/python.html">python</a></span>
+        <span class="label label-default"><a href="https://synergenz.github.io/tag/visualization.html">visualization</a></span>
+        <span class="label label-default"><a href="https://synergenz.github.io/tag/d3.html">d3</a></span>
+  </footer><!-- /.post-info -->
+  
+</section>
                 </div>
             </div><!-- row-->
         </div><!-- container -->
