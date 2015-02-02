@@ -74,6 +74,35 @@
 
 <article class="hentry">
     <header> 
+        <span class="entry-title-info">Feb 02 · <a href="https://synergenz.github.io/category/data-posts.html">Data Posts</a></span>
+        <h2 class="entry-title entry-title-tight"><a href="https://synergenz.github.io/xql.html" rel="bookmark" title="Permalink to Sql to excel">Sql to&nbsp;excel</a></h2> 
+    </header>
+    <div class="entry-content"> <p>A little python tool to execute an sql script (postgresql in this case, but should be easily modifiable for mysql etc.) and store the result in a csv or excel (xls file):</p>
+<div class="highlight"><pre><span class="sd">"""</span>
+<span class="sd">Executes an sql script and stores the result in a file.</span>
+<span class="sd">"""</span>
+
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">from</span> <span class="nn">xlwt</span> <span class="kn">import</span> <span class="n">Workbook</span>
+
+
+<span class="k">def</span> <span class="nf">sql_to_csv</span><span class="p">(</span><span class="n">sql_fnm</span><span class="p">,</span> <span class="n">csv_fnm</span><span class="p">):</span>
+    <span class="sd">""" Write result of executing sql script to txt file"""</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sql_fnm</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">sql_file</span><span class="p">:</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="n">sql_file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="s">"COPY ("</span> <span class="o">+</span> <span class="n">query</span> <span class="o">+</span> <span class="s">") TO STDOUT WITH CSV HEADER"</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="s">'psql -c "'</span> <span class="o">+</span> <span class="n">query</span> <span class="o">+</span> <span class="s">'"'</span>
+        <span class="k">print</span> <span class="n">cmd</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_fnm</span><span class="p">,</span> <span class="s">'wb ...</span></pre></div> </div><!-- entry-content -->
+</article>
+<article class="hentry">
+    <header> 
         <span class="entry-title-info">Jan 27 · <a href="https://synergenz.github.io/category/data-posts.html">Data Posts</a></span>
         <h2 class="entry-title entry-title-tight"><a href="https://synergenz.github.io/scholar.html" rel="bookmark" title="Permalink to Retrieving your Google Scholar data">Retrieving your Google Scholar&nbsp;data</a></h2> 
     </header>
@@ -161,17 +190,6 @@ The dynamic interaction of limb segments during movements that involve multiple 
 <h3>Data munging</h3>
 <p>The <a href="https://www.kaggle.com/c/titanic-gettingStarted/data">data set</a> provided by kaggle contains 1309 records of passengers aboard the ...</p> </div><!-- entry-content -->
 </article>
-<article class="hentry">
-    <header> 
-        <span class="entry-title-info">Jul 01 · <a href="https://synergenz.github.io/category/academia.html">Academia</a></span>
-        <h2 class="entry-title entry-title-tight"><a href="https://synergenz.github.io/piaget.html" rel="bookmark" title="Permalink to Learning to perceive through equilibration">Learning to perceive through&nbsp;equilibration</a></h2> 
-    </header>
-    <div class="entry-content"> <p>Our new paper on sensorimotor contingencies is out. It tackles what seems like a paradox in the sensorimotor approach: if understanding is required for perception, how can we learn to perceive something new, something we do not yet understand? We propose a Piagetian solution to this problem, according to which we learn to perceive by re-shaping pre-existing sensorimotor structures (the earliest of which are already present at birth) in coupling with dynamical regularities of the world.</p>
-<figure>
-<a href="http://journal.frontiersin.org/Journal/10.3389/fnhum.2014.00551/full"></a>
-</figure>
-<p>Get it here: <a href="http://journal.frontiersin.org/Journal/10.3389/fnhum.2014.00551/full">Frontiers in Cognition | Learning to perceive in the sensorimotor approach: Piaget’s theory of equilibration interpreted dynamically</a></p> </div><!-- entry-content -->
-</article>
 <div class="pager">
       <ul>
                         <li class="previous disabled"><a>← Previous</a></li>
@@ -202,33 +220,34 @@ The dynamic interaction of limb segments during movements that involve multiple 
 				<ul class="list-unstyled my-list-style">
 					<li><a href="https://synergenz.github.io/category/academia.html">Academia (4)</a></li>
 					<li><a href="https://synergenz.github.io/category/data-apps.html">Data Apps (2)</a></li>
-					<li><a href="https://synergenz.github.io/category/data-posts.html">Data Posts (3)</a></li>
+					<li><a href="https://synergenz.github.io/category/data-posts.html">Data Posts (4)</a></li>
 					<li><a href="https://synergenz.github.io/category/reports.html">Reports (3)</a></li>
 				</ul>
 			</div>
 			<div class="col-sm-3">
 				<h4>Tags</h4>
                 <ul class="tagcloud">
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/scraping.html">scraping</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/neo4j.html">neo4j</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/svm.html">svm</a></li>
                         <li class="tag-4"><a href="https://synergenz.github.io/tag/titanic.html">titanic</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/java.html">java</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/random-forest.html">random forest</a></li>
-                        <li class="tag-1"><a href="https://synergenz.github.io/tag/report.html">report</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/regression.html">regression</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/big-data.html">big data</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/kaggle.html">kaggle</a></li>
-                        <li class="tag-1"><a href="https://synergenz.github.io/tag/smcs.html">smcs</a></li>
-                        <li class="tag-1"><a href="https://synergenz.github.io/tag/r.html">R</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/categorisation.html">categorisation</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/hadoop.html">hadoop</a></li>
-                        <li class="tag-2"><a href="https://synergenz.github.io/tag/graph.html">graph</a></li>
-                        <li class="tag-1"><a href="https://synergenz.github.io/tag/python.html">python</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/nosql.html">nosql</a></li>
-                        <li class="tag-1"><a href="https://synergenz.github.io/tag/visualization.html">visualization</a></li>
-                        <li class="tag-1"><a href="https://synergenz.github.io/tag/d3.html">d3</a></li>
                         <li class="tag-4"><a href="https://synergenz.github.io/tag/lda.html">lda</a></li>
+                        <li class="tag-1"><a href="https://synergenz.github.io/tag/d3.html">d3</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/random-forest.html">random forest</a></li>
+                        <li class="tag-1"><a href="https://synergenz.github.io/tag/visualization.html">visualization</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/java.html">java</a></li>
+                        <li class="tag-1"><a href="https://synergenz.github.io/tag/report.html">report</a></li>
+                        <li class="tag-2"><a href="https://synergenz.github.io/tag/graph.html">graph</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/regression.html">regression</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/neo4j.html">neo4j</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/scraping.html">scraping</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/svm.html">svm</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/hadoop.html">hadoop</a></li>
+                        <li class="tag-1"><a href="https://synergenz.github.io/tag/python.html">python</a></li>
+                        <li class="tag-1"><a href="https://synergenz.github.io/tag/smcs.html">smcs</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/big-data.html">big data</a></li>
+                        <li class="tag-1"><a href="https://synergenz.github.io/tag/r.html">R</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/nosql.html">nosql</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/kaggle.html">kaggle</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/categorisation.html">categorisation</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/sql.html">sql</a></li>
                 </ul>
 			</div>
 		</div>

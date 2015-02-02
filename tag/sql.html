@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title> Articles in d3 tag - datawerk</title>
+        <title> Articles in sql tag - datawerk</title>
         <meta charset="utf-8" />
         <link href="https://synergenz.github.io/theme/css/bootstrap-custom.css" rel="stylesheet"/> 
     	<link href="https://synergenz.github.io/theme/css/pygments.css" rel="stylesheet"/>     
@@ -42,12 +42,6 @@
                                     <ul class="dropdown-menu" role="menu">
                                         <!--<li class="divider"></li>
                                         <li class="dropdown-header">Data Science Reports</li>-->
-                                        <li >
-                                        <a href="https://synergenz.github.io/elegans.html">C. elegans connectome&nbsp;explorer</a>
-                                        </li>
-                                        <li >
-                                        <a href="https://synergenz.github.io/dash+.html">Dash+ visualization of running&nbsp;data</a>
-                                        </li>
                                     </ul>
                                 </li>
                             </ul>
@@ -61,35 +55,36 @@
             <div class="row row-centered">
                 <div class="col-centered col-max col-min col-sm-12 col-md-10 col-lg-10 main-content">
 <section id="content" class="content">
-<h2>Articles with the d3 tag</h2>
+<h2>Articles with the sql tag</h2>
 
 <article class="hentry">
     <header> 
-        <span class="entry-title-info">Jan 27 · <a href="https://synergenz.github.io/category/data-posts.html">Data Posts</a></span>
-        <h2 class="entry-title entry-title-tight"><a href="https://synergenz.github.io/tag-graph.html" rel="bookmark" title="Permalink to Tag graph plugin for Pelican">Tag graph plugin for&nbsp;Pelican</a></h2> 
+        <span class="entry-title-info">Feb 02 · <a href="https://synergenz.github.io/category/data-posts.html">Data Posts</a></span>
+        <h2 class="entry-title entry-title-tight"><a href="https://synergenz.github.io/xql.html" rel="bookmark" title="Permalink to Sql to excel">Sql to&nbsp;excel</a></h2> 
     </header>
-    <div class="entry-content"> <p>On my front page I display a sort of sitemap for my blog. Since the structure of the site is not very hierarchical, I decided to show pages and posts as a graph along with their tags. To do so, I created a mini plugin for the Pelican static blog engine. The plugin is essentially a sort of callback that gets executed when the engine has generated all posts and pages from their markdown files. I then simply take the results and write them out in a json format that d3.js understands (a list of nodes and a list ...</p> </div><!-- entry-content -->
-</article>
-<article class="hentry">
-    <header> 
-        <span class="entry-title-info">Jan 15 · <a href="https://synergenz.github.io/category/data-apps.html">Data Apps</a></span>
-        <h2 class="entry-title entry-title-tight"><a href="https://synergenz.github.io/elegans.html" rel="bookmark" title="Permalink to C. elegans connectome explorer">C. elegans connectome&nbsp;explorer</a></h2> 
-    </header>
-    <div class="entry-content"> <p>I’ve build a prototype <a href="https://elegans.herokuapp.com">visual exploration tool</a> for the connectome of c. elegans. The data describing the worm’s neural network is preprocessed from publicly available information and stored as a graph database in neo4j. The d3.js visualization then fetches either the whole network or a subgraph and displays it using a force-directed layout (for now).</p>
-<figure>
-<a href="https://elegans.herokuapp.com"></a>
-</figure> </div><!-- entry-content -->
-</article>
-<article class="hentry">
-    <header> 
-        <span class="entry-title-info">Oct 29 · <a href="https://synergenz.github.io/category/data-apps.html">Data Apps</a></span>
-        <h2 class="entry-title entry-title-tight"><a href="https://synergenz.github.io/dash+.html" rel="bookmark" title="Permalink to Dash+ visualization of running data">Dash+ visualization of running&nbsp;data</a></h2> 
-    </header>
-    <div class="entry-content"> <p><a href="http://dashplus.herokuapp.com/">Dash+</a> is a python web application I built with <a href="http://flask.pocoo.org/">Flask</a>, which imports Nike+ running data into a NoSQL database (MongoDB) and uses <a href="http://d3js.org/">D3.js</a> to visualize and analyze it. </p>
-<p>The app is work in progress and primarily intended as a personal playground for exploring d3 visualization of my own running data. Having said that, if you want to fork your own version on <a href="https://github.com/synergenz/dash">github</a>, simply add your Nike access token in the corresponding file.</p>
-<figure>
-<a href="http://dashplus.herokuapp.com"></a>
-</figure> </div><!-- entry-content -->
+    <div class="entry-content"> <p>A little python tool to execute an sql script (postgresql in this case, but should be easily modifiable for mysql etc.) and store the result in a csv or excel (xls file):</p>
+<div class="highlight"><pre><span class="sd">"""</span>
+<span class="sd">Executes an sql script and stores the result in a file.</span>
+<span class="sd">"""</span>
+
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">from</span> <span class="nn">xlwt</span> <span class="kn">import</span> <span class="n">Workbook</span>
+
+
+<span class="k">def</span> <span class="nf">sql_to_csv</span><span class="p">(</span><span class="n">sql_fnm</span><span class="p">,</span> <span class="n">csv_fnm</span><span class="p">):</span>
+    <span class="sd">""" Write result of executing sql script to txt file"""</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sql_fnm</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">sql_file</span><span class="p">:</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="n">sql_file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="s">"COPY ("</span> <span class="o">+</span> <span class="n">query</span> <span class="o">+</span> <span class="s">") TO STDOUT WITH CSV HEADER"</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="s">'psql -c "'</span> <span class="o">+</span> <span class="n">query</span> <span class="o">+</span> <span class="s">'"'</span>
+        <span class="k">print</span> <span class="n">cmd</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_fnm</span><span class="p">,</span> <span class="s">'wb ...</span></pre></div> </div><!-- entry-content -->
 </article>
 <div class="pager">
       <ul>
