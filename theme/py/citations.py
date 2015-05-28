@@ -7,6 +7,7 @@ from collections import defaultdict
 from bs4 import BeautifulSoup as bs
 
 agents = [
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.152 Safari/537.36",
     "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2049.0 Safari/537.36",
     "Mozilla/5.0 (compatible; MSIE 10.0; Macintosh; Intel Mac OS X 10_7_3; Trident/6.0)",
     "Opera/9.25 (Windows NT 6.0; U; en)"
@@ -19,10 +20,14 @@ base_url = "http://scholar.google.es"
 user_url = base_url + "/citations?user=M1FQwSUAAAAJ&hl=en"
 header = {'User-agent' : agents[rint]}
 num_results = 20
+nap_time = 360
 
-def fetchPage(url):
-    time.sleep(40 + (40 * random.random()))
-    r = requests.get(url + "&num=" + str(num_results), headers=header, allow_redirects=True)
+def fetchPage(url, delay=nap_time):
+    time.sleep(delay + (delay * random.random()))
+    #header = {'User-agent': agents[random.randint(0, len(agents)-1)]}
+    header = {'User-agent': agents[0], 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8', 'Referer': 'https://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:zYLM7Y9cAGgC'}
+    r = requests.get(url + "&num=" + str(num_results), headers=header, allow_redirects=False, verify=False)
+    print r.request.headers
     html = r.text
     return bs(html, "lxml")
     

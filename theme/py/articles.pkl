@@ -17,7 +17,7 @@ VH Frenz, M Lappe, M Kolesnik, T Bührmann
 p9
 sS'num_citations'
 p10
-I42
+I41
 sS'citations_link'
 p11
 S'http://scholar.google.es/scholar?oi=bibs&hl=en&cites=285065341645454296'
@@ -52,7 +52,7 @@ sg8
 VT Buhrmann, E Di Paolo, X Barandiaran
 p25
 sg10
-I23
+I29
 sg11
 S'http://scholar.google.es/scholar?oi=bibs&hl=en&cites=13822822761156929947'
 p26
@@ -149,26 +149,26 @@ tp55
 Rp56
 sa(dp57
 g2
-VBiological actuators are not just springs
+VNon-representational sensorimotor knowledge
 p58
 sg4
 (lp59
 sg6
-VFrom Animals to Animats 9, 89-100
+VFrom Animals to Animats 13, 21-31
 p60
 sg8
-VT Buehrmann, E Di Paolo
+VT Buhrmann, E Di Paolo
 p61
 sg10
 I3
 sg11
-S'http://scholar.google.es/scholar?oi=bibs&hl=en&cites=2996936269618871008'
+S'http://scholar.google.es/scholar?oi=bibs&hl=en&cites=6299009449300525088'
 p62
 sg13
-S'http://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:IjCSPb-OGe4C'
+S'http://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:Tyk-4Ss8FVUC'
 p63
 sg15
-I2006
+I2014
 sg16
 g17
 (g18
@@ -176,26 +176,26 @@ tp64
 Rp65
 sa(dp66
 g2
-VNon-representational sensorimotor knowledge
+VBiological actuators are not just springs
 p67
 sg4
 (lp68
 sg6
-VFrom Animals to Animats 13, 21-31
+VFrom Animals to Animats 9, 89-100
 p69
 sg8
-VT Buhrmann, E Di Paolo
+VT Buehrmann, E Di Paolo
 p70
 sg10
-I1
+I3
 sg11
-S'http://scholar.google.es/scholar?oi=bibs&hl=en&cites=6299009449300525088'
+S'http://scholar.google.es/scholar?oi=bibs&hl=en&cites=2996936269618871008'
 p71
 sg13
-S'http://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:Tyk-4Ss8FVUC'
+S'http://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:IjCSPb-OGe4C'
 p72
 sg15
-I2014
+I2006
 sg16
 g17
 (g18
@@ -214,7 +214,7 @@ sg8
 VEA Di Paolo, XE Barandiaran, M Beaton, T Buhrmann
 p79
 sg10
-I1
+I2
 sg11
 S'http://scholar.google.es/scholar?oi=bibs&hl=en&cites=15548762270917292697'
 p80
