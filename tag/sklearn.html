@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title> Articles in java tag - datawerk</title>
+        <title> Articles in sklearn tag - datawerk</title>
         <meta charset="utf-8" />
         <link href="https://synergenz.github.io/theme/css/bootstrap-custom.css" rel="stylesheet"/> 
     	<link href="https://synergenz.github.io/theme/css/pygments.css" rel="stylesheet"/>     
@@ -64,22 +64,17 @@
             <div class="row row-centered">
                 <div class="col-centered col-max col-min col-sm-12 col-md-10 col-lg-10 main-content">
 <section id="content" class="content">
-<h2>Articles with the java tag</h2>
+<h2>Articles with the sklearn tag</h2>
 
 <article class="hentry">
     <header> 
-        <span class="entry-title-info">Oct 29 · <a href="https://synergenz.github.io/category/data-posts.html">Data Posts</a></span>
-        <h2 class="entry-title entry-title-tight"><a href="https://synergenz.github.io/hadoop-distributed-cache.html" rel="bookmark" title="Permalink to Reading from distributed cache in Hadoop">Reading from distributed cache in&nbsp;Hadoop</a></h2> 
+        <span class="entry-title-info">Jun 17 · <a href="https://synergenz.github.io/category/data-posts.html">Data Posts</a></span>
+        <h2 class="entry-title entry-title-tight"><a href="https://synergenz.github.io/sklearn-pipelines.html" rel="bookmark" title="Permalink to Pipelines for text classification in scikit-learn">Pipelines for text classification in&nbsp;scikit-learn</a></h2> 
     </header>
-    <div class="entry-content"> <p>The distributed cache can be used to make small files (or jars etc.) available to mapreduce functions locally on each node. This can be useful e.g. when a global stopword list is needed by all mappers for index creation.  Here are two correct ways of reading a file from distributed cache in Hadoop 2. This has changed in the new <span class="caps">API</span> and very few books and tutorials have updated examples.</p>
-<h3>Named File</h3>
-<p>In the driver:</p>
-<div class="highlight"><pre><span class="n">Job</span> <span class="n">job</span> <span class="o">=</span> <span class="n">Job</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="k">new</span> <span class="n">Configuration</span><span class="o">());</span>
-<span class="n">job</span><span class="o">.</span><span class="na">addCacheFile</span><span class="o">(</span><span class="k">new</span> <span class="n">URI</span> <span class="o">(</span><span class="s">"/path/to/file.csv"</span> <span class="o">+</span> <span class="s">"#filelabel"</span><span class="o">));</span>
-</pre></div>
-<p>In the mapper:</p>
-<div class="highlight"><pre><span class="nd">@Override</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setup</span><span class="o">(</span><span class="n">Context</span> <span class="n">context ...</span></pre></div> </div><!-- entry-content -->
+    <div class="entry-content"> <p><a href="http://scikit-learn.org">Scikit-learn’s</a> <a href="http://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html">pipelines</a> provide a useful layer of abstraction for building complex estimators or classification models. Its purpose is to aggregate a number of data transformation steps, and a model operating on the result of these transformations, into a single object that can then be used in place of a simple estimator. This allows for the one-off definition of complex pipelines that can be re-used, for example, in cross-validation functions, grid-searches, learning curves and so on. I will illustrate their use, and some pitfalls, in the context of a kaggle text-classification challenge.</p>
+<p></p>
+<h3>The challenge</h3>
+<p>The goal in the <a href="https://www.kaggle.com/c/stumbleupon">StumbleUpon Evergreen ...</a></p> </div><!-- entry-content -->
 </article>
 <div class="pager">
       <ul>

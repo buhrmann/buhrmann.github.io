@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+    <head>
+          <title>Pipelines for text classification in&nbsp;scikit-learn - datawerk</title>
+        <meta charset="utf-8" />
+        <link href="https://synergenz.github.io/theme/css/bootstrap-custom.css" rel="stylesheet"/> 
+    	<link href="https://synergenz.github.io/theme/css/pygments.css" rel="stylesheet"/>     
+        <link href="https://synergenz.github.io/theme/css/style.css" rel="stylesheet" />
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="author" contents="Thomas Buhrmann"/>  
+  
+
+    <meta name="keywords" contents="datawerk, sklearn,python,classification,tfidf,kaggle,"/>  
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-56071357-1', 'auto');
+  ga('send', 'pageview');
+
+</script>    </head>
+
+    <body>
+    <div class="wrap">
+        <div class="container-fluid">
+            <div class="header">
+                <div class="container">
+                    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="https://synergenz.github.io"><span class="fa fa-pie-chart navbar-logo"></span> datawerk</a>
+                        </div>
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <!--<li><a href="https://synergenz.github.io/archives.html">Archives</a></li>-->
+                                <li><a href="https://synergenz.github.io/posts.html">Blog</a></li>
+                                <li><a href="https://synergenz.github.io/pages/cv.html">Interactive CV</a></li>
+                                <li class="dropdown">                                    
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Data Reports<span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <!--<li class="divider"></li>
+                                        <li class="dropdown-header">Data Science Reports</li>-->
+                                        <li >
+                                        <a href="https://synergenz.github.io/activity-data.html">Categorisation of inertial activity&nbsp;data</a>
+                                        </li>
+                                        <li >
+                                        <a href="https://synergenz.github.io/p2p-loans.html">Interest rates on <span class="caps">P2P</span>&nbsp;loans</a>
+                                        </li>
+                                        <li >
+                                        <a href="https://synergenz.github.io/titanic-survival.html">Titanic survival&nbsp;prediction</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">                                    
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Data Apps<span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <!--<li class="divider"></li>
+                                        <li class="dropdown-header">Data Science Reports</li>-->
+                                        <li >
+                                        <a href="https://synergenz.github.io/elegans.html">C. elegans connectome&nbsp;explorer</a>
+                                        </li>
+                                        <li >
+                                        <a href="https://synergenz.github.io/dash+.html">Dash+ visualization of running&nbsp;data</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div><!-- header -->
+        </div><!-- container-fluid -->
+
+        <div class="container main-content">     
+            <div class="row row-centered">
+                <div class="col-centered col-max col-min col-sm-12 col-md-10 col-lg-10 main-content">
+<section id="content" class="article content">
+  <header>
+      <span class="entry-title-info">Jun 17 · <a href="https://synergenz.github.io/category/data-posts.html">Data Posts</a></span>
+    <h2 class="entry-title entry-title-tight">Pipelines for text classification in&nbsp;scikit-learn</h2>
+ 
+  </header>
+  
+     
+  <div class="entry-content">
+    <p><a href="http://scikit-learn.org">Scikit-learn&#8217;s</a> <a href="http://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html">pipelines</a> provide a useful layer of abstraction for building complex estimators or classification models. Its purpose is to aggregate a number of data transformation steps, and a model operating on the result of these transformations, into a single object that can then be used in place of a simple estimator. This allows for the one-off definition of complex pipelines that can be re-used, for example, in cross-validation functions, grid-searches, learning curves and so on. I will illustrate their use, and some pitfalls, in the context of a kaggle text-classification&nbsp;challenge.</p>
+<p><img src="/images/pipelines/stumbleupon_evergreen.jpg" alt="StumbleUpon Evergreen" width="1000"/></p>
+<h3>The&nbsp;challenge</h3>
+<p>The goal in the <a href="https://www.kaggle.com/c/stumbleupon">StumbleUpon Evergreen</a> classification challenge is the prediction of whether a given web page is relevant for a short period of time only (ephemeral) or can be recommended still a long time after initial discovery&nbsp;(evergreen). </p>
+<p>Each webpage in the provided dataset is represented by its html content as well as additional meta-data, the latter of which I will ignore here for simplicity. Instead I will focus on the use of pipelines to 1) transform text data into a numerical form appropriate for machine learning purposes, and 2) for creating ensembles of different classifiers to (hopefully) improve prediction accuracy (or at least its&nbsp;variance). </p>
+<h3>Text&nbsp;transformation</h3>
+<p>A useful tool for the representation of text in a machine learning context is the so-called <a href="https://en.wikipedia.org/wiki/Tf%E2%80%93idf">tf-idf</a> transformation, short for &#8220;term frequency–inverse document frequency&#8221;. The idea is simple. Each word in a document is represented by a number that is proportional to its frequency in the document, and inversely proportional to the number of documents in which it occurs. Very common words, such as &#8220;a&#8221; or &#8220;the&#8221;, thereby receive heavily discounted tf-df scores, in contrast to words that are very specific to the document in question. Scikit-learn provides a TfidfVectorizer class, which implements this transformation, along with a few other text-processing options, such as removing the most common words in the given language (stop words). The result is a matrix with one row per document and as many columns as there are different words in the dataset&nbsp;(corpus).</p>
+<h3>Pipelines</h3>
+<p>In few cases, however, is the vectorization of text into numerical values as simple as applying tf-idf to the raw data. Often, the relevant text to be converted needs to be extracted first. Also, the tf-idf transformation will usually result in matrices too large to be used with certain machine learning algorithms. Hence dimensionality reduction techniques are often applied too. Manually implementing these steps everytime text needs to be transformed quickly becomes repetitive and tedious. It needs to be done for the training as well as test set. Ideally, when using cross-validation to assess one&#8217;s model, the transformation needs to be applied separately in each fold, particularly when feature selection (dimensionality reduction) is involved. If care is not taken, information about the whole dataset otherwise leaks into supposedly independent evaluations of individual&nbsp;folds.</p>
+<p>Pipelines help reduce this repetition. What follows is an example of a typical vectorization&nbsp;pipeline:</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">get_vec_pipe</span><span class="p">(</span><span class="n">num_comp</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">reducer</span><span class="o">=</span><span class="s">&#39;svd&#39;</span><span class="p">):</span>
+<span class="sd">&#39;&#39;&#39; Create text vectorization pipeline with optional dimensionality reduction. &#39;&#39;&#39;</span>
+
+    <span class="n">tfv</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span>
+        <span class="n">min_df</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">max_features</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">strip_accents</span><span class="o">=</span><span class="s">&#39;unicode&#39;</span><span class="p">,</span>
+        <span class="n">analyzer</span><span class="o">=</span><span class="s">&quot;word&quot;</span><span class="p">,</span> <span class="n">token_pattern</span><span class="o">=</span><span class="s">r&#39;\w{1,}&#39;</span><span class="p">,</span> <span class="n">ngram_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="n">use_idf</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">smooth_idf</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sublinear_tf</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c"># Vectorizer</span>
+    <span class="n">vec_pipe</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s">&#39;col_extr&#39;</span><span class="p">,</span> <span class="n">JsonFields</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;title&#39;</span><span class="p">,</span> <span class="s">&#39;body&#39;</span><span class="p">,</span> <span class="s">&#39;url&#39;</span><span class="p">])),</span>
+        <span class="p">(</span><span class="s">&#39;squash&#39;</span><span class="p">,</span> <span class="n">Squash</span><span class="p">()),</span>
+        <span class="p">(</span><span class="s">&#39;vec&#39;</span><span class="p">,</span> <span class="n">tfv</span><span class="p">)</span>
+    <span class="p">]</span>
+
+    <span class="c"># Reduce dimensions of tfidf</span>
+    <span class="k">if</span> <span class="n">num_comp</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">reducer</span> <span class="o">==</span> <span class="s">&#39;svd&#39;</span><span class="p">:</span>
+            <span class="n">vec_pipe</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s">&#39;dim_red&#39;</span><span class="p">,</span> <span class="n">TruncatedSVD</span><span class="p">(</span><span class="n">num_comp</span><span class="p">)))</span>
+        <span class="k">elif</span> <span class="n">reducer</span> <span class="o">==</span> <span class="s">&#39;kbest&#39;</span><span class="p">:</span>
+            <span class="n">vec_pipe</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s">&#39;dim_red&#39;</span><span class="p">,</span> <span class="n">SelectKBest</span><span class="p">(</span><span class="n">chi2</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">num_comp</span><span class="p">)))</span>
+        <span class="k">elif</span> <span class="n">reducer</span> <span class="o">==</span> <span class="s">&#39;percentile&#39;</span><span class="p">:</span>
+            <span class="n">vec_pipe</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s">&#39;dim_red&#39;</span><span class="p">,</span> <span class="n">SelectPercentile</span><span class="p">(</span><span class="n">f_classif</span><span class="p">,</span> <span class="n">percentile</span><span class="o">=</span><span class="n">num_comp</span><span class="p">)))</span>
+
+        <span class="n">vec_pipe</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s">&#39;norm&#39;</span><span class="p">,</span> <span class="n">Normalizer</span><span class="p">()))</span>
+
+    <span class="k">return</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">vec_pipe</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Here, we first create an instance of the tf-idf vectorizer (for its parameters see <a href="https://en.wikipedia.org/wiki/Tf%E2%80%93idf">documentation)</a>. We then create a list of tuples, each of which represents a data transformation step and its name (the latter of which is required, e.g., for identifying individual transformer parameters in a grid search). The first two are custom transformers and the last one our vectorizer. The first transformer (&#8220;JsonFields&#8221;), for example, extracts a particular column from the dataset, in this case the first (0-indexed), interprets its content as json-encoded text, and extracts the json fields with the keys &#8216;title&#8217;, &#8216;body&#8217; and &#8216;url&#8217;. The corresponding values are concatenated into a single string per row in the dataset. The result is a new transformed dataset with a single column containing the extracted text, which can then be processed by the vectorizer. After the vectorization step, an optional dimensionality reduction is added to the list of transformations before the final pipeline is constructed and&nbsp;returned.</p>
+<h4>Transformers</h4>
+<p>Custom transformers such as those above are easily created by subclassing from scikit&#8217;s <a href="http://scikit-learn.org/stable/modules/generated/sklearn.base.TransformerMixin.html">TransformerMixin</a>. This base class exposes a single fit_transform() function, which in turn calls (to be implemented) fit() and transform() functions. For transformers that do not require fitting (no internal parameters to be selected based on the dataset), we can create a simpler base class that only needs the transform function to be&nbsp;implemented:</p>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">Transformer</span><span class="p">(</span><span class="n">TransformerMixin</span><span class="p">):</span>
+<span class="sd">&#39;&#39;&#39; Base class for pure transformers that don&#39;t need a fit method &#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="o">**</span><span class="n">transform_params</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">X</span>
+
+    <span class="k">def</span> <span class="nf">get_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">deep</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">()</span>
+</pre></div>
+
+
+<p>With this in place, the JsonFields transformer looks like&nbsp;this:</p>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">JsonFields</span><span class="p">(</span><span class="n">Transformer</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Extract json encoded fields from a numpy array. Returns (iterable) numpy array so it can be used as input to e.g. Tdidf &#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">column</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="p">[],</span> <span class="n">join</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">column</span> <span class="o">=</span> <span class="n">column</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span> <span class="o">=</span> <span class="n">fields</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">join</span> <span class="o">=</span> <span class="n">join</span>
+
+    <span class="k">def</span> <span class="nf">get_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">deep</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">column</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">,</span> <span class="n">join</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">join</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="o">**</span><span class="n">transform_params</span><span class="p">):</span>
+        <span class="n">col</span> <span class="o">=</span> <span class="n">Select</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">column</span><span class="p">,</span> <span class="n">to_np</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">extract_json</span><span class="p">,</span> <span class="n">excluded</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;fields&#39;</span><span class="p">])(</span><span class="n">col</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span>
+</pre></div>
+
+
+<p>JsonFields itself encapsulates another custom transformer (Select), used here to keep the specification of pipelines concise. It could also have been used as a prior step in the definition of the pipeline. The Select transformer does nothing other than extracting a number of specified columns from a&nbsp;dataset:</p>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">Select</span><span class="p">(</span><span class="n">Transformer</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;  Extract specified columns from a pandas df or numpy array &#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">to_np</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">columns</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">to_np</span> <span class="o">=</span> <span class="n">to_np</span>
+
+    <span class="k">def</span> <span class="nf">get_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">deep</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">to_np</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">to_np</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="o">**</span><span class="n">transform_params</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+            <span class="n">allint</span> <span class="o">=</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">or</span> 
+                <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> 
+                 <span class="nb">all</span><span class="p">([</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="p">]))</span>
+            <span class="k">if</span> <span class="n">allint</span><span class="p">:</span>
+                <span class="n">res</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">ix</span><span class="p">[:,</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="nb">all</span><span class="p">([</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="p">]):</span>
+                <span class="n">res</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span> <span class="s">&quot;Select error: mixed or wrong column type.&quot;</span>
+                <span class="n">res</span> <span class="o">=</span> <span class="n">X</span>
+
+            <span class="c"># to numpy ?</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_np</span><span class="p">:</span>
+                <span class="n">res</span> <span class="o">=</span> <span class="n">unsquash</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">unsquash</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">res</span>
+</pre></div>
+
+
+<p>This transformer is slightly more complicated than strictly necessary as it allows for selection of columns by index or name in the case of a pandas&nbsp;DataFrame.</p>
+<p>You may have noticed the use of the function unsquash() and the Transformer Squash in the first definition of the pipeline. This is an unfortunate but apparently required part of dealing with numpy arrays in scikit-learn. The problem is this. One may want, as part of the transform pipeline, to concatenate features from different sources into a single feature matrix. One may do this using numpy&#8217;s <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.hstack.html">hstack</a> function or scikit&#8217;s built-in <a href="http://scikit-learn.org/stable/modules/generated/sklearn.pipeline.FeatureUnion.html">FeatureUnion</a> class. However, both only operate on feature columns of dimensionality (n,1). So, for this purpose custom transformers should always return single-column &#8220;2-dimensional&#8221; arrays or matrices. Scikit&#8217;s <a href="http://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html">TfidfVectorizer</a>, on the other hand, only operates on arrays of dimensionality (n,), i.e. on truly one-dimensional arrays (and probably pandas Series). As a result, when working with multiple feature sources, one of them being vectorized text, it is necessary to convert back and forth between the two ways of representing a feature column. For example by&nbsp;using</p>
+<div class="highlight"><pre><span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+</pre></div>
+
+
+<p>for conversion from (n,1) to (n,)&nbsp;or</p>
+<div class="highlight"><pre><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+
+
+<p>for the other direction. The Squash (and Unsquash) class used above simply wraps this functionality for use in pipelines. For these and some other Transformers you may find useful check <a href="https://github.com/synergenz/kaggle/blob/master/stumble/python/transform.py">here</a>.</p>
+<h3>Ensembles</h3>
+<p>The last step in a Pipeline is usually an estimator or classifier (unless the pipeline is only used for data transformation). However, a simple extension allows for much more complex ensembles of models to be used for classification. One way to do this flexibly is to first create a <a href="http://scikit-learn.org/stable/modules/generated/sklearn.pipeline.FeatureUnion.html">FeatureUnion</a> of different models, in which the predictions of individual models are treated as new features and concatenated into a new feature matrix (one column per predictor). An ensemble prediction can then be made simply by averaging the predictions (or using a majority vote), or by using the predictions as inputs to a final predictor, for&nbsp;example.</p>
+<p>For the creation of a FeatureUnion of models, we require the individual models to return their predictions in their transform calls (since the fitting of a Pipeline only calls the fit and transform functions for all but the last step, but not the predict function). We hence need to turn a predictor into a transformer, wich can be done using a wrapper such as&nbsp;this:</p>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">ModelTransformer</span><span class="p">(</span><span class="n">TransformerMixin</span><span class="p">):</span>
+<span class="sd">&#39;&#39;&#39; Use model predictions as transformed data. &#39;&#39;&#39;</span>
+<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">probs</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">probs</span> <span class="o">=</span> <span class="n">probs</span>
+
+<span class="k">def</span> <span class="nf">get_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">deep</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">probs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">probs</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span>
+
+<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="o">**</span><span class="n">transform_params</span><span class="p">):</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">probs</span><span class="p">:</span>
+        <span class="n">Xtrf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">Xtrf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">unsquash</span><span class="p">(</span><span class="n">Xtrf</span><span class="p">)</span>
+</pre></div>
+
+
+<p>With this in place we may build a FeatureUnion-based ensemble like&nbsp;this:</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">build_ensemble</span><span class="p">(</span><span class="n">model_list</span><span class="p">,</span> <span class="n">estimator</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<span class="sd">&#39;&#39;&#39; Build an ensemble as a FeatureUnion of ModelTransformers and a final estimator using their</span>
+<span class="sd">    predictions as input. &#39;&#39;&#39;</span>
+
+<span class="n">models</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">model</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">model_list</span><span class="p">):</span>
+    <span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s">&#39;model_transform&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">ModelTransformer</span><span class="p">(</span><span class="n">model</span><span class="p">)))</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">estimator</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">FeatureUnion</span><span class="p">(</span><span class="n">models</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">Pipeline</span><span class="p">([</span>
+        <span class="p">(</span><span class="s">&#39;features&#39;</span><span class="p">,</span> <span class="n">FeatureUnion</span><span class="p">(</span><span class="n">models</span><span class="p">)),</span>
+        <span class="p">(</span><span class="s">&#39;estimator&#39;</span><span class="p">,</span> <span class="n">estimator</span><span class="p">)</span>
+        <span class="p">])</span>
+</pre></div>
+
+
+<p>We are now in a position to create a rather complex text-classification pipeline. For example, 
+one pipeline I&#8217;ve built for the kaggle competition trains a logistic regression on the result of the tf-idf vectorization, then combines the prediction with those from three different models trained on a dimensionality-reduced form of the&nbsp;tf-idf:</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">get_custom_pipe</span><span class="p">(</span><span class="n">num_comp</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">clf</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<span class="sd">&#39;&#39;&#39; Create complex text vectorization pipeline. &#39;&#39;&#39;</span>
+
+<span class="c"># Get non-dim-reduced vectorizer</span>
+<span class="n">pipe</span> <span class="o">=</span> <span class="n">get_vec_pipe</span><span class="p">(</span><span class="n">num_comp</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c"># Add a logit on non-reduced tfidf, and ensemble on reduced tfidf</span>
+<span class="n">clfs</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;rf&#39;</span><span class="p">,</span> <span class="s">&#39;sgd&#39;</span><span class="p">,</span> <span class="s">&#39;gbc&#39;</span><span class="p">]</span>
+<span class="n">pipe</span><span class="o">.</span><span class="n">steps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+    <span class="p">(</span><span class="s">&#39;union&#39;</span><span class="p">,</span> <span class="n">FeatureUnion</span><span class="p">([</span>
+        <span class="p">(</span><span class="s">&#39;logit&#39;</span><span class="p">,</span> <span class="n">ModelTransformer</span><span class="p">(</span><span class="n">build_classifier</span><span class="p">(</span><span class="s">&#39;logit&#39;</span><span class="p">))),</span>
+        <span class="p">(</span><span class="s">&#39;featpipe&#39;</span><span class="p">,</span> <span class="n">Pipeline</span><span class="p">([</span>
+            <span class="p">(</span><span class="s">&#39;svd&#39;</span><span class="p">,</span> <span class="n">TruncatedSVD</span><span class="p">(</span><span class="n">num_comp</span><span class="p">)),</span>
+            <span class="p">(</span><span class="s">&#39;svd_norm&#39;</span><span class="p">,</span> <span class="n">Normalizer</span><span class="p">(</span><span class="n">copy</span><span class="o">=</span><span class="bp">False</span><span class="p">)),</span>
+            <span class="p">(</span><span class="s">&#39;red_featunion&#39;</span><span class="p">,</span> <span class="n">build_ensemble</span><span class="p">([</span><span class="n">build_classifier</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">clfs</span><span class="p">]))</span>
+        <span class="p">]))</span>
+    <span class="p">]))</span>
+<span class="p">)</span>
+
+<span class="k">if</span> <span class="n">clf</span><span class="p">:</span>
+    <span class="n">pipe</span><span class="o">.</span><span class="n">steps</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s">&#39;ensemblifier&#39;</span><span class="p">,</span> <span class="n">clf</span><span class="p">))</span>
+
+<span class="k">return</span> <span class="n">pipe</span>
+</pre></div>
+
+
+<p>This function takes as input the final classifier that should be trained on the component predictions. One may, for example, use a built-in classifier (say another logistic regression), in
+which case one ends up with a <a href="https://en.wikipedia.org/wiki/Ensemble_learning#Stacking">stacked ensemble</a>. Or one may simply average or take the majority vote of the individual prediction, in which case one is simply creating a kind of <a href="http://www.scholarpedia.org/article/Ensemble_learning#Ensemble_combination_rules">combiner</a>. For the latter there is no built-in class in scikit-learn, but one can easily be&nbsp;created:</p>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">EnsembleBinaryClassifier</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">ClassifierMixin</span><span class="p">,</span> <span class="n">TransformerMixin</span><span class="p">):</span>
+<span class="sd">&#39;&#39;&#39; Average or majority-vote several different classifiers. Assumes input is a matrix of individual predictions, such as the output of a FeatureUnion of ModelTransformers [n_samples, n_predictors]. Also see http://sebastianraschka.com/Articles/2014_ensemble_classifier.html.&#39;&#39;&#39;</span>
+
+<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">mode</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">weights</span> <span class="o">=</span> <span class="n">weights</span>
+
+<span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span>
+
+<span class="k">def</span> <span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Predict (weighted) probabilities &#39;&#39;&#39;</span>
+    <span class="n">probs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="mi">1</span><span class="o">-</span><span class="n">probs</span><span class="p">,</span> <span class="n">probs</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Predict class labels. &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s">&#39;average&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">binarize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X</span><span class="p">)[:,[</span><span class="mi">1</span><span class="p">]],</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">binarize</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">apply_along_axis</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="p">)</span><span class="o">.</span><span class="n">argmax</span><span class="p">(),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">arr</span><span class="o">=</span><span class="n">res</span><span class="p">)</span>
+</pre></div>
+
+
+<p>For prediction of class probabilities this model simply returns a (possibly weighted) average of individual predictions. For compatibility with some of scikit-learn&#8217;s built-in functionality I return the probabilities both for negative and positive classes (scikit expects the latter in the second column). For the prediction of class labels, the model either uses a thresholded version of the averaged probabilities, or a majority vote directly on thresholded individual predictions (it may be useful to allow for specification of the threshold as well). In either case, the hope is that the combined predictions of several classifiers will reduce the variance in prediction accuracy when compared to a single model only. Supplying an instance of this class to the above get_custom_pipe() function completes our relatively complex&nbsp;pipeline.</p>
+<h3>Use of&nbsp;Pipelines</h3>
+<p>Though requiring some additional work in the beginning to wrap custom data transformations in their own classes, once a pipeline has been defined, it can be used anywhere in scikit-learn in place of a simple estimator or&nbsp;classifier.</p>
+<p>For example, estimating the performance of the pipeline using cross-validation on training data is as simple&nbsp;as</p>
+<div class="highlight"><pre><span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validation</span><span class="o">.</span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">pipeline</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s">&#39;roc_auc&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>One advantage is that this applies all data transformations (including any feature selection steps) independently on each fold, without leaking information from the whole dataset. Note though, that there are kinds of data mangling or preprocessing that are better done once for the whole&nbsp;set.</p>
+<p>Equally easily predictions are created on new&nbsp;data:</p>
+<div class="highlight"><pre><span class="n">y_pred</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_new</span><span class="p">)[:,</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+
+
+<p>And here is a grid search to automatically determine the best parameters of models used in the pipeline (using cross-validation&nbsp;internally):</p>
+<div class="highlight"><pre><span class="n">gs</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">pipeline</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s">&#39;roc_auc&#39;</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Here the only subtelty involves specification of the parameter grid (the parameter values to be tested). Since our pipelines can form a complex hierarchy, the parameter names of individual models need to refer to the name of the model in the pipeline. For example, if the pipeline contains a logistic regression step, named &#8216;logit&#8217;, then the values to be tested for the model&#8217;s &#8216;C&#8217; parameter need to be supplied&nbsp;as</p>
+<div class="highlight"><pre><span class="n">grid</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;logit__C&#39;</span> <span class="p">:</span> <span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)}</span>
+</pre></div>
+
+
+<p>i.e. using the model name followed by a double underscore followed by the parameter&nbsp;name. </p>
+<h3>Conclusion</h3>
+<p>I hope there is some useful information here. For the code I used to predict StumbleUpon pages see <a href="https://github.com/synergenz/kaggle/tree/master/stumble/python">here on github</a>. Also check <a href="http://zacstewart.com/2014/08/05/pipelines-of-featureunions-of-pipelines.html">Zac Stewart&#8217;s blog post</a> for another introduction to Pipelines. In a follow-up post I will show some ways of analysing the results of a tf-idf in&nbsp;scikit-learn.</p>
+  </div><!-- /.entry-content -->
+   <footer class="post-info">
+    Published on <span class="published">June 17, 2015</span><br>
+        Written by <span class="author">Thomas Buhrmann</span><br>
+        Posted in <span class="label label-default"><a href="https://synergenz.github.io/category/data-posts.html">Data Posts</a></span>
+ ~ Tagged 
+        <span class="label label-default"><a href="https://synergenz.github.io/tag/sklearn.html">sklearn</a></span>
+        <span class="label label-default"><a href="https://synergenz.github.io/tag/python.html">python</a></span>
+        <span class="label label-default"><a href="https://synergenz.github.io/tag/classification.html">classification</a></span>
+        <span class="label label-default"><a href="https://synergenz.github.io/tag/tfidf.html">tfidf</a></span>
+        <span class="label label-default"><a href="https://synergenz.github.io/tag/kaggle.html">kaggle</a></span>
+  </footer><!-- /.post-info -->
+  
+</section>
+    <div class="blogItem">
+    <h2>Comments</h2>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'datawerk';
+        var disqus_title = 'Pipelines for text classification in&nbsp;scikit-learn';
+        var disqus_identifier = "sklearn-pipelines.html";
+        (function() {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            //dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] ||
+             document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>
+        Please enable JavaScript to view the
+        <a href="http://disqus.com/?ref_noscript=datawerk">
+            comments powered by Disqus.
+        </a>
+    </noscript>
+    </div>
+                </div>
+            </div><!-- row-->
+        </div><!-- container -->
+
+        <!-- <div class="push"></div> -->
+    </div> <!-- wrap -->
+
+    <div class="container-fluid aw-footer">
+		<div class="row-centered">
+			<div class="col-sm-3 col-sm-offset-1">
+				<h4>Author</h4>
+				<ul class="list-unstyled my-list-style">
+					<li><a href="http://www.ias-research.net/people/thomas-buhrmann/">Academic Home</a></li>
+					<li><a href="http://github.com/synergenz">Github</a></li>
+					<li><a href="http://www.linkedin.com/in/thomasbuhrmann">LinkedIn</a></li>
+					<li><a href="https://secure.flickr.com/photos/syngnz/">Flickr</a></li>                            
+				</ul>
+			</div>
+			<div class="col-sm-3">
+				<h4>Categories</h4>
+				<ul class="list-unstyled my-list-style">
+					<li><a href="https://synergenz.github.io/category/academia.html">Academia (4)</a></li>
+					<li><a href="https://synergenz.github.io/category/data-apps.html">Data Apps (2)</a></li>
+					<li><a href="https://synergenz.github.io/category/data-posts.html">Data Posts (5)</a></li>
+					<li><a href="https://synergenz.github.io/category/reports.html">Reports (3)</a></li>
+				</ul>
+			</div>
+			<div class="col-sm-3">
+				<h4>Tags</h4>
+                <ul class="tagcloud">
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/scraping.html">scraping</a></li>
+                        <li class="tag-2"><a href="https://synergenz.github.io/tag/d3.html">d3</a></li>
+                        <li class="tag-0"><a href="https://synergenz.github.io/tag/python.html">python</a></li>
+                        <li class="tag-2"><a href="https://synergenz.github.io/tag/report.html">report</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/titanic.html">titanic</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/classification.html">classification</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/java.html">java</a></li>
+                        <li class="tag-2"><a href="https://synergenz.github.io/tag/r.html">R</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/svm.html">svm</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/big-data.html">big data</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/sql.html">sql</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/sklearn.html">sklearn</a></li>
+                        <li class="tag-2"><a href="https://synergenz.github.io/tag/graph.html">graph</a></li>
+                        <li class="tag-2"><a href="https://synergenz.github.io/tag/visualization.html">visualization</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/neo4j.html">neo4j</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/random-forest.html">random forest</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/nosql.html">nosql</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/tfidf.html">tfidf</a></li>
+                        <li class="tag-1"><a href="https://synergenz.github.io/tag/smcs.html">smcs</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/categorisation.html">categorisation</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/regression.html">regression</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/hadoop.html">hadoop</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/lda.html">lda</a></li>
+                        <li class="tag-2"><a href="https://synergenz.github.io/tag/kaggle.html">kaggle</a></li>
+                </ul>
+			</div>
+		</div>
+    </div>
+<!-- JavaScript -->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function($) 
+{
+	$("div.collapseheader").click(function () {
+		$header = $(this).children("span").first();
+		$codearea = $(this).children(".input_area");
+		$codearea.slideToggle(500, function () {
+			$header.text(function () {
+				return $codearea.is(":visible") ? "Collapse Code" : "Expand Code";
+			});
+		});
+	});
+
+
+    // $(window).resize(function(){
+    //     var footerHeight = $('.aw-footer').outerHeight();
+    //     var stickFooterPush = $('.push').height(footerHeight);  
+    //     $('.wrap').css({'marginBottom':'-' + footerHeight + 'px'});
+    // });     
+
+    // $(window).resize();
+
+    // $(window).bind("load resize", function() {    
+    //     var footerHeight = 0,
+    //         footerTop = 0,
+    //         $footer = $(".aw-footer");
+
+    //     positionFooter();
+
+    //     function positionFooter() {
+
+    //         footerHeight = $footer.height();
+    //         footerTop = ($(window).scrollTop()+$(window).height()-footerHeight)+"px";
+    //         console.log(footerHeight, footerTop);
+    //         console.log($(document.body).height()+footerHeight, $(window).height());
+
+    //         if ( ($(document.body).height()+footerHeight) < $(window).height()) {
+    //             $footer.css({ position: "absolute" }).css({ top: footerTop });
+    //             console.log("Positioning absolute");
+    //         }
+    //         else {
+    //             $footer.css({ position: "static" });
+    //             console.log("Positioning static");
+    //         }
+    //     }
+
+    //     $(window).scroll(positionFooter).resize(positionFooter);
+    // });
+});
+</script>
+</body>
+</html>
