@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+    <head>
+          <title>Analyzing tf-idf results in&nbsp;scikit-learn - datawerk</title>
+        <meta charset="utf-8" />
+        <link href="https://synergenz.github.io/theme/css/bootstrap-custom.css" rel="stylesheet"/> 
+    	<link href="https://synergenz.github.io/theme/css/pygments.css" rel="stylesheet"/>     
+        <link href="https://synergenz.github.io/theme/css/style.css" rel="stylesheet" />
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="author" contents="Thomas Buhrmann"/>  
+  
+
+    <meta name="keywords" contents="datawerk, sklearn,python,classification,tf-idf,kaggle,text,"/>  
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-56071357-1', 'auto');
+  ga('send', 'pageview');
+
+</script>    </head>
+
+    <body>
+    <div class="wrap">
+        <div class="container-fluid">
+            <div class="header">
+                <div class="container">
+                    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="https://synergenz.github.io"><span class="fa fa-pie-chart navbar-logo"></span> datawerk</a>
+                        </div>
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <!--<li><a href="https://synergenz.github.io/archives.html">Archives</a></li>-->
+                                <li><a href="https://synergenz.github.io/posts.html">Blog</a></li>
+                                <li><a href="https://synergenz.github.io/pages/cv.html">Interactive CV</a></li>
+                                <li class="dropdown">                                    
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Data Reports<span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <!--<li class="divider"></li>
+                                        <li class="dropdown-header">Data Science Reports</li>-->
+                                        <li >
+                                        <a href="https://synergenz.github.io/p2p-loans.html">Interest rates on <span class="caps">P2P</span>&nbsp;loans</a>
+                                        </li>
+                                        <li >
+                                        <a href="https://synergenz.github.io/activity-data.html">Categorisation of inertial activity&nbsp;data</a>
+                                        </li>
+                                        <li >
+                                        <a href="https://synergenz.github.io/titanic-survival.html">Titanic survival&nbsp;prediction</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">                                    
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Data Apps<span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <!--<li class="divider"></li>
+                                        <li class="dropdown-header">Data Science Reports</li>-->
+                                        <li >
+                                        <a href="https://synergenz.github.io/elegans.html">C. elegans connectome&nbsp;explorer</a>
+                                        </li>
+                                        <li >
+                                        <a href="https://synergenz.github.io/dash+.html">Dash+ visualization of running&nbsp;data</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div><!-- header -->
+        </div><!-- container-fluid -->
+
+        <div class="container main-content">     
+            <div class="row row-centered">
+                <div class="col-centered col-max col-min col-sm-12 col-md-10 col-lg-10 main-content">
+<section id="content" class="article content">
+  <header>
+      <span class="entry-title-info">Jun 22 · <a href="https://synergenz.github.io/category/data-posts.html">Data Posts</a></span>
+    <h2 class="entry-title entry-title-tight">Analyzing tf-idf results in&nbsp;scikit-learn</h2>
+ 
+  </header>
+  
+     
+  <div class="entry-content">
+    <p>In a <a href="https://synergenz.github.io/sklearn-pipelines.html">previous post</a> I have shown how to create text-processing pipelines for machine learning in python using <a href="http://scikit-learn.org/stable/">scikit-learn</a>. The core of such pipelines in many cases is the vectorization of text using the <a href="https://en.wikipedia.org/wiki/Tf%E2%80%93idf">tf-idf</a> transformation. In this post I will show some ways of analysing and making sense of the result of a tf-idf. As an example I will use the same <a href="https://www.kaggle.com/c/stumbleupon">kaggle dataset</a>, namely webpages provided and classified by StumbleUpon as either ephemeral (content that is short-lived) or evergreen (content that can be recommended long after its initial&nbsp;discovery).</p>
+<h3>Tf-idf</h3>
+<p>As explained in the previous post, the tf-idf vectorization of a corpus of text documents assigns each word in a document a number that is proportional to its frequency in the document and inversely proportional to the number of documents in which it occurs. Very common words, such as &#8220;a&#8221; or &#8220;the&#8221;, thereby receive heavily discounted tf-idf scores, in contrast to words that are very specific to the document in question. The result is a matrix of tf-idf scores with one row per document and as many columns as there are different words in the&nbsp;dataset.</p>
+<p>How do we make sense of this resulting matrix, specifically in the context of text classification? For example, how do the most important words, as measured by their tf-idf score, relate to the class of a document? Or can we characterise the documents that a tf-idf-based classifier commonly&nbsp;misclassifies?</p>
+<h3>Analysing classifier&nbsp;performance</h3>
+<p>Let&#8217;s start by collecting some data about the performance of our classifier. We will then use this information to drill into specific groups of documents in terms of their tf-idf&nbsp;scores.</p>
+<p>A typical way to assess a model&#8217;s performance is to score it using cross-validation on the training set. One may do that using scikit-learn&#8217;s built-in <a href="http://scikit-learn.org/stable/modules/generated/sklearn.cross_validation.cross_val_score.html">cross_validation.cross_val_score()</a> function, but that only calculates the overall performance of the model on individual folds, and doesn&#8217;t hang on to other information that may be useful. A manual cross-validation may therefore be more appropriate. The following code shows a typical implementation of cross-validation in&nbsp;scikit-learn:</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">analyze_model</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">folds</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<span class="sd">&#39;&#39;&#39; Run x-validation and return scores, averaged confusion matrix, and df with false positives and negatives &#39;&#39;&#39;</span>
+
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">load</span><span class="p">()</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">values</span>   <span class="c"># to numpy</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">values</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">model</span><span class="p">:</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">()</span>
+
+<span class="c"># Manual x-validation to accumulate actual</span>
+<span class="n">cv_skf</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">n_folds</span><span class="o">=</span><span class="n">folds</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">conf_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>      <span class="c"># Binary classification</span>
+<span class="n">false_pos</span> <span class="o">=</span> <span class="n">Set</span><span class="p">()</span>
+<span class="n">false_neg</span> <span class="o">=</span> <span class="n">Set</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">train_i</span><span class="p">,</span> <span class="n">val_i</span> <span class="ow">in</span> <span class="n">cv_skf</span><span class="p">:</span>
+    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_val</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">train_i</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">val_i</span><span class="p">]</span>
+    <span class="n">y_train</span><span class="p">,</span> <span class="n">y_val</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">train_i</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">val_i</span><span class="p">]</span>
+
+    <span class="k">print</span> <span class="s">&quot;Fitting fold...&quot;</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+    <span class="k">print</span> <span class="s">&quot;Predicting fold...&quot;</span>
+    <span class="n">y_pprobs</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_val</span><span class="p">)</span>       <span class="c"># Predicted probabilities</span>
+    <span class="n">y_plabs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_val</span><span class="p">))</span>  <span class="c"># Predicted class labels</span>
+
+    <span class="n">scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_val</span><span class="p">,</span> <span class="n">y_pprobs</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]))</span>
+    <span class="n">confusion</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_val</span><span class="p">,</span> <span class="n">y_plabs</span><span class="p">)</span>
+    <span class="n">conf_mat</span> <span class="o">+=</span> <span class="n">confusion</span>
+
+    <span class="c"># Collect indices of false positive and negatives</span>
+    <span class="n">fp_i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">y_plabs</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y_val</span><span class="o">==</span><span class="mi">0</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">fn_i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">y_plabs</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">y_val</span><span class="o">==</span><span class="mi">1</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">false_pos</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">val_i</span><span class="p">[</span><span class="n">fp_i</span><span class="p">])</span>
+    <span class="n">false_neg</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">val_i</span><span class="p">[</span><span class="n">fn_i</span><span class="p">])</span>
+
+    <span class="k">print</span> <span class="s">&quot;Fold score: &quot;</span><span class="p">,</span> <span class="n">scores</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">print</span> <span class="s">&quot;Fold CM: </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">confusion</span>
+
+<span class="k">print</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">Mean score: </span><span class="si">%0.2f</span><span class="s"> (+/- </span><span class="si">%0.2f</span><span class="s">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">scores</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">conf_mat</span> <span class="o">/=</span> <span class="n">folds</span>
+<span class="k">print</span> <span class="s">&quot;Mean CM: </span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">conf_mat</span>
+<span class="k">print</span> <span class="s">&quot;</span><span class="se">\n</span><span class="s">Mean classification measures: </span><span class="se">\n</span><span class="s">&quot;</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">class_report</span><span class="p">(</span><span class="n">conf_mat</span><span class="p">))</span>
+<span class="k">return</span> <span class="n">scores</span><span class="p">,</span> <span class="n">conf_mat</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;fp&#39;</span><span class="p">:</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">false_pos</span><span class="p">),</span> <span class="s">&#39;fn&#39;</span><span class="p">:</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">false_neg</span><span class="p">)}</span>
+</pre></div>
+
+
+<p>This function not only calculates the average score (e.g. accuracy, in this case <a href="http://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_auc_score.html">area under the <span class="caps">ROC</span>-curve</a>), but also calculates an averaged <a href="http://scikit-learn.org/stable/modules/generated/sklearn.metrics.confusion_matrix.html">confusion-matrix</a> (across the different folds) and keeps a list of the documents (or more generally samples) that have been misclassified (false positives and false negatives separately). Finally, using the averaged confusion matrix, it also calculates averaged classification measures such as accuracy, precision etc. The corresponding function class_report() is&nbsp;this:</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">class_report</span><span class="p">(</span><span class="n">conf_mat</span><span class="p">):</span>
+    <span class="n">tp</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">fn</span><span class="p">,</span> <span class="n">tn</span> <span class="o">=</span> <span class="n">conf_mat</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+    <span class="n">measures</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">measures</span><span class="p">[</span><span class="s">&#39;accuracy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">tp</span> <span class="o">+</span> <span class="n">tn</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">tp</span> <span class="o">+</span> <span class="n">fp</span> <span class="o">+</span> <span class="n">fn</span> <span class="o">+</span> <span class="n">tn</span><span class="p">)</span>
+    <span class="n">measures</span><span class="p">[</span><span class="s">&#39;specificity&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tn</span> <span class="o">/</span> <span class="p">(</span><span class="n">tn</span> <span class="o">+</span> <span class="n">fp</span><span class="p">)</span>        <span class="c"># (true negative rate)</span>
+    <span class="n">measures</span><span class="p">[</span><span class="s">&#39;sensitivity&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tp</span> <span class="o">/</span> <span class="p">(</span><span class="n">tp</span> <span class="o">+</span> <span class="n">fn</span><span class="p">)</span>        <span class="c"># (recall, true positive rate)</span>
+    <span class="n">measures</span><span class="p">[</span><span class="s">&#39;precision&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tp</span> <span class="o">/</span> <span class="p">(</span><span class="n">tp</span> <span class="o">+</span> <span class="n">fp</span><span class="p">)</span>
+    <span class="n">measures</span><span class="p">[</span><span class="s">&#39;f1score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">tp</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">tp</span> <span class="o">+</span> <span class="n">fp</span> <span class="o">+</span> <span class="n">fn</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">measures</span>
+</pre></div>
+
+
+<p>One may, for example, use the confusion matrix or classification report to compare models with different classifiers to see whether there are differences in the misclassified samples (if different models perform very similar in this regard there may be no need to &#8220;ensemblify&#8221;&nbsp;them). </p>
+<p>Here I will use the false positives and negatives to see whether we can use their tf-idf scores to understand why they are being&nbsp;misclassified.</p>
+<h3>Making sense of the tf-idf&nbsp;matrix</h3>
+<p>Let&#8217;s assume we have a scikit-learn Pipeline that vectorizes our corpus of documents. Let X be the matrix of dimensionality (n_samples, 1) of text documents, y the vector of corresponding class labels, and &#8216;vec_pipe&#8217; a Pipeline that contains an instance of scikit-learn&#8217;s TfIdfVectorizer. We produce the tf-idf matrix by transforming the text documents, and get a reference to the vectorizer&nbsp;itself:</p>
+<div class="highlight"><pre><span class="n">Xtr</span> <span class="o">=</span> <span class="n">vec_pipe</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">vec</span> <span class="o">=</span> <span class="n">vec_pipe</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s">&#39;vec&#39;</span><span class="p">]</span>
+<span class="n">features</span> <span class="o">=</span> <span class="n">vec</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()</span>
+</pre></div>
+
+
+<p><span class="quo">&#8216;</span>features&#8217; here is a variable that holds a list of all the words in the tf-idf&#8217;s vocabulary, in the same order as the columns in the matrix. Next, we create a function that takes a single row of the tf-idf matrix (corresponding to a particular document), and return the n highest scoring words (or more generally tokens or&nbsp;features):</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">top_tfidf_feats</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">25</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Get top n tfidf values in row and return them with their corresponding feature names.&#39;&#39;&#39;</span>
+    <span class="n">topn_ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">row</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">][:</span><span class="n">top_n</span><span class="p">]</span>
+    <span class="n">top_feats</span> <span class="o">=</span> <span class="p">[(</span><span class="n">features</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">topn_ids</span><span class="p">]</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">top_feats</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;feature&#39;</span><span class="p">,</span> <span class="s">&#39;tfidf&#39;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">df</span>
+</pre></div>
+
+
+<p>Here we use argsort to produce the indices that would order the row by tf-idf value, reverse them (into descending order), and select the first top_n. We then return a pandas DataFrame with the words themselves (feature names) and their corresponding&nbsp;score.</p>
+<p>The result of a tf-idf, however, is typically a sparse matrix, which doesn&#8217;t support all the usual matrix or array operations. So in order to apply the above function to inspect a particular document, we convert a single row into dense format&nbsp;first:</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">top_feats_in_doc</span><span class="p">(</span><span class="n">Xtr</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">row_id</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">25</span><span class="p">):</span>
+<span class="sd">&#39;&#39;&#39; Top tfidf features in specific document (matrix row) &#39;&#39;&#39;</span>
+<span class="n">row</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">Xtr</span><span class="p">[</span><span class="n">row_id</span><span class="p">]</span><span class="o">.</span><span class="n">toarray</span><span class="p">())</span>
+<span class="k">return</span> <span class="n">top_tfidf_feats</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">top_n</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Using this to show the top 10 words used in the third document of our matrix, for example, which StumbleUpon has classified as &#8216;evergreen&#8217;,&nbsp;gives:</p>
+<div class="highlight"><pre>         feature     tfidf
+0            flu  0.167878
+1  prevent heart  0.130590
+2    fruits that  0.128400
+3     of vitamin  0.123592
+4    cranberries  0.119959
+5        the flu  0.117032
+6      fight the  0.115101
+7      vitamin c  0.113120
+8        vitamin  0.111867
+9        bananas  0.107010
+</pre></div>
+
+
+<p>This seems to be webpage about foods or supplements to prevent or fight flu symptoms. Let&#8217;s see if this topic is represented also in the overall corpus. For this, we will calculate the average tf-idf score of all words across a number of documents (in this case all documents), i.e. the average per column of a tf-idf&nbsp;matrix:</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">top_mean_feats</span><span class="p">(</span><span class="n">Xtr</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">grp_ids</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">min_tfidf</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">25</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Return the top n features that on average are most important amongst documents in rows</span>
+<span class="sd">        indentified by indices in grp_ids. &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">grp_ids</span><span class="p">:</span>
+        <span class="n">D</span> <span class="o">=</span> <span class="n">Xtr</span><span class="p">[</span><span class="n">grp_ids</span><span class="p">]</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">D</span> <span class="o">=</span> <span class="n">Xtr</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
+
+    <span class="n">D</span><span class="p">[</span><span class="n">D</span> <span class="o">&lt;</span> <span class="n">min_tfidf</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">tfidf_means</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">top_tfidf_feats</span><span class="p">(</span><span class="n">tfidf_means</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">top_n</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Here, we provide a list of row indices which pick out the particular documents we want to inspect. Providing &#8216;None&#8217; indicates, somewhat counterintuitively, that we&#8217;re interested in all documents. We then calculate the mean of each column across the selected rows, which results in a single row of tf-idf values. And this row we then simply pass on to our previous function for picking out the top n words. One crucial trick here, however, is to first filter out the words with relatively low scores (smaller than the provided threshold). This is because common words, such as &#8216;a&#8217; or &#8216;the&#8217;, while having low tf-idf scores within each document, are so frequent that when averaged over all documents they would otherwise easily dominate all other&nbsp;terms. </p>
+<p>Calling this function with grp_ids=None, gives us the most important words across the whole corpus. Here are the top&nbsp;15:</p>
+<div class="highlight"><pre>                   feature     tfidf
+0                    funny  0.003522
+1                   sports  0.003491
+2                 swimsuit  0.003456
+3                  fashion  0.003337
+4                       si  0.002972
+5                    video  0.002700
+6           insidershealth  0.002472
+7       sports illustrated  0.002329
+8   insidershealth article  0.002294
+9              si swimsuit  0.002258
+10                    html  0.002216
+11             illustrated  0.002208
+12              allrecipes  0.002171
+13                 article  0.002144
+14                   humor  0.002143
+</pre></div>
+
+
+<p>There is no obvious pattern here, beyond the fact that sports, health, fashion and humour seem to characterize the majority of articles. What might be more interesting, though, is to separately consider groups of documents falling into a particular category. For example, let&#8217;s calculate the mean tf-idf scores depending on a document&#8217;s class&nbsp;label:</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">top_feats_by_class</span><span class="p">(</span><span class="n">Xtr</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">min_tfidf</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="mi">25</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Return a list of dfs, where each df holds top_n features and their mean tfidf value</span>
+<span class="sd">        calculated across documents with the same class label. &#39;&#39;&#39;</span>
+    <span class="n">dfs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">labels</span><span class="p">:</span>
+        <span class="n">ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y</span><span class="o">==</span><span class="n">label</span><span class="p">)</span>
+        <span class="n">feats_df</span> <span class="o">=</span> <span class="n">top_mean_feats</span><span class="p">(</span><span class="n">Xtr</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">ids</span><span class="p">,</span> <span class="n">min_tfidf</span><span class="o">=</span><span class="n">min_tfidf</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="n">top_n</span><span class="p">)</span>
+        <span class="n">feats_df</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="n">label</span>
+        <span class="n">dfs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">feats_df</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dfs</span>
+</pre></div>
+
+
+<p>This function uses the previously defined functions to return a list of DataFrames, one per document class, and each containing the top n features. Instead of printing them out as a table, let&#8217;s create a figure in&nbsp;matplotlib:</p>
+<p><img src="/images/tfidf/tfidf-features.png" alt="Tfidf per class"/></p>
+<p>This looks much more interesting! Web pages classified as ephemeral (class label=0) seem to fall mostly into the categories of photos and videos of sports illustrated models (the abbreviation si refers to the magazine also), or otherwise articles related to fashion, humor or technology. Those pages classified as evergreen, in contrast, seem to relate mostly to health, food and recipes in particular (class label=1). This also includes, of course, the first evergreen article we identified above (about fruits and vitamins preventing flu). Some overlap also exists, however. The word &#8216;funny&#8217; appears in the top 25 tf-idf tokens for both categories, as does the name of the allrecipes website. Together this tells us a little bit about the features (the presence of tokens) on the basis of which a trained classifier may categorize pages as belonging to one class or the&nbsp;other.</p>
+<p>For reference, here is the function to plot the tf-idf values using&nbsp;matplotlib:</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">plot_tfidf_classfeats_h</span><span class="p">(</span><span class="n">dfs</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Plot the data frames returned by the function plot_tfidf_classfeats(). &#39;&#39;&#39;</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="s">&quot;w&quot;</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dfs</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">df</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dfs</span><span class="p">):</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">dfs</span><span class="p">),</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s">&quot;top&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s">&quot;right&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_frame_on</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">get_xaxis</span><span class="p">()</span><span class="o">.</span><span class="n">tick_bottom</span><span class="p">()</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">get_yaxis</span><span class="p">()</span><span class="o">.</span><span class="n">tick_left</span><span class="p">()</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&quot;Mean Tf-Idf Score&quot;</span><span class="p">,</span> <span class="n">labelpad</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">&quot;label = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">label</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">ticklabel_format</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s">&#39;x&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s">&#39;sci&#39;</span><span class="p">,</span> <span class="n">scilimits</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">tfidf</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s">&#39;center&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;#3F5D7D&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">yticks</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">feature</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="mf">0.09</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.97</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.52</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+
+<p>As a last step, let&#8217;s plot the top tf-df features for webpages misclassified by our full text-classification pipeline, using the indices of false positive and negatives identified&nbsp;above:</p>
+<p><img src="/images/tfidf/misclf-features.png" alt="Top features for misclassified pages."/></p>
+<p>Unfortunately we can at best get some initial hints as to the reason for misclassification from this figure. Our false positives are very similar to the true positives, in that they are also mostly health, food and recipe pages. One clue may be the presence of words like christmas and halloween in these pages, which may indicate that their content is specific to a particular season or date of the year, and therefore not necessarily recommendable at other times. The picture is similar for the false negatives, though in this case there is nothing at all indicating any difference with true positives. One would probably have to dig a little deeper into individual cases here to see how they may&nbsp;differ.</p>
+<h3>Final&nbsp;thoughts</h3>
+<p>This post barely scratches the surface of how one might go about analyzing the results of a tf-idf transformation in python, and is directed primarily at people who may use it as a black box algorithm without necessarily knowing what&#8217;s inside. There may be many other, and probably better ways of going about this. I nevertheless think it&#8217;s a useful tool to have around. Note that a similar analysis of top features amongst a group of documents could be applied also after clustering the documents first. One could then use the cluster index, instead of the class label, to group documents and plot their top tf-idf tokens to get further insight about the specific characteristics of each&nbsp;cluster.</p>
+  </div><!-- /.entry-content -->
+   <footer class="post-info">
+    Published on <span class="published">June 22, 2015</span><br>
+        Written by <span class="author">Thomas Buhrmann</span><br>
+        Posted in <span class="label label-default"><a href="https://synergenz.github.io/category/data-posts.html">Data Posts</a></span>
+ ~ Tagged 
+        <span class="label label-default"><a href="https://synergenz.github.io/tag/sklearn.html">sklearn</a></span>
+        <span class="label label-default"><a href="https://synergenz.github.io/tag/python.html">python</a></span>
+        <span class="label label-default"><a href="https://synergenz.github.io/tag/classification.html">classification</a></span>
+        <span class="label label-default"><a href="https://synergenz.github.io/tag/tf-idf.html">tf-idf</a></span>
+        <span class="label label-default"><a href="https://synergenz.github.io/tag/kaggle.html">kaggle</a></span>
+        <span class="label label-default"><a href="https://synergenz.github.io/tag/text.html">text</a></span>
+  </footer><!-- /.post-info -->
+  
+</section>
+    <div class="blogItem">
+    <h2>Comments</h2>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'datawerk';
+        var disqus_title = 'Analyzing tf-idf results in&nbsp;scikit-learn';
+        var disqus_identifier = "tfidf-analysis.html";
+        (function() {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            //dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] ||
+             document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>
+        Please enable JavaScript to view the
+        <a href="http://disqus.com/?ref_noscript=datawerk">
+            comments powered by Disqus.
+        </a>
+    </noscript>
+    </div>
+                </div>
+            </div><!-- row-->
+        </div><!-- container -->
+
+        <!-- <div class="push"></div> -->
+    </div> <!-- wrap -->
+
+    <div class="container-fluid aw-footer">
+		<div class="row-centered">
+			<div class="col-sm-3 col-sm-offset-1">
+				<h4>Author</h4>
+				<ul class="list-unstyled my-list-style">
+					<li><a href="http://www.ias-research.net/people/thomas-buhrmann/">Academic Home</a></li>
+					<li><a href="http://github.com/synergenz">Github</a></li>
+					<li><a href="http://www.linkedin.com/in/thomasbuhrmann">LinkedIn</a></li>
+					<li><a href="https://secure.flickr.com/photos/syngnz/">Flickr</a></li>                            
+				</ul>
+			</div>
+			<div class="col-sm-3">
+				<h4>Categories</h4>
+				<ul class="list-unstyled my-list-style">
+					<li><a href="https://synergenz.github.io/category/academia.html">Academia (4)</a></li>
+					<li><a href="https://synergenz.github.io/category/data-apps.html">Data Apps (2)</a></li>
+					<li><a href="https://synergenz.github.io/category/data-posts.html">Data Posts (6)</a></li>
+					<li><a href="https://synergenz.github.io/category/reports.html">Reports (3)</a></li>
+				</ul>
+			</div>
+			<div class="col-sm-3">
+				<h4>Tags</h4>
+                <ul class="tagcloud">
+                        <li class="tag-2"><a href="https://synergenz.github.io/tag/report.html">report</a></li>
+                        <li class="tag-2"><a href="https://synergenz.github.io/tag/r.html">R</a></li>
+                        <li class="tag-2"><a href="https://synergenz.github.io/tag/nosql.html">nosql</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/random-forest.html">random forest</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/neo4j.html">neo4j</a></li>
+                        <li class="tag-1"><a href="https://synergenz.github.io/tag/classification.html">classification</a></li>
+                        <li class="tag-2"><a href="https://synergenz.github.io/tag/kaggle.html">kaggle</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/scraping.html">scraping</a></li>
+                        <li class="tag-2"><a href="https://synergenz.github.io/tag/visualization.html">visualization</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/mongodb.html">mongodb</a></li>
+                        <li class="tag-2"><a href="https://synergenz.github.io/tag/sklearn.html">sklearn</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/java.html">java</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/sql.html">sql</a></li>
+                        <li class="tag-1"><a href="https://synergenz.github.io/tag/smcs.html">smcs</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/titanic.html">titanic</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/svm.html">svm</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/hadoop.html">hadoop</a></li>
+                        <li class="tag-2"><a href="https://synergenz.github.io/tag/graph.html">graph</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/regression.html">regression</a></li>
+                        <li class="tag-2"><a href="https://synergenz.github.io/tag/tf-idf.html">tf-idf</a></li>
+                        <li class="tag-2"><a href="https://synergenz.github.io/tag/d3.html">d3</a></li>
+                        <li class="tag-1"><a href="https://synergenz.github.io/tag/python.html">python</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/big-data.html">big data</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/text.html">text</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/lda.html">lda</a></li>
+                </ul>
+			</div>
+		</div>
+    </div>
+<!-- JavaScript -->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function($) 
+{
+	$("div.collapseheader").click(function () {
+		$header = $(this).children("span").first();
+		$codearea = $(this).children(".input_area");
+		$codearea.slideToggle(500, function () {
+			$header.text(function () {
+				return $codearea.is(":visible") ? "Collapse Code" : "Expand Code";
+			});
+		});
+	});
+
+
+    // $(window).resize(function(){
+    //     var footerHeight = $('.aw-footer').outerHeight();
+    //     var stickFooterPush = $('.push').height(footerHeight);  
+    //     $('.wrap').css({'marginBottom':'-' + footerHeight + 'px'});
+    // });     
+
+    // $(window).resize();
+
+    // $(window).bind("load resize", function() {    
+    //     var footerHeight = 0,
+    //         footerTop = 0,
+    //         $footer = $(".aw-footer");
+
+    //     positionFooter();
+
+    //     function positionFooter() {
+
+    //         footerHeight = $footer.height();
+    //         footerTop = ($(window).scrollTop()+$(window).height()-footerHeight)+"px";
+    //         console.log(footerHeight, footerTop);
+    //         console.log($(document.body).height()+footerHeight, $(window).height());
+
+    //         if ( ($(document.body).height()+footerHeight) < $(window).height()) {
+    //             $footer.css({ position: "absolute" }).css({ top: footerTop });
+    //             console.log("Positioning absolute");
+    //         }
+    //         else {
+    //             $footer.css({ position: "static" });
+    //             console.log("Positioning static");
+    //         }
+    //     }
+
+    //     $(window).scroll(positionFooter).resize(positionFooter);
+    // });
+});
+</script>
+</body>
+</html>

@@ -45,10 +45,10 @@
                                         <!--<li class="divider"></li>
                                         <li class="dropdown-header">Data Science Reports</li>-->
                                         <li >
-                                        <a href="https://synergenz.github.io/activity-data.html">Categorisation of inertial activity&nbsp;data</a>
+                                        <a href="https://synergenz.github.io/p2p-loans.html">Interest rates on <span class="caps">P2P</span>&nbsp;loans</a>
                                         </li>
                                         <li >
-                                        <a href="https://synergenz.github.io/p2p-loans.html">Interest rates on <span class="caps">P2P</span>&nbsp;loans</a>
+                                        <a href="https://synergenz.github.io/activity-data.html">Categorisation of inertial activity&nbsp;data</a>
                                         </li>
                                         <li >
                                         <a href="https://synergenz.github.io/titanic-survival.html">Titanic survival&nbsp;prediction</a>
@@ -83,13 +83,12 @@
 
 <article class="hentry">
     <header> 
-        <span class="entry-title-info">Jun 17 · <a href="https://synergenz.github.io/category/reports.html">Reports</a></span>
-        <h2 class="entry-title entry-title-tight"><a href="https://synergenz.github.io/activity-data.html" rel="bookmark" title="Permalink to Categorisation of inertial activity data">Categorisation of inertial activity&nbsp;data</a></h2> 
+        <span class="entry-title-info">Jun 22 · <a href="https://synergenz.github.io/category/data-posts.html">Data Posts</a></span>
+        <h2 class="entry-title entry-title-tight"><a href="https://synergenz.github.io/tfidf-analysis.html" rel="bookmark" title="Permalink to Analyzing tf-idf results in scikit-learn">Analyzing tf-idf results in&nbsp;scikit-learn</a></h2> 
     </header>
-    <div class="entry-content"> <p>The ubiquity of mobile phones equipped with a wide range of sensors presents interesting opportunities for data mining applications. In this report we aim to find out whether data from accelerometers and gyroscopes can be used to identify physical activities performed by subjects wearing mobile phones on their wrist.</p>
-<p></p>
-<h3>Methods</h3>
-<p>The data used in this analysis is based on the “Human activity recognition using smartphones” data set available from the <span class="caps">UCL</span> Machine Learning Repository [1]. A preprocessed version was downloaded from the Data Analysis online course [2]. The set contains data derived from 3-axial linear acceleration and 3-axial angular velocity ...</p> </div><!-- entry-content -->
+    <div class="entry-content"> <p>In a <a href="https://synergenz.github.io/sklearn-pipelines.html">previous post</a> I have shown how to create text-processing pipelines for machine learning in python using <a href="http://scikit-learn.org/stable/">scikit-learn</a>. The core of such pipelines in many cases is the vectorization of text using the <a href="https://en.wikipedia.org/wiki/Tf%E2%80%93idf">tf-idf</a> transformation. In this post I will show some ways of analysing and making sense of the result of a tf-idf. As an example I will use the same <a href="https://www.kaggle.com/c/stumbleupon">kaggle dataset</a>, namely webpages provided and classified by StumbleUpon as either ephemeral (content that is short-lived) or evergreen (content that can be recommended long after its initial discovery).</p>
+<h3>Tf-idf</h3>
+<p>As explained in the previous post, the tf-idf ...</p> </div><!-- entry-content -->
 </article>
 <article class="hentry">
     <header> 
@@ -173,7 +172,17 @@ The dynamic interaction of limb segments during movements that involve multiple 
 </article>
 <article class="hentry">
     <header> 
-        <span class="entry-title-info">Oct 29 · <a href="https://synergenz.github.io/category/data-apps.html">Data Apps</a></span>
+        <span class="entry-title-info">Nov 06 · <a href="https://synergenz.github.io/category/reports.html">Reports</a></span>
+        <h2 class="entry-title entry-title-tight"><a href="https://synergenz.github.io/activity-data.html" rel="bookmark" title="Permalink to Categorisation of inertial activity data">Categorisation of inertial activity&nbsp;data</a></h2> 
+    </header>
+    <div class="entry-content"> <p>The ubiquity of mobile phones equipped with a wide range of sensors presents interesting opportunities for data mining applications. In this report we aim to find out whether data from accelerometers and gyroscopes can be used to identify physical activities performed by subjects wearing mobile phones on their wrist.</p>
+<p></p>
+<h3>Methods</h3>
+<p>The data used in this analysis is based on the “Human activity recognition using smartphones” data set available from the <span class="caps">UCL</span> Machine Learning Repository [1]. A preprocessed version was downloaded from the Data Analysis online course [2]. The set contains data derived from 3-axial linear acceleration and 3-axial angular velocity ...</p> </div><!-- entry-content -->
+</article>
+<article class="hentry">
+    <header> 
+        <span class="entry-title-info">Nov 06 · <a href="https://synergenz.github.io/category/data-apps.html">Data Apps</a></span>
         <h2 class="entry-title entry-title-tight"><a href="https://synergenz.github.io/dash+.html" rel="bookmark" title="Permalink to Dash+ visualization of running data">Dash+ visualization of running&nbsp;data</a></h2> 
     </header>
     <div class="entry-content"> <p><a href="http://dashplus.herokuapp.com/">Dash+</a> is a python web application I built with <a href="http://flask.pocoo.org/">Flask</a>, which imports Nike+ running data into a NoSQL database (MongoDB) and uses <a href="http://d3js.org/">D3.js</a> to visualize and analyze it. </p>
@@ -181,21 +190,6 @@ The dynamic interaction of limb segments during movements that involve multiple 
 <figure>
 <a href="http://dashplus.herokuapp.com"></a>
 </figure> </div><!-- entry-content -->
-</article>
-<article class="hentry">
-    <header> 
-        <span class="entry-title-info">Oct 29 · <a href="https://synergenz.github.io/category/data-posts.html">Data Posts</a></span>
-        <h2 class="entry-title entry-title-tight"><a href="https://synergenz.github.io/hadoop-distributed-cache.html" rel="bookmark" title="Permalink to Reading from distributed cache in Hadoop">Reading from distributed cache in&nbsp;Hadoop</a></h2> 
-    </header>
-    <div class="entry-content"> <p>The distributed cache can be used to make small files (or jars etc.) available to mapreduce functions locally on each node. This can be useful e.g. when a global stopword list is needed by all mappers for index creation.  Here are two correct ways of reading a file from distributed cache in Hadoop 2. This has changed in the new <span class="caps">API</span> and very few books and tutorials have updated examples.</p>
-<h3>Named File</h3>
-<p>In the driver:</p>
-<div class="highlight"><pre><span class="n">Job</span> <span class="n">job</span> <span class="o">=</span> <span class="n">Job</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="k">new</span> <span class="n">Configuration</span><span class="o">());</span>
-<span class="n">job</span><span class="o">.</span><span class="na">addCacheFile</span><span class="o">(</span><span class="k">new</span> <span class="n">URI</span> <span class="o">(</span><span class="s">"/path/to/file.csv"</span> <span class="o">+</span> <span class="s">"#filelabel"</span><span class="o">));</span>
-</pre></div>
-<p>In the mapper:</p>
-<div class="highlight"><pre><span class="nd">@Override</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setup</span><span class="o">(</span><span class="n">Context</span> <span class="n">context ...</span></pre></div> </div><!-- entry-content -->
 </article>
 <div class="pager">
       <ul>
@@ -227,37 +221,38 @@ The dynamic interaction of limb segments during movements that involve multiple 
 				<ul class="list-unstyled my-list-style">
 					<li><a href="https://synergenz.github.io/category/academia.html">Academia (4)</a></li>
 					<li><a href="https://synergenz.github.io/category/data-apps.html">Data Apps (2)</a></li>
-					<li><a href="https://synergenz.github.io/category/data-posts.html">Data Posts (5)</a></li>
+					<li><a href="https://synergenz.github.io/category/data-posts.html">Data Posts (6)</a></li>
 					<li><a href="https://synergenz.github.io/category/reports.html">Reports (3)</a></li>
 				</ul>
 			</div>
 			<div class="col-sm-3">
 				<h4>Tags</h4>
                 <ul class="tagcloud">
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/java.html">java</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/hadoop.html">hadoop</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/sql.html">sql</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/neo4j.html">neo4j</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/random-forest.html">random forest</a></li>
-                        <li class="tag-0"><a href="https://synergenz.github.io/tag/python.html">python</a></li>
-                        <li class="tag-2"><a href="https://synergenz.github.io/tag/graph.html">graph</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/svm.html">svm</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/titanic.html">titanic</a></li>
                         <li class="tag-2"><a href="https://synergenz.github.io/tag/report.html">report</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/nosql.html">nosql</a></li>
                         <li class="tag-2"><a href="https://synergenz.github.io/tag/r.html">R</a></li>
+                        <li class="tag-2"><a href="https://synergenz.github.io/tag/nosql.html">nosql</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/random-forest.html">random forest</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/neo4j.html">neo4j</a></li>
+                        <li class="tag-1"><a href="https://synergenz.github.io/tag/classification.html">classification</a></li>
                         <li class="tag-2"><a href="https://synergenz.github.io/tag/kaggle.html">kaggle</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/categorisation.html">categorisation</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/lda.html">lda</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/big-data.html">big data</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/sklearn.html">sklearn</a></li>
-                        <li class="tag-2"><a href="https://synergenz.github.io/tag/d3.html">d3</a></li>
-                        <li class="tag-2"><a href="https://synergenz.github.io/tag/visualization.html">visualization</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/regression.html">regression</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/classification.html">classification</a></li>
                         <li class="tag-4"><a href="https://synergenz.github.io/tag/scraping.html">scraping</a></li>
+                        <li class="tag-2"><a href="https://synergenz.github.io/tag/visualization.html">visualization</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/mongodb.html">mongodb</a></li>
+                        <li class="tag-2"><a href="https://synergenz.github.io/tag/sklearn.html">sklearn</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/java.html">java</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/sql.html">sql</a></li>
                         <li class="tag-1"><a href="https://synergenz.github.io/tag/smcs.html">smcs</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/tfidf.html">tfidf</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/titanic.html">titanic</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/svm.html">svm</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/hadoop.html">hadoop</a></li>
+                        <li class="tag-2"><a href="https://synergenz.github.io/tag/graph.html">graph</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/regression.html">regression</a></li>
+                        <li class="tag-2"><a href="https://synergenz.github.io/tag/tf-idf.html">tf-idf</a></li>
+                        <li class="tag-2"><a href="https://synergenz.github.io/tag/d3.html">d3</a></li>
+                        <li class="tag-1"><a href="https://synergenz.github.io/tag/python.html">python</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/big-data.html">big data</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/text.html">text</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/lda.html">lda</a></li>
                 </ul>
 			</div>
 		</div>

@@ -45,10 +45,10 @@
                                         <!--<li class="divider"></li>
                                         <li class="dropdown-header">Data Science Reports</li>-->
                                         <li >
-                                        <a href="https://synergenz.github.io/activity-data.html">Categorisation of inertial activity&nbsp;data</a>
+                                        <a href="https://synergenz.github.io/p2p-loans.html">Interest rates on <span class="caps">P2P</span>&nbsp;loans</a>
                                         </li>
                                         <li >
-                                        <a href="https://synergenz.github.io/p2p-loans.html">Interest rates on <span class="caps">P2P</span>&nbsp;loans</a>
+                                        <a href="https://synergenz.github.io/activity-data.html">Categorisation of inertial activity&nbsp;data</a>
                                         </li>
                                         <li >
                                         <a href="https://synergenz.github.io/titanic-survival.html">Titanic survival&nbsp;prediction</a>
@@ -80,6 +80,21 @@
                 <div class="col-centered col-max col-min col-sm-12 col-md-10 col-lg-10 main-content">
 <section id="content" class="content">
 
+<article class="hentry">
+    <header> 
+        <span class="entry-title-info">Oct 29 · <a href="https://synergenz.github.io/category/data-posts.html">Data Posts</a></span>
+        <h2 class="entry-title entry-title-tight"><a href="https://synergenz.github.io/hadoop-distributed-cache.html" rel="bookmark" title="Permalink to Reading from distributed cache in Hadoop">Reading from distributed cache in&nbsp;Hadoop</a></h2> 
+    </header>
+    <div class="entry-content"> <p>The distributed cache can be used to make small files (or jars etc.) available to mapreduce functions locally on each node. This can be useful e.g. when a global stopword list is needed by all mappers for index creation.  Here are two correct ways of reading a file from distributed cache in Hadoop 2. This has changed in the new <span class="caps">API</span> and very few books and tutorials have updated examples.</p>
+<h3>Named File</h3>
+<p>In the driver:</p>
+<div class="highlight"><pre><span class="n">Job</span> <span class="n">job</span> <span class="o">=</span> <span class="n">Job</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="k">new</span> <span class="n">Configuration</span><span class="o">());</span>
+<span class="n">job</span><span class="o">.</span><span class="na">addCacheFile</span><span class="o">(</span><span class="k">new</span> <span class="n">URI</span> <span class="o">(</span><span class="s">"/path/to/file.csv"</span> <span class="o">+</span> <span class="s">"#filelabel"</span><span class="o">));</span>
+</pre></div>
+<p>In the mapper:</p>
+<div class="highlight"><pre><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setup</span><span class="o">(</span><span class="n">Context</span> <span class="n">context ...</span></pre></div> </div><!-- entry-content -->
+</article>
 <article class="hentry">
     <header> 
         <span class="entry-title-info">Oct 23 · <a href="https://synergenz.github.io/category/reports.html">Reports</a></span>
@@ -153,37 +168,38 @@
 				<ul class="list-unstyled my-list-style">
 					<li><a href="https://synergenz.github.io/category/academia.html">Academia (4)</a></li>
 					<li><a href="https://synergenz.github.io/category/data-apps.html">Data Apps (2)</a></li>
-					<li><a href="https://synergenz.github.io/category/data-posts.html">Data Posts (5)</a></li>
+					<li><a href="https://synergenz.github.io/category/data-posts.html">Data Posts (6)</a></li>
 					<li><a href="https://synergenz.github.io/category/reports.html">Reports (3)</a></li>
 				</ul>
 			</div>
 			<div class="col-sm-3">
 				<h4>Tags</h4>
                 <ul class="tagcloud">
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/java.html">java</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/hadoop.html">hadoop</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/sql.html">sql</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/neo4j.html">neo4j</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/random-forest.html">random forest</a></li>
-                        <li class="tag-0"><a href="https://synergenz.github.io/tag/python.html">python</a></li>
-                        <li class="tag-2"><a href="https://synergenz.github.io/tag/graph.html">graph</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/svm.html">svm</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/titanic.html">titanic</a></li>
                         <li class="tag-2"><a href="https://synergenz.github.io/tag/report.html">report</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/nosql.html">nosql</a></li>
                         <li class="tag-2"><a href="https://synergenz.github.io/tag/r.html">R</a></li>
+                        <li class="tag-2"><a href="https://synergenz.github.io/tag/nosql.html">nosql</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/random-forest.html">random forest</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/neo4j.html">neo4j</a></li>
+                        <li class="tag-1"><a href="https://synergenz.github.io/tag/classification.html">classification</a></li>
                         <li class="tag-2"><a href="https://synergenz.github.io/tag/kaggle.html">kaggle</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/categorisation.html">categorisation</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/lda.html">lda</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/big-data.html">big data</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/sklearn.html">sklearn</a></li>
-                        <li class="tag-2"><a href="https://synergenz.github.io/tag/d3.html">d3</a></li>
-                        <li class="tag-2"><a href="https://synergenz.github.io/tag/visualization.html">visualization</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/regression.html">regression</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/classification.html">classification</a></li>
                         <li class="tag-4"><a href="https://synergenz.github.io/tag/scraping.html">scraping</a></li>
+                        <li class="tag-2"><a href="https://synergenz.github.io/tag/visualization.html">visualization</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/mongodb.html">mongodb</a></li>
+                        <li class="tag-2"><a href="https://synergenz.github.io/tag/sklearn.html">sklearn</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/java.html">java</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/sql.html">sql</a></li>
                         <li class="tag-1"><a href="https://synergenz.github.io/tag/smcs.html">smcs</a></li>
-                        <li class="tag-4"><a href="https://synergenz.github.io/tag/tfidf.html">tfidf</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/titanic.html">titanic</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/svm.html">svm</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/hadoop.html">hadoop</a></li>
+                        <li class="tag-2"><a href="https://synergenz.github.io/tag/graph.html">graph</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/regression.html">regression</a></li>
+                        <li class="tag-2"><a href="https://synergenz.github.io/tag/tf-idf.html">tf-idf</a></li>
+                        <li class="tag-2"><a href="https://synergenz.github.io/tag/d3.html">d3</a></li>
+                        <li class="tag-1"><a href="https://synergenz.github.io/tag/python.html">python</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/big-data.html">big data</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/text.html">text</a></li>
+                        <li class="tag-4"><a href="https://synergenz.github.io/tag/lda.html">lda</a></li>
                 </ul>
 			</div>
 		</div>
