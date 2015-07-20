@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title> Articles in svm tag - datawerk</title>
+          <title>Elegans now features PubMed&nbsp;search - datawerk</title>
         <meta charset="utf-8" />
         <link href="https://synergenz.github.io/theme/css/bootstrap-custom.css" rel="stylesheet"/> 
     	<link href="https://synergenz.github.io/theme/css/pygments.css" rel="stylesheet"/>     
         <link href="https://synergenz.github.io/theme/css/style.css" rel="stylesheet" />
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="author" contents="Thomas Buhrmann"/>  
+  
+
+    <meta name="keywords" contents="datawerk, visualization,d3,neo4j,python,graph,nosql,"/>  
+
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -45,7 +51,13 @@
                                         <!--<li class="divider"></li>
                                         <li class="dropdown-header">Data Science Reports</li>-->
                                         <li >
+                                        <a href="https://synergenz.github.io/p2p-loans.html">Interest rates on <span class="caps">P2P</span>&nbsp;loans</a>
+                                        </li>
+                                        <li >
                                         <a href="https://synergenz.github.io/activity-data.html">Categorisation of inertial activity&nbsp;data</a>
+                                        </li>
+                                        <li >
+                                        <a href="https://synergenz.github.io/titanic-survival.html">Titanic survival&nbsp;prediction</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -54,6 +66,12 @@
                                     <ul class="dropdown-menu" role="menu">
                                         <!--<li class="divider"></li>
                                         <li class="dropdown-header">Data Science Reports</li>-->
+                                        <li >
+                                        <a href="https://synergenz.github.io/elegans.html">C. elegans connectome&nbsp;explorer</a>
+                                        </li>
+                                        <li >
+                                        <a href="https://synergenz.github.io/dash+.html">Dash+ visualization of running&nbsp;data</a>
+                                        </li>
                                     </ul>
                                 </li>
                             </ul>
@@ -66,26 +84,56 @@
         <div class="container main-content">     
             <div class="row row-centered">
                 <div class="col-centered col-max col-min col-sm-12 col-md-10 col-lg-10 main-content">
-<section id="content" class="content">
-<h2>Articles with the svm tag</h2>
-
-<article class="hentry">
-    <header> 
-        <span class="entry-title-info">Nov 06 · <a href="https://synergenz.github.io/category/reports.html">Reports</a></span>
-        <h2 class="entry-title entry-title-tight"><a href="https://synergenz.github.io/activity-data.html" rel="bookmark" title="Permalink to Categorisation of inertial activity data">Categorisation of inertial activity&nbsp;data</a></h2> 
-    </header>
-    <div class="entry-content"> <p>The ubiquity of mobile phones equipped with a wide range of sensors presents interesting opportunities for data mining applications. In this report we aim to find out whether data from accelerometers and gyroscopes can be used to identify physical activities performed by subjects wearing mobile phones on their wrist.</p>
-<p></p>
-<h3>Methods</h3>
-<p>The data used in this analysis is based on the “Human activity recognition using smartphones” data set available from the <span class="caps">UCL</span> Machine Learning Repository [1]. A preprocessed version was downloaded from the Data Analysis online course [2]. The set contains data derived from 3-axial linear acceleration and 3-axial angular velocity ...</p> </div><!-- entry-content -->
-</article>
-<div class="pager">
-      <ul>
-                        <li class="previous disabled"><a>← Previous</a></li>
-                        <li class="next disabled"><a>Next →</a></li>
-      </ul>
+<section id="content" class="article content">
+  <header>
+      <span class="entry-title-info">Jul 20 · <a href="https://synergenz.github.io/category/data-posts.html">Data Posts</a></span>
+    <h2 class="entry-title entry-title-tight">Elegans now features PubMed&nbsp;search</h2>
+ 
+  </header>
+  
+     
+  <div class="entry-content">
+    <p>I&#8217;ve added a new PubMed search feature to <a href="https://elegans.herokuapp.com/"><em>Elegans</em></a>, the visual worm brain explorer. The idea here is to show the network of <em>C. Elegans</em> neurons that get mentioned in more than n papers on PubMed, in the context of a given search query. So, for example, if one is interested in the worm&#8217;s chemotaxis behaviour, one would type in &#8216;chemotaxis&#8217; and choose the citation threshold n. Initiating the search will then return the neurons that get mentioned in at least n papers along with the word &#8216;chemotaxis&#8217;. The search is in fact performed once for each neuron class, and the results collated. One can further select to either show the network of only those neurons returned by the search, or use the resulting neurons to populate the subgraph search panel, which contains additional filtering&nbsp;options.</p>
+<p><img src="/images/elegans/pubmed.png" alt="Pubmed search in Elegans."/></p>
+  </div><!-- /.entry-content -->
+   <footer class="post-info">
+    Published on <span class="published">July 20, 2015</span><br>
+        Written by <span class="author">Thomas Buhrmann</span><br>
+        Posted in <span class="label label-default"><a href="https://synergenz.github.io/category/data-posts.html">Data Posts</a></span>
+ ~ Tagged 
+        <span class="label label-default"><a href="https://synergenz.github.io/tag/visualization.html">visualization</a></span>
+        <span class="label label-default"><a href="https://synergenz.github.io/tag/d3.html">d3</a></span>
+        <span class="label label-default"><a href="https://synergenz.github.io/tag/neo4j.html">neo4j</a></span>
+        <span class="label label-default"><a href="https://synergenz.github.io/tag/python.html">python</a></span>
+        <span class="label label-default"><a href="https://synergenz.github.io/tag/graph.html">graph</a></span>
+        <span class="label label-default"><a href="https://synergenz.github.io/tag/nosql.html">nosql</a></span>
+  </footer><!-- /.post-info -->
+  
+</section>
+    <div class="blogItem">
+    <h2>Comments</h2>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'datawerk';
+        var disqus_title = 'Elegans now features PubMed&nbsp;search';
+        var disqus_identifier = "elegans-pubmed.html";
+        (function() {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            //dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] ||
+             document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>
+        Please enable JavaScript to view the
+        <a href="http://disqus.com/?ref_noscript=datawerk">
+            comments powered by Disqus.
+        </a>
+    </noscript>
     </div>
-</section><!-- content -->
                 </div>
             </div><!-- row-->
         </div><!-- container -->
