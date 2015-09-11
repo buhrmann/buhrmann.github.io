@@ -1,9 +1,11 @@
 var experience = [
-{"from":"2001-10-01", "to":"2002-10-01",  "label":"Research Assistant", "where":"Fraunhofer Institute IAIA", "place": "Sankt Augustin, Germany"},
-{"from":"2003-10-01", "to":"2006-11-01",  "label":"Teaching Assistant, Web Master", "where":"University of Sussex", "place":"Brighton UK"},
+{"from":"2001-10-01", "to":"2002-10-01",  "label":"VR Research Assistant", "where":"Fraunhofer Institute IAIA", "place": "Sankt Augustin, Germany"},
+{"from":"2003-10-01", "to":"2006-11-01",  "label":"Teaching Assistant AI", "where":"University of Sussex", "place":"Brighton UK"},
 {"from":"2007-06-01", "to":"2009-03-01",  "label":"Behaviour Engineer", "where":"NaturalMotion", "place":"Oxford, UK"},
 {"from":"2009-03-01", "to":"2011-06-01",  "label":"Lead Behaviour Engineer", "where":"NaturalMotion", "place":"Oxford, UK"},
-{"from":"2011-06-01", "to":"2014-12-30", "label":"Postdoctoral researcher", "where":"Ikerbasque Foundation", "place":"San Sebastian, Spain"}
+{"from":"2011-06-01", "to":"2014-12-30", "label":"Postdoctoral computational modeller", "where":"Ikerbasque Foundation", "place":"San Sebastian, Spain"},
+{"from":"2015-01-01", "to":"2015-12-30", "label":"Social Network Analyst", "where":"University of the Basque Country", "place":"San Sebastian, Spain"},
+{"from":"2015-06-01", "to":"2015-12-30", "label":"Frelance Data Scientist", "where":"voopter.com.br", "place":"Madrid, Spain"}
 ];
 
 var education = [
@@ -23,19 +25,19 @@ var dateFormat = d3.time.format("%Y-%m-%d");
 // Wrapper
 //---------------------------------------------------------------------------------------------------
 timelineFromJson = function(colSc) {
-    draw(education, "#timeline-ed", colSc);
-    draw(experience, "#timeline-exp", colSc);
+    draw(education, "#timeline-ed", colSc, 200, 1.2);
+    draw(experience, "#timeline-exp", colSc, 300, 2.25);
 }
 
 //---------------------------------------------------------------------------------------------------
-draw = function(data, elem, colSc) {
+draw = function(data, elem, colSc, h, m) {
     
 	data.forEach(function(d){ 
         d.from = dateFormat.parse(d.from); 
         d.to = dateFormat.parse(d.to); 
     });
 
-	timeline(elem, data, colSc);
+	timeline(elem, data, colSc, h, m);
 }
 
 //---------------------------------------------------------------------------------------------------
@@ -91,12 +93,12 @@ function showPeriodPopover (d) {
 //---------------------------------------------------------------------------------------------------
 // d3 chart
 //---------------------------------------------------------------------------------------------------
-timeline = function(id, dat, colSc) {
+timeline = function(id, dat, colSc, h, m) {
     
     var outFormat = d3.time.format("%Y-%m-%d");
-    var margin = {top: 10, right: 40, bottom: 30, left: 30};
+    var margin = {top: 20*m, right: 40*m, bottom: 30, left: 30};
     width = 800 - margin.left - margin.right;
-    height = 200 - margin.top - margin.bottom;
+    height = h - margin.top - margin.bottom;
 
     renderLabels = 0;
 
