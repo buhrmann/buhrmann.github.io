@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://buhrmann.github.io/index.html</loc>
-<lastmod>2015-09-11T14:12:55-00:00</lastmod>
+<lastmod>2015-09-15T12:38:56-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://buhrmann.github.io/archives.html</loc>
-<lastmod>2015-09-11T14:12:55-00:00</lastmod>
+<lastmod>2015-09-15T12:38:56-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://buhrmann.github.io/tags.html</loc>
-<lastmod>2015-09-11T14:12:55-00:00</lastmod>
+<lastmod>2015-09-15T12:38:56-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://buhrmann.github.io/categories.html</loc>
-<lastmod>2015-09-11T14:12:55-00:00</lastmod>
+<lastmod>2015-09-15T12:38:56-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -48,6 +48,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://buhrmann.github.io/elegans-pubmed.html</loc>
 <lastmod>2015-07-20T00:00:00+02:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://buhrmann.github.io/voopter.html</loc>
+<lastmod>2015-07-14T00:00:00+02:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -256,6 +263,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>https://buhrmann.github.io/tag/exploratory.html</loc>
+<lastmod>2015-07-14T00:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>https://buhrmann.github.io/tag/graph.html</loc>
 <lastmod>2015-07-20T00:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
@@ -299,7 +313,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://buhrmann.github.io/tag/sql.html</loc>
-<lastmod>2015-02-02T00:00:00+00:09</lastmod>
+<lastmod>2015-07-14T00:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -348,7 +362,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://buhrmann.github.io/tag/r.html</loc>
-<lastmod>2014-11-06T18:27:37+00:09</lastmod>
+<lastmod>2015-07-14T00:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
