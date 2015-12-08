@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://buhrmann.github.io/index.html</loc>
-<lastmod>2015-09-15T13:19:20-00:00</lastmod>
+<lastmod>2015-12-08T13:28:22-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://buhrmann.github.io/archives.html</loc>
-<lastmod>2015-09-15T13:19:20-00:00</lastmod>
+<lastmod>2015-12-08T13:28:22-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://buhrmann.github.io/tags.html</loc>
-<lastmod>2015-09-15T13:19:20-00:00</lastmod>
+<lastmod>2015-12-08T13:28:22-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://buhrmann.github.io/categories.html</loc>
-<lastmod>2015-09-15T13:19:20-00:00</lastmod>
+<lastmod>2015-12-08T13:28:22-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -41,6 +41,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://buhrmann.github.io/</loc>
 <lastmod>2014-10-12T13:25:00+02:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://buhrmann.github.io/p2p-loans.html</loc>
+<lastmod>2015-12-08T12:44:15+01:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -111,13 +118,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://buhrmann.github.io/spinal-coordination.html</loc>
 <lastmod>2014-11-13T00:00:00+01:00</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>https://buhrmann.github.io/p2p-loans.html</loc>
-<lastmod>2014-11-06T18:27:37+01:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -194,7 +194,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://buhrmann.github.io/category/reports.html</loc>
-<lastmod>2014-11-06T18:27:37+00:09</lastmod>
+<lastmod>2015-12-08T12:44:15+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -250,7 +250,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://buhrmann.github.io/tag/regression.html</loc>
-<lastmod>2014-11-06T18:27:37+00:09</lastmod>
+<lastmod>2015-12-08T12:44:15+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -348,7 +348,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://buhrmann.github.io/tag/report.html</loc>
-<lastmod>2014-11-06T18:27:37+00:09</lastmod>
+<lastmod>2015-12-08T12:44:15+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -397,7 +397,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://buhrmann.github.io/tag/r.html</loc>
-<lastmod>2015-09-15T00:00:00+00:09</lastmod>
+<lastmod>2015-12-08T12:44:15+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -418,7 +418,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://buhrmann.github.io/author/thomas-buhrmann.html</loc>
-<lastmod>2015-09-15T00:00:00+00:09</lastmod>
+<lastmod>2015-12-08T12:44:15+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

@@ -7,6 +7,7 @@
     	<link href="https://buhrmann.github.io/theme/css/pygments.css" rel="stylesheet"/>     
         <link href="https://buhrmann.github.io/theme/css/style.css" rel="stylesheet" />
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="shortcut icon" type="image/png" href="https://buhrmann.github.io/theme/css/logo.png">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta name="author" contents="Thomas Buhrmann"/>  
@@ -89,14 +90,14 @@
                 <div class="col-centered col-max col-min col-sm-12 col-md-10 col-lg-10 main-content">
 <section id="content" class="article content">
   <header>
-      <span class="entry-title-info">Nov 06 · <a href="https://buhrmann.github.io/category/reports.html">Reports</a></span>
+      <span class="entry-title-info">Dec 08 · <a href="https://buhrmann.github.io/category/reports.html">Reports</a></span>
     <h2 class="entry-title entry-title-tight">Interest rates on <span class="caps">P2P</span>&nbsp;loans</h2>
  
   </header>
   
      
   <div class="entry-content">
-    <p>Like other peer-to-peer services, the <a href="https://www.lendingclub.com/home.action">Lending Club</a> aims to directly connect producers and consumers, or in this case borrowers and lenders, by cutting out the middleman. Borrowers apply for loans online and provide details about the desired loan as well their financial status (such as <span class="caps">FICO</span> score). Lenders use the information provided to choose which loans to invest in. The Lending Club, finally, uses a <a href="https://www.lendingclub.com/public/how-we-set-interest-rates.action">proprietary algorithm</a> to determine the interest charged on an applicant’s loan. Given the secret nature of this process, a borrower or lender might be interested in which variables, beside the obvious <span class="caps">FICO</span> credit score, influence the final interest rate and how strong this influence is. It is the aim of this analysis to identify such&nbsp;associations.</p>
+    <p>In this post I will look at linear regression to model the process determining interest rate on peer-to-peer loans provided by the <a href="https://www.lendingclub.com/home.action">Lending club</a>. Like other peer-to-peer services, the Lending Club aims to directly connect producers and consumers, or in this case borrowers and lenders, by cutting out the middleman. Borrowers apply for loans online and provide details about the desired loan as well their financial status (such as their <span class="caps">FICO</span> score). Lenders use the information provided to choose which loans to invest in. The Lending Club, finally, uses a <a href="https://www.lendingclub.com/public/how-we-set-interest-rates.action">proprietary algorithm</a> to determine the interest charged on an applicant’s loan. Given the secret nature of this process, a borrower or lender might be interested in which variables, beside the obvious <span class="caps">FICO</span> credit score, influence the final interest rate and how strong this influence is. It is the aim of this analysis to identify such associations. The goal of the regression modelling is therefore more inferential than&nbsp;predictive. </p>
 <figure>
 <img src="/images/p2ploans/lendingclub.jpg" alt="Fico score analysis"/>
 </figure>
@@ -107,22 +108,37 @@
 <h3>Summary of&nbsp;data</h3>
 <p>Besides a loan’s interest rate, the data set analyzed here contains information about the amount requested and the amount eventually funded by investors (1000$-35000$), the length of the loan (36 or 60 months), and its purpose (the majority went towards debt consolidation or to pay off credit cards). Information about the applicant included his or her duration of employment, state of residence, information about home ownership (the majority either renting or having a mortgage), debt to income ratio, monthly income, <span class="caps">FICO</span> score, number of open credit lines, revolving credit balance, and the number of inquiries made in the last 6 months. In total the set included information about 2500 loans, out of which 79 contained missing data (most in employment length). Given this relatively small number, and the relatively large set, the corresponding data was simply&nbsp;discarded.</p>
 <p><span class="caps">FICO</span> scores were transformed from a 38-level factor (the lowest being [640-644] and the highest [830-834]) to mean values for each range. The number of recent loan inquiries showed a Poisson- or exponential-like distribution. Since the kinds of analyses performed on the data&#8212;such as linear regression&#8212;might be sensitive to data not being normally distributed, we created a new factor variable with only two levels: 0 inquiries (1213 data points) and 1-9 inquiries (1208 data&nbsp;points).</p>
-<p>Histograms of quantitative variables indicated that the distributions of monthly incomes, <span class="caps">FICO</span> score, revolving credit balance and number of open credit lines were not normal, and more specifically right-skewed to different degrees. While log<sub>10</sub> transformation generally brought the distributions closer to normal (at least visually), the results of a Shapiro test [2] indicated that the null-hypothesis of normal distribution still needed to be rejected. Inspection of normal <span class="caps">QQ</span>-plots, however, indicated fairly normal distributions across a wide range centered at the means of most variables. While removal of outliers (e.g. monthly incomes greater than 4 or 5 standard deviations from mean) improved normality, in the remaining analysis the whole data set was&nbsp;used.</p>
-<p>The histogram of the interest rate variable showed a bimodal distribution, suggestive of a superposition of two separate distributions. While none of the factors separated these, when interest rate histograms were plotted for different ranges of the <span class="caps">FICO</span> variable (by cutting the latter at quantiles) normal-like distributions could be identified. The shift in interest rate mean as a function of <span class="caps">FICO</span> score indicates that for very high <span class="caps">FICO</span> scores, relatively low interest rates become disproportionally more&nbsp;probable.</p>
+<p>Histograms of quantitative variables indicated that the distributions of monthly incomes, <span class="caps">FICO</span> score, revolving credit balance and number of open credit lines were not normal, and more specifically right-skewed to different degrees. While log<sub>10</sub> transformation generally brought the distributions closer to normal (at least visually), the results of a Shapiro test [2] indicated that the null-hypothesis of normal distribution still needed to be rejected. Inspection of normal <span class="caps">QQ</span>-plots, however, indicated fairly normal distributions across a wide range centered around the means of most variables. While removal of outliers (e.g. monthly incomes greater than 4 or 5 standard deviations from mean) further improved normality, in the remaining analysis the whole data set was&nbsp;used.</p>
+<p>The histogram of the interest rate variable showed a bimodal distribution, suggestive of a superposition of two separate distributions (see Figure 1, left). While none of the factors separated these, when interest rate histograms were plotted for different ranges of the <span class="caps">FICO</span> variable (by cutting the latter at quantiles) two more normal-like distributions could be identified (Figure 1, right). The shift in interest rate mean as a function of <span class="caps">FICO</span> score indicates that for very high <span class="caps">FICO</span> scores, relatively low interest rates become disproportionally more&nbsp;probable.</p>
+<figure>
+<img src="/images/p2ploans/IntRateVsFico.png" alt="Interest rate vs. Fico"/>
+<figcaption  class="capCenter">Figure 1: Distribution of interest rates. Left: overall distribution. Right: distribution separated into loans for applicants with <span class="caps">FICO</span> scores smaller than the 3rd quartile of 727 points (blue), and those with higher <span class="caps">FICO</span> scores (red).</figcaption>
+</figure>
+
 <h3>Exploratory&nbsp;analysis</h3>
 <p>Since intuitively we know that interest rate should correlate strongly with <span class="caps">FICO</span> scores, we examined the associations between the two, as well as those between either and third&nbsp;variables.</p>
-<p>Box plots of interest rate and <span class="caps">FICO</span> scores by factor variables showed that only two factors seemed to influence these variables. Loan length had a significant effect on interest rate (p-value of t-test &lt; 2.2e<sup>-16</sup>, effect size of 4.24%), but not on <span class="caps">FICO</span> scores (p-value=0.41). The number of inquiries (two-level factor) had significant effects on the means of both variables (p &lt; 2.2e<sup>-16</sup> and p = <sup>1.6e-5</sup>), but the effect size was interesting only in the case of interest rate&nbsp;(1.6%).</p>
-<p>Using their correlation matrix, as well as pair-wise scatter plots with linear models fitted, we aimed to reduce the set of quantitative variables by discarding those (except interest rate and <span class="caps">FICO</span> score) that showed high correlations amongst&nbsp;themselves.</p>
+<p>Box plots of interest rate and <span class="caps">FICO</span> scores by factor variables showed that only two factors seemed to influence these variables. Loan length had a significant effect on interest rate (p-value of t-test &lt; 2.2e<sup>-16</sup>, effect size of 4.24%), but not on <span class="caps">FICO</span> scores (p-value=0.41). The number of inquiries (two-level factor) had significant effects on the means of both variables (p &lt; 2.2e<sup>-16</sup> and p = <sup>1.6e-5</sup>), but the effect size was interesting only in the case of interest rate (1.6%). The latter effect comes at no surprise, given that a previous inquiry indicates previous rejection of credit application, itself a sign of reduced credit-worthiness. The effect of loan length and number of credit inquiries on interest rates is summarized in Figure 2&nbsp;below.</p>
+<figure>
+<img src="/images/p2ploans/IntRateFactorBoxes.png" alt="Interest rate vs. loan length and number of inquiries"/>
+<figcaption  class="capCenter">Figure 2: Boxplots of interest rate vs. loan length and the number of previous credit inquiries. </figcaption>
+</figure>
+
+<p>Using their correlation matrix, as well as pair-wise scatter plots with linear models fitted, we aimed to reduce the set of quantitative variables by discarding those (except interest rate and <span class="caps">FICO</span> score) that showed high correlations amongst themselves. The correlation of quantitative predictors is shown in Figure&nbsp;3.</p>
+<figure>
+<img src="/images/p2ploans/cormat.png" alt="Correlation matrix of quantiative predictors."/>
+<figcaption  class="capCenter">Figure 3: Correlation matrix of quantiative predictors. Color codes for Pearson correlation between variables, which is also presented numerically. </figcaption>
+</figure>
+
 <p>First we eliminated the amount funded by investors. This is justified as a) we are interested here only in the resulting interest rate, not the size of the eventual loans, and b) for most applications the eventual loan equalled the amount requested, i.e. a strong linear relationship (with slope 1) existed between the two (linear regression resulted in adjusted coefficient of determination R<sup>2</sup>=0.94, i.e. approx. 94% variance&nbsp;explained).</p>
 <p>The correlation matrix further showed an association between monthly income and loan amount requested (Pearson correlation R = 0.47; linear regression with adj. R<sup>2</sup> = 0.23 and p &lt; 2.2e<sup>-16</sup>). This is not surprising as we would expect people with higher incomes to be able to afford larger loans. To avoid confounders we also rejected monthly income as an independent variable in further&nbsp;models.</p>
 <p>Of the remaining four covariates (excluding <span class="caps">FICO</span>), three are related to the applicant&#8217;s current debt. In particular, correlation analysis revealed that the number of open credit lines correlates (relatively weakly) with both debt to income ratio (R = 0.38) and revolving credit balance (0.34). We therefore use only the first to stand in for the overall debt&nbsp;burden.</p>
 <p>In summary, we consider as quantitative covariates in the statistical model only the amount requested, open credit lines and the <span class="caps">FICO</span> score. A <span class="caps">PCA</span> analysis confirms that these are indeed relatively independent (see Figure 1). The variable for open credit lines is aligned mostly with the first principal component, <span class="caps">FICO</span> score with the second, and the amount requested falls in between the other two (i.e. they are not orthogonal, but far from parallel in the space of the principal&nbsp;components).</p>
 <figure>
 <img src="/images/p2ploans/pca.png" alt="PCA"/>
-<figcaption  class="capCenter">Figure 1: Biplot of principal component analysis of the data set containing only the selected three covariates. Data points (color-coded by the loan amount factor) and covariate directions are plotted in the space of the first two principal components. Ellipses contain with 68% probability the points belonging to each level of the loan amount. </figcaption>
+<figcaption  class="capCenter">Figure 1: Biplot of principal component analysis of the data set containing only the selected three covariates. Data points (color-coded by the loan length factor) and covariate directions are plotted in the space of the first two principal components. Ellipses contain with 68% probability the points belonging to each level of the loan length. </figcaption>
 </figure>
 
-<p>In addition we see that loans of different amount are slightly but significantly separated in <span class="caps">PCA</span> space. Longer loans can usually be found in the direction of larger amounts and higher <span class="caps">FICO</span> score, for example. A <span class="caps">PCA</span> using all covariates (not shown) confirms our above finding that monthly income and the amount requested largely capture the same variance in the data (the projections in <span class="caps">PCA</span> space are almost parallel), further justifying our exclusion of the former. Equally, the number of open credit lines captures almost the variance as the revolving credit balance. Finally, Debt to income ratio in <span class="caps">PCA</span> space is almost parallel but points in the opposite direction from <span class="caps">FICO</span> score, indicating that the former is probably a strong determining factor in the computation of the latter and can therefore also be excluded without losing much of the&nbsp;variance.</p>
+<p>In addition we see that loans of different duration are slightly but significantly separated in <span class="caps">PCA</span> space. Longer loans can usually be found in the direction of larger amounts and higher <span class="caps">FICO</span> score, for example. A <span class="caps">PCA</span> using all covariates (not shown) confirms our above finding that monthly income and the amount requested largely capture the same variance in the data (the projections in <span class="caps">PCA</span> space are almost parallel), further justifying our exclusion of the former. Equally, the number of open credit lines approx. captures the same variance as the revolving credit balance. Finally, debt to income ratio in <span class="caps">PCA</span> space is almost parallel but points in the opposite direction from <span class="caps">FICO</span> score, indicating that the former is probably a strong determining factor in the computation of the latter and can therefore also be excluded without losing much of the observed&nbsp;variance.</p>
 <p>The exploratory analysis can be summarised by the following relationships between interest rate and retained&nbsp;covariates:</p>
 <p>Factors:<ul>
 <li>The longer the loan, the higher the&nbsp;interest.</li>
@@ -152,11 +168,12 @@ IR = LL_{36} + b_1 log_{10}(FICO) + b_2(Amount) + b_3(LL_{60}) + e
 <figcaption  class="capCenter">Figure 3: Histogram and density of residuals for the simple univariate linear regression (left) and the full model (right). Clearly, the residuals of the full model are close to normal distributed, but not those of the simpler model.</figcaption>
 </figure>
 
-<p>Whereas the simple model accounted for only 50.65% of the variance in the data, the full model captured 75.18% (R<sup>2</sup>=0.75, the significance of associations being p &lt; 2.2e<sup>-16</sup>). The added covariates did not however change the sign nor much the value of the resulting coefficients (<span class="caps">LL</span><sub>36</sub>=427.3, b<sub>1</sub>=-146.2, b<sub>2</sub>=0.00014, b<sub>3</sub>=3.3). We also checked whether inclusion of the number of open credit lines or the number of recent inquiries in the model would improve the result even further, but the change in explained variance was small (+2.2%). Allowing for interactions between covariates in the full model also did not result in better fit. Since the distributions of most variables in the data set were not perfectly normal even after transforming (see histograms in Figure 2), we also tested whether non-linear and robust forms of regression would perform better. But neither a generalized linear model (glm in R [2]) nor a robust regression using an M-estimator (rlm in R [3]) produced significantly different&nbsp;coefficients.</p>
+<p>Whereas the simple model accounted for only 50.65% of the variance in the data, the full model captured 75.18% (R<sup>2</sup>=0.75, the significance of associations being p &lt; 2.2e<sup>-16</sup>). The added covariates did not however change the sign nor much the value of the resulting coefficients (<span class="caps">LL</span><sub>36</sub>=427.3, b<sub>1</sub>=-146.2, b<sub>2</sub>=0.00014, b<sub>3</sub>=3.3). The coefficient measuring the influence of the Fico score, for example, changed by 4% only. We also checked whether inclusion of the number of open credit lines, the number of recent inquiries, or the debt to income ratio in the model would improve the result even further. But the change in explained variance was small (+2.2%) after adding these measures of debt burden. Again coefficients did not change significantly either, indicating that the additional variables do not act as confounders of <span class="caps">FICO</span> score, which was a possibility since debt burden is already taken into account in the determination of the <span class="caps">FICO</span> score. Allowing for interactions between covariates in the full model also did not result in better fit. Since the distributions of most variables in the data set were not perfectly normal even after transforming (see histograms in Figure 2), we also tested whether non-linear and robust forms of regression would perform better. But neither a generalized linear model (glm in R [2]) nor a robust regression using an M-estimator (rlm in R [3]) produced significantly different&nbsp;coefficients.</p>
 <p>In the final model, a change of one unit in log<sub>10</sub> <span class="caps">FICO</span> score corresponds to a change of -146.2% (95% confidence interval: -142,-152) in interest rate over the base rate of 427.3% (<span class="caps">CI</span>: 416, 438). So for example, the interest rate for a 10000$ loan over 36 months would be 12.1% for the average reported <span class="caps">FICO</span> score of 707, and would decrease by 0.89% for an additional 10 points of the <span class="caps">FICO</span> score. An increase in the size of the loan by 1000$ corresponds to an increase of 0.14% in interest rate (<span class="caps">CI</span> of b<sub>2</sub>: 0.00013, 0.00015). Increasing the length of the loan to 60 months would result in an additional 3.3% of interest (<span class="caps">CI</span>: 3.1,&nbsp;3.52).</p>
 <h3>Conclusions</h3>
-<p>Our results show a significant negative association between interest rates and <span class="caps">FICO</span> score, modulated by positive associations with loan amount and duration. Due to the log<sub>10</sub> transformation, model estimates are non-linear with respect to <span class="caps">FICO</span> score. Though this makes interpretation of the model rather unintuitive, the associations are in the direction one would&nbsp;expect.</p>
-<p>It should be kept in mind that the analysis only applies to the peer-to-peer loans issues through the Lending Club. Loans in general, e.g. those offered by banks, might follow a different pattern. While the model presented here would allow interested individuals to get an idea of what interest rates to expect given a desired loan and credit history, further work would be needed if accurate predictions are required (e.g. when evaluating what kind of loans to include in a lender’s portfolio). Also, the data analyzed here does not serve to verify whether peer-to-peer loans provided through the Lending Club are indeed cheaper than those offered by banks, as the website&nbsp;claims.</p>
+<p>Our results show a significant negative association between interest rates and <span class="caps">FICO</span> score, modulated by positive associations with loan amount and duration. Due to the log<sub>10</sub> transformation, model estimates are non-linear with respect to <span class="caps">FICO</span> score. Though this makes interpretation of the model less intuitive, the associations are in the direction one would&nbsp;expect.</p>
+<p>It should be kept in mind that the analysis only applies to the peer-to-peer loans issued through the Lending Club. Loans in general, e.g. those offered by traditional banks, might follow a different pattern. While the model presented here would allow interested individuals to get an idea of what interest rates to expect given a desired loan and credit history, further work would be needed if accurate predictions are required (e.g. when evaluating what kind of loans to include in a lender’s portfolio). Also, the data analyzed here does not serve to verify whether peer-to-peer loans provided through the Lending Club are indeed cheaper than those offered by banks, as the website&nbsp;claims. </p>
+<p>The main goal of the regression modelling was inferential, identifying significant associations between dependent variables describing the loan applicant and resulting interest rate. In this regard, we have found that <span class="caps">FICO</span> score, loan length and requested amount are not confounders, even though it is certainly true that applicants with better <span class="caps">FICO</span> score can afford, and often will apply for larger loans. Also, additional measures of debt burden do not ncessarily act as confounders for <span class="caps">FICO</span> score, even if they&#8217;re likely to be determining factors in the calculation of the latter (if the goal was accurate prediction of interest only, inclusion of these additional variables would likely lead to small increases in performance though). More work would have to be done to provide a complete causal story (such as randomized tests, or stratified analysis) for the determination of interest&nbsp;rate.</p>
 <p>As noted, none of the variables in the data set were normally distributed, something that could not be remedied by log transformation (or indeed other transforms, such as square roots etc.). It is possible that other non-linear or robust methods would have been more appropriate. Nevertheless, residuals after linear regression, according to histograms and <span class="caps">QQ</span>-plots, were approximately normal, indicating that a linear regression might not have been totally&nbsp;unwarranted.</p>
 <h3>References</h3>
 <ol class="bib">
@@ -169,7 +186,7 @@ IR = LL_{36} + b_1 log_{10}(FICO) + b_2(Amount) + b_3(LL_{60}) + e
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></p>
   </div><!-- /.entry-content -->
    <footer class="post-info">
-    Published on <span class="published">November 06, 2014</span><br>
+    Published on <span class="published">December 08, 2015</span><br>
         Written by <span class="author">Thomas Buhrmann</span><br>
         Posted in <span class="label label-default"><a href="https://buhrmann.github.io/category/reports.html">Reports</a></span>
  ~ Tagged 
@@ -233,36 +250,36 @@ IR = LL_{36} + b_1 log_{10}(FICO) + b_2(Amount) + b_3(LL_{60}) + e
 			<div class="col-sm-3">
 				<h4>Tags</h4>
                 <ul class="tagcloud">
-                        <li class="tag-2"><a href="https://buhrmann.github.io/tag/kaggle.html">kaggle</a></li>
-                        <li class="tag-2"><a href="https://buhrmann.github.io/tag/graph.html">graph</a></li>
-                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/regression.html">regression</a></li>
-                        <li class="tag-2"><a href="https://buhrmann.github.io/tag/d3.html">d3</a></li>
-                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/sna.html">sna</a></li>
-                        <li class="tag-1"><a href="https://buhrmann.github.io/tag/visualization.html">visualization</a></li>
-                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/big-data.html">big data</a></li>
-                        <li class="tag-2"><a href="https://buhrmann.github.io/tag/nosql.html">nosql</a></li>
                         <li class="tag-4"><a href="https://buhrmann.github.io/tag/networks.html">networks</a></li>
-                        <li class="tag-2"><a href="https://buhrmann.github.io/tag/report.html">report</a></li>
-                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/random-forest.html">random forest</a></li>
-                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/java.html">java</a></li>
-                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/flume.html">flume</a></li>
-                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/shiny.html">shiny</a></li>
-                        <li class="tag-2"><a href="https://buhrmann.github.io/tag/smcs.html">smcs</a></li>
-                        <li class="tag-3"><a href="https://buhrmann.github.io/tag/tf-idf.html">tf-idf</a></li>
-                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/exploratory.html">exploratory</a></li>
-                        <li class="tag-3"><a href="https://buhrmann.github.io/tag/sql.html">sql</a></li>
-                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/svm.html">svm</a></li>
-                        <li class="tag-3"><a href="https://buhrmann.github.io/tag/neo4j.html">neo4j</a></li>
-                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/mongodb.html">mongodb</a></li>
-                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/scraping.html">scraping</a></li>
-                        <li class="tag-2"><a href="https://buhrmann.github.io/tag/classification.html">classification</a></li>
-                        <li class="tag-3"><a href="https://buhrmann.github.io/tag/hadoop.html">hadoop</a></li>
                         <li class="tag-4"><a href="https://buhrmann.github.io/tag/titanic.html">titanic</a></li>
-                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/text.html">text</a></li>
                         <li class="tag-4"><a href="https://buhrmann.github.io/tag/lda.html">lda</a></li>
-                        <li class="tag-1"><a href="https://buhrmann.github.io/tag/python.html">python</a></li>
-                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/hive.html">hive</a></li>
+                        <li class="tag-3"><a href="https://buhrmann.github.io/tag/tf-idf.html">tf-idf</a></li>
+                        <li class="tag-3"><a href="https://buhrmann.github.io/tag/hadoop.html">hadoop</a></li>
+                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/flume.html">flume</a></li>
+                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/text.html">text</a></li>
                         <li class="tag-3"><a href="https://buhrmann.github.io/tag/sklearn.html">sklearn</a></li>
+                        <li class="tag-3"><a href="https://buhrmann.github.io/tag/sql.html">sql</a></li>
+                        <li class="tag-2"><a href="https://buhrmann.github.io/tag/smcs.html">smcs</a></li>
+                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/shiny.html">shiny</a></li>
+                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/mongodb.html">mongodb</a></li>
+                        <li class="tag-3"><a href="https://buhrmann.github.io/tag/neo4j.html">neo4j</a></li>
+                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/scraping.html">scraping</a></li>
+                        <li class="tag-2"><a href="https://buhrmann.github.io/tag/graph.html">graph</a></li>
+                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/hive.html">hive</a></li>
+                        <li class="tag-2"><a href="https://buhrmann.github.io/tag/classification.html">classification</a></li>
+                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/exploratory.html">exploratory</a></li>
+                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/sna.html">sna</a></li>
+                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/big-data.html">big data</a></li>
+                        <li class="tag-1"><a href="https://buhrmann.github.io/tag/python.html">python</a></li>
+                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/java.html">java</a></li>
+                        <li class="tag-2"><a href="https://buhrmann.github.io/tag/report.html">report</a></li>
+                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/svm.html">svm</a></li>
+                        <li class="tag-2"><a href="https://buhrmann.github.io/tag/d3.html">d3</a></li>
+                        <li class="tag-2"><a href="https://buhrmann.github.io/tag/nosql.html">nosql</a></li>
+                        <li class="tag-1"><a href="https://buhrmann.github.io/tag/visualization.html">visualization</a></li>
+                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/random-forest.html">random forest</a></li>
+                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/regression.html">regression</a></li>
+                        <li class="tag-2"><a href="https://buhrmann.github.io/tag/kaggle.html">kaggle</a></li>
                         <li class="tag-1"><a href="https://buhrmann.github.io/tag/r.html">R</a></li>
                 </ul>
 			</div>
