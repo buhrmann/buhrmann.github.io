@@ -105,16 +105,16 @@
 <h3>Data&nbsp;munging</h3>
 <p>The <a href="https://www.kaggle.com/c/titanic-gettingStarted/data">data set</a> provided by kaggle contains 1309 records of passengers aboard the titanic at the time it sunk. Each record contains 11 variables describing the corresponding person: survival (yes/no), class (1 = Upper, 2 = Middle, 3 = Lower), name, gender and age; the number of siblings and spouses aboard, the number of parents and children aboard, the ticket number, the fare paid, a cabin number, and the port of embarkation (C = Cherbourg; Q = Queenstown; S = Southampton). Of the 1309 records 1068 include the label, thus constituting the training set, while a different subset of size 418 does not include the label and is used by kaggle for assessing the accuracy of the predictions&nbsp;submitted.</p>
 <p>To facilitate the training of classifiers for the prediction of survival, and for purposes of presentation, the data was preprocessed in the following way. All categorical variables were treated as factors (ordered where appropriate, e.g. in the case of class). From each passenger&#8217;s name her title was extracted and added as a new predictor&nbsp;variable. </p>
-<div class="highlight"><pre>data<span class="o">$</span>title <span class="o">=</span> sapply<span class="p">(</span>data<span class="o">$</span>name<span class="p">,</span> FUN<span class="o">=</span><span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> <span class="p">{</span> strsplit<span class="p">(</span>x<span class="p">,</span> split<span class="o">=</span><span class="s">&#39;[,.]&#39;</span><span class="p">)[[</span><span class="m">1</span><span class="p">]][</span><span class="m">2</span><span class="p">]})</span>
-data<span class="o">$</span>title <span class="o">=</span> sub<span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> data<span class="o">$</span>title<span class="p">)</span>
+<div class="highlight"><pre><span></span>data<span class="o">$</span>title <span class="o">=</span> <span class="kp">sapply</span><span class="p">(</span>data<span class="o">$</span>name<span class="p">,</span> FUN<span class="o">=</span><span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> <span class="p">{</span> <span class="kp">strsplit</span><span class="p">(</span>x<span class="p">,</span> split<span class="o">=</span><span class="s">&#39;[,.]&#39;</span><span class="p">)[[</span><span class="m">1</span><span class="p">]][</span><span class="m">2</span><span class="p">]})</span>
+data<span class="o">$</span>title <span class="o">=</span> <span class="kp">sub</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> data<span class="o">$</span>title<span class="p">)</span>
 </pre></div>
 
 
 <p>This resulted in a factor with a great number of different levels, many of which could be considered similar in terms of implied societal status. To simplify matters the following levels were combined: &#8216;Mme&#8217;, &#8216;Mlle&#8217;, &#8216;Ms&#8217; were re-assigned to the level &#8216;Miss&#8217;; &#8216;Capt&#8217;, &#8216;Col&#8217;, &#8216;Don&#8217;, &#8216;Major&#8217;, &#8216;Sir&#8217; and &#8216;Dr&#8217; as titles of male nobility to the level &#8216;Sir&#8217;; and &#8216;Dona&#8217;, &#8216;Lady&#8217;, &#8216;the Countess&#8217; and &#8216;Jonkheer&#8217; as titles of female nobility to the level&nbsp;&#8216;Lady&#8217;.</p>
 <p>The number of all family members aboard was combined into a single family size variable. In addition, a categorical variable was formed from this data by assigning records to three approx. equally sized levels of &#8216;singles&#8217;, &#8216;small&#8217; and &#8216;big&#8217; families. Also, another factor was added aimed at <em>uniquely</em> identifying big families. To this send each passenger&#8217;s surname was combined with the corresponding family size (resulting e.g. in the factor level &#8220;11Sage&#8221;), but such that families smaller than a certain number (n=4) were all assigned the level&nbsp;&#8220;small&#8221;.</p>
 <p>Age information was missing for many records (about 20%). Since age can be hypothesised to correlate well with such information as a person&#8217;s title (e.g. &#8220;Master&#8221; was used to refer politely to young children), this data was imputed using a random forest (essentially a bagged decision tree) trained to predict age from the remaining&nbsp;variables:</p>
-<div class="highlight"><pre>agefit <span class="o">=</span> rpart<span class="p">(</span>age <span class="o">~</span> pclass <span class="o">+</span> sex <span class="o">+</span> sibsp <span class="o">+</span> parch <span class="o">+</span> fare <span class="o">+</span> embarked <span class="o">+</span> title <span class="o">+</span> familysize<span class="p">,</span> data<span class="o">=</span>data<span class="p">[</span><span class="o">!</span>is.na<span class="p">(</span>data<span class="o">$</span>age<span class="p">),],</span> method<span class="o">=</span><span class="s">&quot;anova&quot;</span><span class="p">)</span>
-data<span class="o">$</span>age<span class="p">[</span>is.na<span class="p">(</span>data<span class="o">$</span>age<span class="p">)]</span> <span class="o">=</span> predict<span class="p">(</span>agefit<span class="p">,</span> data<span class="p">[</span>is.na<span class="p">(</span>data<span class="o">$</span>age<span class="p">),</span> <span class="p">])</span>
+<div class="highlight"><pre><span></span>agefit <span class="o">=</span> rpart<span class="p">(</span>age <span class="o">~</span> pclass <span class="o">+</span> sex <span class="o">+</span> sibsp <span class="o">+</span> parch <span class="o">+</span> fare <span class="o">+</span> embarked <span class="o">+</span> title <span class="o">+</span> familysize<span class="p">,</span> data<span class="o">=</span>data<span class="p">[</span><span class="o">!</span><span class="kp">is.na</span><span class="p">(</span>data<span class="o">$</span>age<span class="p">),],</span> method<span class="o">=</span><span class="s">&quot;anova&quot;</span><span class="p">)</span>
+data<span class="o">$</span>age<span class="p">[</span><span class="kp">is.na</span><span class="p">(</span>data<span class="o">$</span>age<span class="p">)]</span> <span class="o">=</span> predict<span class="p">(</span>agefit<span class="p">,</span> data<span class="p">[</span><span class="kp">is.na</span><span class="p">(</span>data<span class="o">$</span>age<span class="p">),</span> <span class="p">])</span>
 </pre></div>
 
 
@@ -140,7 +140,7 @@ data<span class="o">$</span>age<span class="p">[</span>is.na<span class="p">(</s
 </figure>
 Those that survived travelled on a more expensive ticket on average than those who died. And for young children we see a peak in the probability of&nbsp;survival.</p>
 <p>To develop some intuition about the importance of the different predictors and how they might be used by a classifier it may help to train a simple decision tree on the data, which is a model easy to interpret. Let&#8217;s start by sticking mostly to the original predictors (not including non-normal variables converted to factors, nor engineered variables like the&nbsp;title):</p>
-<div class="highlight"><pre>dc1 <span class="o">=</span> rpart<span class="p">(</span>survived <span class="o">~</span> pclass <span class="o">+</span> sex <span class="o">+</span> age <span class="o">+</span> familysize <span class="o">+</span> fare <span class="o">+</span> embarked<span class="p">,</span> data<span class="o">=</span>train<span class="p">,</span> method<span class="o">=</span><span class="s">&quot;class&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span>dc1 <span class="o">=</span> rpart<span class="p">(</span>survived <span class="o">~</span> pclass <span class="o">+</span> sex <span class="o">+</span> age <span class="o">+</span> familysize <span class="o">+</span> fare <span class="o">+</span> embarked<span class="p">,</span> data<span class="o">=</span>train<span class="p">,</span> method<span class="o">=</span><span class="s">&quot;class&quot;</span><span class="p">)</span>
 </pre></div>
 
 
@@ -153,9 +153,9 @@ Those that survived travelled on a more expensive ticket on average than those w
 <p>The resulting decision tree should not be surprising. Without any further information (at the root node) the classifier always predicts that a passenger would not survive, which is of course correct given that 62% of all passengers died while only 38% survived. Next, the tree splits on the gender variable. For male passengers over the age of 13 the classifier predicts death, while children are more likely to survive, unless they belong to a large family. On the female branch, those belonging to the upper class are predicted to survive. Those in the third class, in contrast, are predicted to survive only when they belong to a relatively small family (size &lt; 4.5) and are under the age of 36. Those older, or member of a bigger family are more probable to have died. The fare and embarkation variables are not used in the final tree. Since we already know that fare correlates strongly with class, and since embarkation is strongly imbalanced, this is not surprising. &#8220;Factorised&#8221; variables derived from non-uniformly distributed predictors (fare category, family size category and &#8220;is child&#8221;) are not required in the training of the tree, as it automatically determines the best level at which to split the&nbsp;variables.</p>
 <p>How about the engineered variables of a passenger&#8217;s title and familyId? One possible problem here is that these factors contain relatively many levels. Decision trees split nodes by information gain, and this measure in decision trees is biased in favour of attributes with more levels. Regular trees will therefore often produce results with those categorical variables dominating others. However, biased predictor selection can be avoided using Conditional Inference Trees (ctrees), which will be employed later when more methodologically exploring different&nbsp;classifiers.</p>
 <p>As a last step, we compare the distribution of variables from the train and the test set, to avoid potential surprises arising from imbalanced splits of the data. Instead of pulling out and displaying here all tables for the categorical variables in both sets, we first use a chi-square test to single out those categorical variables whose levels are differently&nbsp;distributed:</p>
-<div class="highlight"><pre>factabs <span class="o">=</span> lapply<span class="p">(</span>varnames<span class="p">[</span>facvars<span class="p">],</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> <span class="p">{</span> data.frame<span class="p">(</span>cbind<span class="p">(</span>table<span class="p">(</span>train<span class="p">[,</span>x<span class="p">]),</span> table<span class="p">(</span>test<span class="p">[,</span> x<span class="p">])))})</span>
-pvals <span class="o">=</span> sapply<span class="p">(</span>faccomp<span class="p">,</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> chisq.test<span class="p">(</span>x<span class="p">)</span><span class="o">$</span>p.value<span class="p">)</span>
-faccomp<span class="p">[[</span>which<span class="p">(</span>pvals<span class="o">&lt;</span><span class="m">0.05</span><span class="p">)]]</span>
+<div class="highlight"><pre><span></span>factabs <span class="o">=</span> <span class="kp">lapply</span><span class="p">(</span>varnames<span class="p">[</span>facvars<span class="p">],</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> <span class="p">{</span> <span class="kt">data.frame</span><span class="p">(</span><span class="kp">cbind</span><span class="p">(</span><span class="kp">table</span><span class="p">(</span>train<span class="p">[,</span>x<span class="p">]),</span> <span class="kp">table</span><span class="p">(</span>test<span class="p">[,</span> x<span class="p">])))})</span>
+pvals <span class="o">=</span> <span class="kp">sapply</span><span class="p">(</span>faccomp<span class="p">,</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> chisq.test<span class="p">(</span>x<span class="p">)</span><span class="o">$</span>p.value<span class="p">)</span>
+faccomp<span class="p">[[</span><span class="kp">which</span><span class="p">(</span>pvals<span class="o">&lt;</span><span class="m">0.05</span><span class="p">)]]</span>
 </pre></div>
 
 
@@ -164,23 +164,23 @@ faccomp<span class="p">[[</span>which<span class="p">(</span>pvals<span class="o
 <p>I decided to use the caret package in R to train and compare a variety of different models. I should note that finding a better way to preprocess, engineer and extend the available data is often more important than small improvements gained from using a better classifier. However, I suspect that since the titanic data set is very small and consists mostly of categorical variables, and since I know of no way to collect more data on the problem (without cheating), some classifiers might in this particular case perform better than&nbsp;others.</p>
 <p>The caret package provides a unified interface for training of a large number of different learning algorithms, including options for validating learners using cross-validation (and related validation techniques), which can be used simultaneously for the tuning of model-specific hyper-parameters. My overall approach will be this: first I train a number of classifiers using repeated cross-validation to estimate their prediction accuracy. Next I create ensembles of these classifiers and compare their accuracy to that of individual classifiers. Lastly, I choose the best (individual or ensemble) classifier to create predictions for the kaggle competition. Usually, I would maintain a hold out set for validation and comparison of the various hypertuned algorithms. Because the data set is already small, however, I decided to try and rely on the results from repeated cross-validation (10 folds, 10 repeats). It might nevertheless be insightful to at least compare the cross-validated metrics (using the full data set) to those measured on a holdout set, even when ultimately training the final classifier on the whole training set. We&#8217;ll start by training with 20% of data reserved for the validation&nbsp;set.</p>
 <p>Here&#8217;s my approach to more or less flexibly building a set of different classifiers using&nbsp;caret:</p>
-<div class="highlight"><pre>rseed <span class="o">=</span> <span class="m">42</span>
+<div class="highlight"><pre><span></span>rseed <span class="o">=</span> <span class="m">42</span>
 scorer <span class="o">=</span> <span class="s">&#39;ROC&#39;</span> <span class="c1"># &#39;ROC&#39; or &quot;Accuracy&#39;</span>
 summarizor <span class="o">=</span> <span class="kr">if</span><span class="p">(</span>scorer <span class="o">==</span> <span class="s">&#39;Accuracy&#39;</span><span class="p">)</span> defaultSummary <span class="kr">else</span> twoClassSummary
 selector <span class="o">=</span> <span class="s">&quot;best&quot;</span> <span class="c1"># &quot;best&quot; or &quot;oneSE&quot;</span>
 folds <span class="o">=</span> <span class="m">10</span>
 repeats <span class="o">=</span> <span class="m">10</span>
-pp <span class="o">=</span> c<span class="p">(</span><span class="s">&quot;center&quot;</span><span class="p">,</span> <span class="s">&quot;scale&quot;</span><span class="p">)</span>
+pp <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;center&quot;</span><span class="p">,</span> <span class="s">&quot;scale&quot;</span><span class="p">)</span>
 
 cvctrl <span class="o">=</span> trainControl<span class="p">(</span>method<span class="o">=</span><span class="s">&quot;repeatedcv&quot;</span><span class="p">,</span> number<span class="o">=</span>folds<span class="p">,</span> repeats<span class="o">=</span>repeats<span class="p">,</span> p<span class="o">=</span><span class="m">0.8</span><span class="p">,</span> 
-    summaryFunction<span class="o">=</span>summarizor<span class="p">,</span> selectionFunction<span class="o">=</span>selector<span class="p">,</span> classProbs<span class="o">=</span><span class="k-Variable">T</span><span class="p">,</span> 
-    savePredictions<span class="o">=</span><span class="k-Variable">T</span><span class="p">,</span> returnData<span class="o">=</span><span class="k-Variable">T</span><span class="p">,</span> 
+    summaryFunction<span class="o">=</span>summarizor<span class="p">,</span> selectionFunction<span class="o">=</span>selector<span class="p">,</span> classProbs<span class="o">=</span><span class="bp">T</span><span class="p">,</span> 
+    savePredictions<span class="o">=</span><span class="bp">T</span><span class="p">,</span> returnData<span class="o">=</span><span class="bp">T</span><span class="p">,</span> 
     index<span class="o">=</span>createMultiFolds<span class="p">(</span>trainset<span class="o">$</span>survived<span class="p">,</span> k<span class="o">=</span>folds<span class="p">,</span> times<span class="o">=</span>repeats<span class="p">))</span>
 </pre></div>
 
 
 <p>First, use a random seed to make results repeatable! Next we select whether to optimise prediction accuracy or the area under the <span class="caps">ROC</span> curve, and the number of folds for cross-validation and the number of times to repeat the validation. Some algorithms require normalised data, which means centering and scaling here. Lastly, setup the training control structure expected by the caret package. Next we set up a number of formulas to be used by the&nbsp;classifiers:</p>
-<div class="highlight"><pre>fmla0 <span class="o">=</span> survived <span class="o">~</span> pclass <span class="o">+</span> sex <span class="o">+</span> age
+<div class="highlight"><pre><span></span>fmla0 <span class="o">=</span> survived <span class="o">~</span> pclass <span class="o">+</span> sex <span class="o">+</span> age
 fmla1 <span class="o">=</span> survived <span class="o">~</span> pclass <span class="o">+</span> sex <span class="o">+</span> age <span class="o">+</span> fare <span class="o">+</span> embarked <span class="o">+</span> familysizefac <span class="o">+</span> title
 <span class="kc">...</span>
 fmla <span class="o">=</span> fmla1
@@ -188,26 +188,26 @@ fmla <span class="o">=</span> fmla1
 
 
 <p>No surprise here. Caret accepts parameter grids over which to search for hyperparameters. Here we set these up for our selected algorithms and combine them in a list along with additional model parameters expected by caret (such as a string identifying the type of model&nbsp;etc):</p>
-<div class="highlight"><pre>glmnetgrid <span class="o">=</span> expand.grid<span class="p">(</span>.alpha <span class="o">=</span> seq<span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0.1</span><span class="p">),</span> .lambda <span class="o">=</span> seq<span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0.1</span><span class="p">))</span>
+<div class="highlight"><pre><span></span>glmnetgrid <span class="o">=</span> <span class="kp">expand.grid</span><span class="p">(</span><span class="m">.</span>alpha <span class="o">=</span> <span class="kp">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0.1</span><span class="p">),</span> <span class="m">.</span>lambda <span class="o">=</span> <span class="kp">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0.1</span><span class="p">))</span>
 <span class="kc">...</span>
-rfgrid <span class="o">=</span> data.frame<span class="p">(</span>.mtry <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
+rfgrid <span class="o">=</span> <span class="kt">data.frame</span><span class="p">(</span><span class="m">.</span>mtry <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
 
-configs <span class="o">=</span> list<span class="p">()</span>
-configs<span class="o">$</span>glmnet <span class="o">=</span> list<span class="p">(</span>method<span class="o">=</span><span class="s">&quot;glmnet&quot;</span><span class="p">,</span> tuneGrid<span class="o">=</span>glmnetgrid<span class="p">,</span> preProcess<span class="o">=</span>pp<span class="p">)</span>
+configs <span class="o">=</span> <span class="kt">list</span><span class="p">()</span>
+configs<span class="o">$</span>glmnet <span class="o">=</span> <span class="kt">list</span><span class="p">(</span>method<span class="o">=</span><span class="s">&quot;glmnet&quot;</span><span class="p">,</span> tuneGrid<span class="o">=</span>glmnetgrid<span class="p">,</span> preProcess<span class="o">=</span>pp<span class="p">)</span>
 <span class="kc">...</span>
-configs<span class="o">$</span>rf <span class="o">=</span> list<span class="p">(</span>method<span class="o">=</span><span class="s">&quot;rf&quot;</span><span class="p">,</span> tuneGrid<span class="o">=</span>rfgrid<span class="p">,</span> preProcess<span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> ntree<span class="o">=</span><span class="m">2000</span><span class="p">)</span>
+configs<span class="o">$</span>rf <span class="o">=</span> <span class="kt">list</span><span class="p">(</span>method<span class="o">=</span><span class="s">&quot;rf&quot;</span><span class="p">,</span> tuneGrid<span class="o">=</span>rfgrid<span class="p">,</span> preProcess<span class="o">=</span><span class="kc">NULL</span><span class="p">,</span> ntree<span class="o">=</span><span class="m">2000</span><span class="p">)</span>
 </pre></div>
 
 
 <p>Now that we have a list of training algorithms along with their required parameters, it&#8217;s just a matter of looping over it to train the corresponding&nbsp;classifiers:</p>
-<div class="highlight"><pre>arg <span class="o">=</span> list<span class="p">(</span>form <span class="o">=</span> fmla<span class="p">,</span> data <span class="o">=</span> trainset<span class="p">,</span> trControl <span class="o">=</span> cvctrl<span class="p">,</span> metric <span class="o">=</span> scorer<span class="p">)</span>
-models <span class="o">=</span> list<span class="p">()</span>
-set.seed<span class="p">(</span>rseed<span class="p">)</span>
-<span class="kr">for</span><span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>length<span class="p">(</span>configs<span class="p">))</span> 
+<div class="highlight"><pre><span></span>arg <span class="o">=</span> <span class="kt">list</span><span class="p">(</span>form <span class="o">=</span> fmla<span class="p">,</span> data <span class="o">=</span> trainset<span class="p">,</span> trControl <span class="o">=</span> cvctrl<span class="p">,</span> metric <span class="o">=</span> scorer<span class="p">)</span>
+models <span class="o">=</span> <span class="kt">list</span><span class="p">()</span>
+<span class="kp">set.seed</span><span class="p">(</span>rseed<span class="p">)</span>
+<span class="kr">for</span><span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="kp">length</span><span class="p">(</span>configs<span class="p">))</span> 
 <span class="p">{</span>
-  models<span class="p">[[</span>i<span class="p">]]</span> <span class="o">=</span> do.call<span class="p">(</span><span class="s">&quot;train.formula&quot;</span><span class="p">,</span> c<span class="p">(</span>arg<span class="p">,</span> configs<span class="p">[[</span>i<span class="p">]]))</span>
+  models<span class="p">[[</span>i<span class="p">]]</span> <span class="o">=</span> <span class="kp">do.call</span><span class="p">(</span><span class="s">&quot;train.formula&quot;</span><span class="p">,</span> <span class="kt">c</span><span class="p">(</span>arg<span class="p">,</span> configs<span class="p">[[</span>i<span class="p">]]))</span>
 <span class="p">}</span>
-names<span class="p">(</span>models<span class="p">)</span> <span class="o">=</span> sapply<span class="p">(</span>models<span class="p">,</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> x<span class="o">$</span>method<span class="p">)</span>
+<span class="kp">names</span><span class="p">(</span>models<span class="p">)</span> <span class="o">=</span> <span class="kp">sapply</span><span class="p">(</span>models<span class="p">,</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> x<span class="o">$</span>method<span class="p">)</span>
 </pre></div>
 
 
@@ -332,37 +332,37 @@ names<span class="p">(</span>models<span class="p">)</span> <span class="o">=</s
 			<div class="col-sm-3">
 				<h4>Tags</h4>
                 <ul class="tagcloud">
-                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/big-data.html">big data</a></li>
-                        <li class="tag-2"><a href="https://buhrmann.github.io/tag/report.html">report</a></li>
-                        <li class="tag-2"><a href="https://buhrmann.github.io/tag/d3.html">d3</a></li>
-                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/sna.html">sna</a></li>
-                        <li class="tag-1"><a href="https://buhrmann.github.io/tag/visualization.html">visualization</a></li>
+                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/shiny.html">shiny</a></li>
+                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/networks.html">networks</a></li>
                         <li class="tag-3"><a href="https://buhrmann.github.io/tag/sql.html">sql</a></li>
-                        <li class="tag-3"><a href="https://buhrmann.github.io/tag/neo4j.html">neo4j</a></li>
-                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/random-forest.html">random forest</a></li>
-                        <li class="tag-1"><a href="https://buhrmann.github.io/tag/r.html">R</a></li>
+                        <li class="tag-3"><a href="https://buhrmann.github.io/tag/hadoop.html">hadoop</a></li>
+                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/mongodb.html">mongodb</a></li>
+                        <li class="tag-1"><a href="https://buhrmann.github.io/tag/visualization.html">visualization</a></li>
+                        <li class="tag-2"><a href="https://buhrmann.github.io/tag/smcs.html">smcs</a></li>
                         <li class="tag-3"><a href="https://buhrmann.github.io/tag/sklearn.html">sklearn</a></li>
                         <li class="tag-3"><a href="https://buhrmann.github.io/tag/tf-idf.html">tf-idf</a></li>
-                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/exploratory.html">exploratory</a></li>
-                        <li class="tag-2"><a href="https://buhrmann.github.io/tag/kaggle.html">kaggle</a></li>
-                        <li class="tag-2"><a href="https://buhrmann.github.io/tag/graph.html">graph</a></li>
-                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/lda.html">lda</a></li>
-                        <li class="tag-3"><a href="https://buhrmann.github.io/tag/hadoop.html">hadoop</a></li>
-                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/text.html">text</a></li>
-                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/regression.html">regression</a></li>
-                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/networks.html">networks</a></li>
-                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/hive.html">hive</a></li>
-                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/java.html">java</a></li>
-                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/svm.html">svm</a></li>
+                        <li class="tag-1"><a href="https://buhrmann.github.io/tag/r.html">R</a></li>
+                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/sna.html">sna</a></li>
                         <li class="tag-2"><a href="https://buhrmann.github.io/tag/nosql.html">nosql</a></li>
+                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/svm.html">svm</a></li>
+                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/java.html">java</a></li>
+                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/hive.html">hive</a></li>
                         <li class="tag-4"><a href="https://buhrmann.github.io/tag/scraping.html">scraping</a></li>
-                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/shiny.html">shiny</a></li>
-                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/flume.html">flume</a></li>
-                        <li class="tag-2"><a href="https://buhrmann.github.io/tag/classification.html">classification</a></li>
-                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/mongodb.html">mongodb</a></li>
-                        <li class="tag-2"><a href="https://buhrmann.github.io/tag/smcs.html">smcs</a></li>
+                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/lda.html">lda</a></li>
+                        <li class="tag-2"><a href="https://buhrmann.github.io/tag/kaggle.html">kaggle</a></li>
+                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/exploratory.html">exploratory</a></li>
                         <li class="tag-4"><a href="https://buhrmann.github.io/tag/titanic.html">titanic</a></li>
+                        <li class="tag-2"><a href="https://buhrmann.github.io/tag/classification.html">classification</a></li>
                         <li class="tag-1"><a href="https://buhrmann.github.io/tag/python.html">python</a></li>
+                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/random-forest.html">random forest</a></li>
+                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/text.html">text</a></li>
+                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/big-data.html">big data</a></li>
+                        <li class="tag-2"><a href="https://buhrmann.github.io/tag/report.html">report</a></li>
+                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/regression.html">regression</a></li>
+                        <li class="tag-2"><a href="https://buhrmann.github.io/tag/graph.html">graph</a></li>
+                        <li class="tag-2"><a href="https://buhrmann.github.io/tag/d3.html">d3</a></li>
+                        <li class="tag-3"><a href="https://buhrmann.github.io/tag/neo4j.html">neo4j</a></li>
+                        <li class="tag-4"><a href="https://buhrmann.github.io/tag/flume.html">flume</a></li>
                 </ul>
 			</div>
 		</div>

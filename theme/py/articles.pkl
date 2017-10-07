@@ -17,14 +17,14 @@ VH Frenz, M Lappe, M Kolesnik, T Bührmann
 p9
 sS'num_citations'
 p10
-I41
+I51
 sS'citations_link'
 p11
-S'http://scholar.google.es/scholar?oi=bibs&hl=en&cites=285065341645454296'
+S'https://scholar.google.es/scholar?oi=bibs&hl=en&cites=285065341645454296'
 p12
 sS'link'
 p13
-S'http://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:d1gkVwhDpl0C'
+S'https://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:d1gkVwhDpl0C'
 p14
 sS'year'
 p15
@@ -52,12 +52,12 @@ sg8
 VT Buhrmann, E Di Paolo, X Barandiaran
 p25
 sg10
-I29
+I45
 sg11
-S'http://scholar.google.es/scholar?oi=bibs&hl=en&cites=13822822761156929947'
+S'https://scholar.google.es/scholar?oi=bibs&hl=en&cites=13822822761156929947'
 p26
 sg13
-S'http://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:qjMakFHDy7sC'
+S'https://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:qjMakFHDy7sC'
 p27
 sg15
 I2013
@@ -79,12 +79,12 @@ sg8
 VE Izquierdo, T Bührmann
 p34
 sg10
-I21
+I23
 sg11
-S'http://scholar.google.es/scholar?oi=bibs&hl=en&cites=3363748672386686888'
+S'https://scholar.google.es/scholar?oi=bibs&hl=en&cites=3363748672386686888'
 p35
 sg13
-S'http://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:u5HHmVD_uO8C'
+S'https://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:u5HHmVD_uO8C'
 p36
 sg15
 I2008
@@ -95,26 +95,26 @@ tp37
 Rp38
 sa(dp39
 g2
-VClosing the loop: Evolving a model-free visually-guided robot arm
+VLearning to perceive in the sensorimotor approach: Piaget\u2019s theory of equilibration interpreted dynamically
 p40
 sg4
 (lp41
 sg6
-VProceedings of the Ninth International Conference on the Simulation and ...
+VFrontiers in human neuroscience 8, 551
 p42
 sg8
-VT Buehrmann, ED Paolo
+VEA Di Paolo, XE Barandiaran, M Beaton, T Buhrmann
 p43
 sg10
-I11
+I14
 sg11
-S'http://scholar.google.es/scholar?oi=bibs&hl=en&cites=2732091119073471548'
+S'https://scholar.google.es/scholar?oi=bibs&hl=en&cites=15548762270917292697'
 p44
 sg13
-S'http://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:UeHWp8X0CEIC'
+S'https://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:zYLM7Y9cAGgC'
 p45
 sg15
-I2004
+I2014
 sg16
 g17
 (g18
@@ -122,26 +122,26 @@ tp46
 Rp47
 sa(dp48
 g2
-VVirtual odometry from visual flow
+VClosing the loop: Evolving a model-free visually-guided robot arm
 p49
 sg4
 (lp50
 sg6
-VElectronic Imaging 2005, 493-502
+VProceedings of the Ninth International Conference on the Simulation and ...
 p51
 sg8
-VM Lappe, H Frenz, T Buehrmann, M Kolesnik
+VT Buehrmann, ED Paolo
 p52
 sg10
-I7
+I11
 sg11
-S'http://scholar.google.es/scholar?oi=bibs&hl=en&cites=3276837092035650080'
+S'https://scholar.google.es/scholar?oi=bibs&hl=en&cites=2732091119073471548'
 p53
 sg13
-S'http://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:9yKSN-GCB0IC'
+S'https://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:UeHWp8X0CEIC'
 p54
 sg15
-I2005
+I2004
 sg16
 g17
 (g18
@@ -149,26 +149,26 @@ tp55
 Rp56
 sa(dp57
 g2
-VNon-representational sensorimotor knowledge
+VThe sense of agency\u2013a phenomenological consequence of enacting sensorimotor schemes
 p58
 sg4
 (lp59
 sg6
-VFrom Animals to Animats 13, 21-31
+VPhenomenology and the Cognitive Sciences, 1-30
 p60
 sg8
 VT Buhrmann, E Di Paolo
 p61
 sg10
-I3
+I7
 sg11
-S'http://scholar.google.es/scholar?oi=bibs&hl=en&cites=6299009449300525088'
+S'https://scholar.google.es/scholar?oi=bibs&hl=en&cites=11213873402504578700'
 p62
 sg13
-S'http://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:Tyk-4Ss8FVUC'
+S'https://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:W7OEmFMy1HYC'
 p63
 sg15
-I2014
+I2015
 sg16
 g17
 (g18
@@ -176,26 +176,26 @@ tp64
 Rp65
 sa(dp66
 g2
-VBiological actuators are not just springs
+VSpinal circuits can accommodate interaction torques during multijoint limb movements.
 p67
 sg4
 (lp68
 sg6
-VFrom Animals to Animats 9, 89-100
+VFrontiers in computational neuroscience 8, 144-144
 p69
 sg8
-VT Buehrmann, E Di Paolo
+VT Buhrmann, EA Di Paolo
 p70
 sg10
-I3
+I7
 sg11
-S'http://scholar.google.es/scholar?oi=bibs&hl=en&cites=2996936269618871008'
+S'https://scholar.google.es/scholar?oi=bibs&hl=en&cites=14038969497470817043'
 p71
 sg13
-S'http://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:IjCSPb-OGe4C'
+S'https://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:Y0pCki6q_DkC'
 p72
 sg15
-I2006
+I2013
 sg16
 g17
 (g18
@@ -203,26 +203,26 @@ tp73
 Rp74
 sa(dp75
 g2
-VLearning to perceive in the sensorimotor approach: Piaget\u2019s theory of equilibration interpreted dynamically
+VVirtual odometry from visual flow
 p76
 sg4
 (lp77
 sg6
-VFrontiers in human neuroscience 8
+VElectronic Imaging 2005, 493-502
 p78
 sg8
-VEA Di Paolo, XE Barandiaran, M Beaton, T Buhrmann
+VM Lappe, H Frenz, T Bührmann, M Kolesnik
 p79
 sg10
-I2
+I7
 sg11
-S'http://scholar.google.es/scholar?oi=bibs&hl=en&cites=15548762270917292697'
+S'https://scholar.google.es/scholar?oi=bibs&hl=en&cites=3276837092035650080'
 p80
 sg13
-S'http://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:zYLM7Y9cAGgC'
+S'https://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:9yKSN-GCB0IC'
 p81
 sg15
-I2014
+I2005
 sg16
 g17
 (g18
@@ -230,23 +230,23 @@ tp82
 Rp83
 sa(dp84
 g2
-VSpinal circuits can accommodate interaction torques during multijoint limb movements
+VNon-representational sensorimotor knowledge
 p85
 sg4
 (lp86
 sg6
-VFrontiers in computational neuroscience 8
+VInternational Conference on Simulation of Adaptive Behavior, 21-31
 p87
 sg8
-VT Buhrmann, EA Di Paolo
+VT Buhrmann, E Di Paolo
 p88
 sg10
-I0
+I6
 sg11
-S''
+S'https://scholar.google.es/scholar?oi=bibs&hl=en&cites=6299009449300525088'
 p89
 sg13
-S'http://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:Y0pCki6q_DkC'
+S'https://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:Tyk-4Ss8FVUC'
 p90
 sg15
 I2014
@@ -257,54 +257,183 @@ tp91
 Rp92
 sa(dp93
 g2
-VOn the intrinsic control properties of muscle and relexes: exploring the interaction between neural and musculoskeletal dynamics in the framework of the equilbrium-point hypothesis
+VBiological actuators are not just springs
 p94
 sg4
 (lp95
 sg6
-VUniversity of Sussex
+VInternational Conference on Simulation of Adaptive Behavior, 89-100
 p96
 sg8
-VT Buhrmann
+VT Buehrmann, E Di Paolo
 p97
+sg10
+I3
+sg11
+S'https://scholar.google.es/scholar?oi=bibs&hl=en&cites=2996936269618871008'
+p98
+sg13
+S'https://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:IjCSPb-OGe4C'
+p99
+sg15
+I2006
+sg16
+g17
+(g18
+tp100
+Rp101
+sa(dp102
+g2
+VDo We Need a Metaphysics for Perception? Some Enactive, Phenomenological Reservations
+p103
+sg4
+(lp104
+sg6
+S''
+p105
+sg8
+VM Bower
+p106
 sg10
 I0
 sg11
-g89
+g105
 sg13
-S'http://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:u-x6o8ySG0sC'
-p98
+S'https://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:ufrVoPGSRksC'
+p107
+sg15
+I2015
+sg16
+g17
+(g18
+tp108
+Rp109
+sa(dp110
+g2
+Vauthors\u2019 Response: Communicating second-order science
+p111
+sg4
+(lp112
+sg6
+VConstructivist Foundations 10, 120-129
+p113
+sg8
+VP Aufenvenne, H Egner, K Elverfeldt, P Aufenvenne, H Egner, K Elverfeldt
+p114
+sg10
+I0
+sg11
+g105
+sg13
+S'https://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:WF5omc3nYNoC'
+p115
+sg15
+I2014
+sg16
+g17
+(g18
+tp116
+Rp117
+sa(dp118
+g2
+VOn the intrinsic control properties of muscle and relexes: exploring the interaction between neural and musculoskeletal dynamics in the framework of the equilbrium-point hypothesis
+p119
+sg4
+(lp120
+sg6
+VUniversity of Sussex
+p121
+sg8
+VT Buhrmann
+p122
+sg10
+I0
+sg11
+g105
+sg13
+S'https://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:u-x6o8ySG0sC'
+p123
 sg15
 I2010
 sg16
 g17
 (g18
-tp99
-Rp100
-sa(dp101
+tp124
+Rp125
+sa(dp126
 g2
-VOptic-flow-based estimation of travel distance in virtual environment
-p102
+VDocument history
+p127
 sg4
-(lp103
+(lp128
 sg6
-VPERCEPTION 32, 70-70
-p104
+g105
 sg8
-VH Frenz, T Bührmann, M Kolesnik, M Lappe
-p105
+VE Di Paolo, X Barandiaran
+p129
 sg10
 I0
 sg11
-g89
+g105
 sg13
-S'http://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:2osOgNQ5qMEC'
-p106
+S'https://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:eQOLeE2rZwMC'
+p130
+sg15
+I2010
+sg16
+g17
+(g18
+tp131
+Rp132
+sa(dp133
+g2
+VOptic-flow-based estimation of travel distance in virtual environment
+p134
+sg4
+(lp135
+sg6
+VPerception ECVP abstract 32, 0-0
+p136
+sg8
+VH Frenz, T Bührmann, M Kolesnik, M Lappe
+p137
+sg10
+I0
+sg11
+g105
+sg13
+S'https://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:2osOgNQ5qMEC'
+p138
 sg15
 I2003
 sg16
 g17
 (g18
-tp107
-Rp108
+tp139
+Rp140
+sa(dp141
+g2
+VExtending Sensorimotor Contingencies to Cognition FP7-ICT-2009-6 Grant Agreement No. 270212
+p142
+sg4
+(lp143
+sg6
+g105
+sg8
+VXE Barandiaran, MJS Beaton, T Buhrmann, EA Di Paolo
+p144
+sg10
+I0
+sg11
+g105
+sg13
+S'https://scholar.google.es/citations?view_op=view_citation&hl=en&user=M1FQwSUAAAAJ&citation_for_view=M1FQwSUAAAAJ:YsMSGLbcyi4C'
+p145
+sg15
+I0
+sg16
+g17
+(g18
+tp146
+Rp147
 sa.
